@@ -124,7 +124,7 @@ $(function () {
 		onkeyup:false,
 		submitHandler:function(form){
 			$(form).ajaxSubmit({
-				url:THINKPHP['module']+'/User/login',
+				url:THINKPHP['login'],
 				type:'post',
 				beforeSend:function(){
 					$('#loading').dialog('open');

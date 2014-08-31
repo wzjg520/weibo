@@ -6,7 +6,7 @@
 
 <style>
 body{
-	background:url(/web/weibo/Public/<?php echo MODULE_NAME;?>/images/weibo_bg.jpg)	
+	background:url(/weibo/Public/<?php echo MODULE_NAME;?>/images/weibo_bg.jpg)	
 }
 .info{
 	width:800px;
@@ -25,10 +25,10 @@ body{
 	text-indent:45px;
 }
 .error{
-	background:url(/web/weibo/Public/<?php echo MODULE_NAME;?>/images/jump_error.png) no-repeat left center;
+	background:url(/weibo/Public/<?php echo MODULE_NAME;?>/images/jump_error.png) no-repeat left center;
 }
 .success{
-	background:url(/web/weibo/Public/<?php echo MODULE_NAME;?>/images/jump_success.png) no-repeat left center;
+	background:url(/weibo/Public/<?php echo MODULE_NAME;?>/images/jump_success.png) no-repeat left center;
 }
 .jump{
 	padding:50px 25px 0 0;

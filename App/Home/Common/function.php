@@ -5,7 +5,7 @@ function checkVerify($code){
 	$Verify->reset=false;
 	return $Verify->check($code);
 }
-//cookie加密0:加密；1:解密
+//cookie加密;0:加密；1:解密
 function encrypy($username,$type=0){
 	$key=sha1(C('encrypy_key'));
 	if(!$type){

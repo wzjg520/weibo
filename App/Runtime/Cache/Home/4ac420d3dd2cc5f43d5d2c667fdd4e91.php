@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>微博--首页</title>
-<link rel="stylesheet" href="/web/weibo/Public/Home/css/index.css">
-<script type="text/javascript" src="/web/weibo/Public/Home/js/jquery.js"></script>
-<script type="text/javascript" src="/web/weibo/Public/Home/js/jquery.ui.js"></script>
-<script type="text/javascript" src="/web/weibo/Public/Home/uploadify/jquery.uploadify.min.js"></script>
-<script type="text/javascript" src="/web/weibo/Public/Home/js/index.js"></script>
-<script type="text/javascript" src="/web/weibo/Public/Home/js/rl_exp.js"></script>
-<script type="text/javascript" src="/web/weibo/Public/Home/js/june_pic.js"></script>
-<link rel="stylesheet" href="/web/weibo/Public/Home/css/jquery.ui.css">
-<link rel="stylesheet" href="/web/weibo/Public/Home/uploadify/uploadify.css">
-<link rel="stylesheet" href="/web/weibo/Public/Home/css/rl_exp.css" />
+<link rel="stylesheet" href="/weibo/Public/Home/css/index.css">
+<script type="text/javascript" src="/weibo/Public/Home/js/jquery.js"></script>
+<script type="text/javascript" src="/weibo/Public/Home/js/jquery.ui.js"></script>
+<script type="text/javascript" src="/weibo/Public/Home/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="/weibo/Public/Home/js/index.js"></script>
+<script type="text/javascript" src="/weibo/Public/Home/js/rl_exp.js"></script>
+<script type="text/javascript" src="/weibo/Public/Home/js/june_pic.js"></script>
+<link rel="stylesheet" href="/weibo/Public/Home/css/jquery.ui.css">
+<link rel="stylesheet" href="/weibo/Public/Home/uploadify/uploadify.css">
+<link rel="stylesheet" href="/weibo/Public/Home/css/rl_exp.css" />
 </head>
 <body>
 
@@ -62,9 +62,9 @@
 	
 	<script>
 		var	THINKPHP={
-			'img': '/web/weibo/Public/Home/images',
-			'module':'/web/weibo/Home',
-			'uploadify':'/web/weibo/Public/Home/uploadify',
+			'img': '/weibo/Public/Home/images',
+			'module':'/weibo/Home',
+			'uploadify':'/weibo/Public/Home/uploadify',
 			'uploader':'<?php echo U("File/upload");?>',
 		}
 	</script>

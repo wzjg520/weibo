@@ -36,7 +36,8 @@ $(function(){
 				fileTypeDesc:'图片类型',
 				buttonCursor:'pointer',
 				buttonText:'上传图片',
-				fileTypeExts:'*.jpeg;*.jgp;*.gif;*.png;',
+				fileSizeLimit:'2MB',
+				fileTypeExts:'*.jpeg; *.jpg; *.gif; *.png;',
 				onUploadSuccess:function(file,data,response){
 					alert(data)
 				}

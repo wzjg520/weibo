@@ -3,19 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <title>微博 --登陆</title>
-<script type="text/javascript" src="/web/weibo/Public/Home/js/jquery.js"></script>
-<script type="text/javascript" src="/web/weibo/Public/Home/js/jquery.ui.js"></script>
-<script type="text/javascript" src="/web/weibo/Public/Home/js/jquery.form.js"></script>
-<script type="text/javascript" src="/web/weibo/Public/Home/js/jquery.validate.js"></script>
-<script type="text/javascript" src="/web/weibo/Public/Home/js/login.js"></script>
-<link rel="stylesheet" href="/web/weibo/Public/Home/css/jquery.ui.css">
-<link rel="stylesheet" href="/web/weibo/Public/Home/css/basic.css">
-<link rel="stylesheet" href="/web/weibo/Public/Home/css/login.css">
+<script type="text/javascript" src="/weibo/Public/Home/js/jquery.js"></script>
+<script type="text/javascript" src="/weibo/Public/Home/js/jquery.ui.js"></script>
+<script type="text/javascript" src="/weibo/Public/Home/js/jquery.form.js"></script>
+<script type="text/javascript" src="/weibo/Public/Home/js/jquery.validate.js"></script>
+<script type="text/javascript" src="/weibo/Public/Home/js/login.js"></script>
+<link rel="stylesheet" href="/weibo/Public/Home/css/jquery.ui.css">
+<link rel="stylesheet" href="/weibo/Public/Home/css/basic.css">
+<link rel="stylesheet" href="/weibo/Public/Home/css/login.css">
 <script type="text/javascript">
 	var	THINKPHP={
-		img:'/web/weibo/Public/Home/images',
-		module:'/web/weibo/Home',
-		index:'<?php echo U("Index/index");?>'
+		img:'/weibo/Public/Home/images',
+		module:'/weibo/Home',
+		index:'<?php echo U("Index/index");?>',
+		login:'<?php echo U("User/login");?>',
 	} 
 </script>
 </head>

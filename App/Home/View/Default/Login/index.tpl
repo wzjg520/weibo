@@ -15,7 +15,8 @@
 	var	THINKPHP={
 		img:'__IMG__',
 		module:'__MODULE__',
-		index:'{:U("Index/index")}'
+		index:'{:U("Index/index")}',
+		login:'{:U("User/login")}',
 	} 
 </script>
 </head>
