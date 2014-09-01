@@ -30,13 +30,20 @@
 			<a href="javascript:void(0);" class="pic" id="pic_btn">图片<span class="pic_arrow_top"></span></a>
 			<div class="weibo_pic_box" id="pic_box">
 				<div class="weibo_pic_header">
-					<span class="weibo_pic_ino">共 0 张，还能上传 4 张（按住ctrl键可选择多张）</span>
+					<span class="weibo_pic_ino">共 <span class="uploadTotal"></span> 张，还能上传 <span class="uploadLimit"></span> 张（按住ctrl键可选择多张）</span>
 					<a href="javascript:void(0);" class="close">×</a>				
+				</div>
+				<div class="weibo_pic_list">
 				</div>
 				<input type="file" name="file" id="file"/>
 			</div>
 			<input type="button" value="发布" class="button" />
 		</form>
+		
+		
+		<div class="weibo_content">
+			
+		</div>
 	</div>
 	<div class="main_right">right</div>
 </block>

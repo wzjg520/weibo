@@ -242,7 +242,43 @@ a.pic{
 .weibo_pic_box #file{
 	margin:10px auto 0 auto;
 }
-
+.weibo_pic_box .weibo_pic_list{
+	padding:5px 15px;
+}
+.weibo_pic_box .weibo_pic_list .weibo_pic_content{
+	position:relative;
+	display:inline-block;
+	width:100px;
+	height:100px;
+	overflow:hidden;
+	margin:2px 3px;
+		
+}
+.weibo_pic_box .weibo_pic_list .weibo_pic_content .shadow{
+	display:none;
+	position:absolute;
+	bottom:0;
+	left:0;
+	background:#111;
+	height:30px;
+	width:100%;
+	opacity:0.4;
+	filter:alpha(opacity=40);
+}
+.weibo_pic_box .weibo_pic_list .weibo_pic_content .remove{
+	display:none;
+	position:absolute;
+	bottom:0;
+	left:0;
+	color:#fff;
+	font-size:14px;
+	letter-spacing:1px;
+	height:30px;
+	width:100%;
+	cursor:pointer;
+	text-align:center;
+	line-height:30px;
+}
 #footer{
 	width:960px;
 	height:40px;
