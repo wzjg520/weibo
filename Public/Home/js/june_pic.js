@@ -20,6 +20,7 @@ $(function(){
 				$('#pic_box').hide();
 				$('.pic_arrow_top').hide();
 			});
+/*
 			$(document).on('click',function(e){
 				var target = $(e.target)
 				if(target.closest('#pic_btn').length==1 || target.closest('.weibo_pic_content .remove').length == 1)return ;
@@ -29,6 +30,7 @@ $(function(){
 				}
 				
 			})
+*/
 			
 		},
 		uploadify:function(){
@@ -62,12 +64,13 @@ $(function(){
 							$('#msg').dialog('close');
 						},1000)
 					}else{
-						$(".weibo_pic_list").append('<div class="weibo_pic_content"><span class="shadow"></span><span class="remove">删除</span><img class="weibo_pic_thumb"  alt="" /></div>');
+						$(".weibo_pic_list").append('<div class="weibo_pic_content"><span class="shadow"></span><span class="remove">删除</span><img class="weibo_pic_thumb"  alt="" /><img src="'+THINKPHP['img']+'/loading_100.png" class="weibo_pic_thumb"></div>');
 					}
 					
 				},
 				
 				onUploadSuccess:function(file,data,response){
+					$(".weibo_pic_list").append('<input type="hidden" name="images" value='+data+'/>');
 					var imgUrl=$.parseJSON(data);
 					pic.thumb(imgUrl.thumb)
 					pic.hover();
@@ -84,7 +87,7 @@ $(function(){
 			var remove=$('.weibo_pic_content .remove');
 			var len=$('.weibo_pic_content .remove').length;
 			$(remove[len-1]).on('click',function(e){
-				
+				$(this).parent().next('input[name="images"]').remove();
 				$(this).parent().remove();
 				pic.uploadTotal--
 				pic.uploadLimit++

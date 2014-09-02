@@ -2,7 +2,9 @@
 	margin:0 auto;position:absolute;width:482px;
 	padding:20px;border: 1px solid #D0D0D0;
 	box-shadow: 0 0 5px #ccc;
-	overflow: hidden;background: none repeat scroll 0 0 white;zoom:1;z-index:100;
+	overflow: hidden;background: none repeat scroll 0 0 white;
+	zoom:1;
+	z-index:100;
 }
 /*隐藏浏览器的outline,兼容IE。*/
 .rl_exp a{outline:none;blr:expression(this.onFocus=this.blur());}

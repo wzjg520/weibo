@@ -8,8 +8,7 @@ class FileController extends HomeController{
 	public function upload(){
 		$upload=new Upload(C('FILE_UPLOAD'));
 		$info=$upload->upload();
-		if($info){
-			
+		if($info){			
 			$rootPath=C('FILE_UPLOAD');
 			$rootPath=$rootPath['rootPath'];
 			$imgPath=$rootPath.$info['Filedata']['savepath'].$info['Filedata']['savename'];

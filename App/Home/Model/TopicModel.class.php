@@ -10,7 +10,7 @@ class TopicModel extends Model{
 	protected $_auto = array (
 		array('create','time',self::MODEL_INSERT,'function'),
 	);
-	public function publish($content,$uid){
+	public function publish($content,$uid,$iid){
 		if(mb_strlen($content)>255){
 			$data=array(
 				'content'=>mb_substr($content, 0,255,'utf8'),
@@ -23,6 +23,7 @@ class TopicModel extends Model{
 		}
 		$data['ip']=get_client_ip(1);
 		$data['uid']=$uid;
+		$data['iid']=$iid;
 		if($this->create($data)){
 			$uid=$this->add();
 			echo $uid;

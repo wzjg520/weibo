@@ -26,11 +26,19 @@ $(function(){
 			},1500)
 		}else{		
 			if(checkStrLen($('.text').get(0))){
+				var imgPool=[],
+				img=$('input[name="images"]'),
+				len=img.length;
+				for(var i=0;i<len;i++){
+					imgPool.push($(img[i]).val());
+				}
+				
 				$.ajax({
 					url:THINKPHP['module']+'/Topic/publish',
 					type:'post',
 					data:{
 						content:$('textarea.text').val(),
+						images:imgPool,
 					},
 					beforeSend:function(){
 						$('#msg').css({
