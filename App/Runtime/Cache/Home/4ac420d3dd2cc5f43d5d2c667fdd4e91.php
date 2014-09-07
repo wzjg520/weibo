@@ -66,6 +66,7 @@
 			'module':'/weibo/Home',
 			'uploadify':'/weibo/Public/Home/uploadify',
 			'uploader':'<?php echo U("File/upload");?>',
+			'root':'/weibo',
 		}
 	</script>
 	<div class="main_left">
@@ -102,6 +103,21 @@
 		
 		
 		<div class="weibo_content">
+			<ul>
+				<li><a href="javascript:void(0)" class="selected">我关注的<i class="nav_arrow"></i></a></li>
+				<li><a href="javascript:void(0)">互听的</a></li>
+			</ul>
+			<?php if(is_array($topicList)): $i = 0; $__LIST__ = $topicList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$obj): $mod = ($i % 2 );++$i;?><dl class="weibo_content_data">
+				<dt class="face"><a href="javascript:void(0)"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a></dt>
+				<dd class="content">
+					<h4><a href="javascript:void(0)"><?php echo ($obj["username"]); ?></a></h4>
+					<p><?php echo ($obj["content"]); echo ($obj["content_over"]); ?></p>
+					<div class="footer">
+						<span class="time">8月25日 08:35</span>
+						<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
+					</div>
+				</dd>
+			</dl><?php endforeach; endif; else: echo "" ;endif; ?>
 			
 		</div>
 	</div>

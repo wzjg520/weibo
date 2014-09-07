@@ -6,6 +6,7 @@
 			'module':'__MODULE__',
 			'uploadify':'__UPLOADIFY__',
 			'uploader':'{:U("File/upload")}',
+			'root':'__ROOT__',
 		}
 	</script>
 	<div class="main_left">
@@ -42,6 +43,23 @@
 		
 		
 		<div class="weibo_content">
+			<ul>
+				<li><a href="javascript:void(0)" class="selected">我关注的<i class="nav_arrow"></i></a></li>
+				<li><a href="javascript:void(0)">互听的</a></li>
+			</ul>
+			<volist name="topicList" id="obj">
+			<dl class="weibo_content_data">
+				<dt class="face"><a href="javascript:void(0)"><img src="__IMG__/small_face.jpg" alt="" ></a></dt>
+				<dd class="content">
+					<h4><a href="javascript:void(0)">{$obj.username}</a></h4>
+					<p>{$obj.content}{$obj.content_over}</p>
+					<div class="footer">
+						<span class="time">8月25日 08:35</span>
+						<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
+					</div>
+				</dd>
+			</dl>
+			</volist>
 			
 		</div>
 	</div>

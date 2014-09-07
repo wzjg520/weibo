@@ -1,7 +1,8 @@
 <?php
 namespace Home\Model;
 use Think\Model;
-class TopicModel extends Model{
+use Think\Model\RelationModel;
+class TopicModel extends RelationModel{
 	protected $_validate = array(
 		//-1,'帐号长度不合法！'
 		array('content', '1,280', -1, self::EXISTS_VALIDATE,'length'),
@@ -10,7 +11,16 @@ class TopicModel extends Model{
 	protected $_auto = array (
 		array('create','time',self::MODEL_INSERT,'function'),
 	);
-	public function publish($content,$uid,$iid){
+	
+	protected $_link = array (
+		'images' => array(
+			'mapping_type' => self::HAS_MANY,
+			'foreign_key' => 'tid',
+			'class_name' => 'Images',
+		),
+		
+	);
+	public function publish($content,$uid){
 		if(mb_strlen($content)>255){
 			$data=array(
 				'content'=>mb_substr($content, 0,255,'utf8'),
@@ -23,10 +33,9 @@ class TopicModel extends Model{
 		}
 		$data['ip']=get_client_ip(1);
 		$data['uid']=$uid;
-		$data['iid']=$iid;
 		if($this->create($data)){
-			$uid=$this->add();
-			echo $uid;
+			$tid=$this->add();
+			return $tid;
 		}else{
 			return $this->getError();
 		}

@@ -1,4 +1,9 @@
 $(function(){
+	//微博高度保持一致
+	if ($('.main_left').height() > 800) {
+		$('.main_right').height($('.main_left').height() + 30);
+		$('#main').height($('.main_left').height() + 30);
+	}
 	$('li.app').hover(function(){
 		$(this).css({
 			'background':'#fff',
@@ -17,7 +22,19 @@ $(function(){
 	$('.text').on('focus',function(){
 		checkStrLen(this);
 	})
+
 	$('.weibo_form .button').click(function(){
+		var imgPool=[],
+			img=$('input[name="images"]'),
+			len=img.length;
+		for(var i=0;i<len;i++){
+			imgPool.push($(img[i]).val());
+		}
+		if(imgPool.length >0 && $('.text').val()==''){
+			
+			$("textarea[name='content']").val('分享图片');
+		}
+		
 		if($('.text').val()==''){
 			$('#msg').css('background','url('+THINKPHP['img']+'/error.png) no-repeat 20px center').html('您还没有分享新鲜事呀！').dialog('open');
 			setTimeout(function(){
@@ -29,9 +46,9 @@ $(function(){
 				var imgPool=[],
 				img=$('input[name="images"]'),
 				len=img.length;
-				for(var i=0;i<len;i++){
-					imgPool.push($(img[i]).val());
-				}
+			for(var i=0;i<len;i++){
+				imgPool.push($(img[i]).val());
+			}
 				
 				$.ajax({
 					url:THINKPHP['module']+'/Topic/publish',
@@ -46,6 +63,14 @@ $(function(){
 						}).html('正在提交中，请稍等...').dialog('open');
 					},
 					success:function(text){
+						resetCount.clear();
+						$('.weibo_pic_content').remove();
+						$("input[name='images']").remove();
+						$("textarea[name='content']").val('');
+						$('.pic_arrow_top').fadeOut();
+						$('#pic_box').fadeOut();
+						
+						
 						$('#msg').css('background','url('+THINKPHP['img']+'/success.gif) no-repeat 20px center').html('发表成功！').dialog('open');
 							setTimeout(function(){
 								$('#msg').html('...').dialog('close');
@@ -68,7 +93,7 @@ $(function(){
 		width:230,
 		height:50,
 		autoOpen:false,
-		modal:true,
+		modal:false,
 		resizable:false,
 		resizable:false,
 		draggable:false,

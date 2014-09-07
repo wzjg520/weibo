@@ -170,13 +170,7 @@ ul,dl{
 	color:#666;
 	font-size:16px;
 }
-#main .main_right{
-	float:right;
-	width:269px;
-	min-height:800px;
-	border-left:1px solid #ddd;
-	background:#f7f7f7;
-}
+
 input.button{
 	float:right;
 	font-size:14px;
@@ -279,6 +273,107 @@ a.pic{
 	cursor:pointer;
 	text-align:center;
 	line-height:30px;
+}
+
+
+#main .weibo_content{
+	clear:both;
+}
+#main .weibo_content ul{
+	height:32px;
+	border-bottom:1px solid #ccc;
+	margin:0 0 5px 0;
+}
+#main .weibo_content ul li{
+	float:left;
+	width:100px;
+	height:35px;
+	line-height:35px;
+	text-align:center;
+	font-size:13px;
+	margin:0 6px 0 0;
+}
+#main .weibo_content ul li a{
+	display:block;
+	height:32px;
+	line-height:32px;
+	color:#666;
+	text-decoration:none;
+	border-top-left-radius:3px;
+	border-top-right-radius:3px;
+	background:#eee;
+}
+#main .weibo_content ul li a.selected{
+	background:none;
+	border:1px solid #ccc;
+	border-bottom:1px solid #fff;
+	font-weight:bold;
+	position:relative;
+	top:-1px;
+}
+#main .weibo_content ul li a i.nav_arrow{
+	display:inline-block;
+	width:10px;
+	height:10px;
+	background:url(../images/nav_arrow.png) no-repeat right 3px;
+	padding:0 0 0 1px;
+}
+#main .weibo_content_data{
+	width:650px;
+	padding:10px 0;
+	float:left;
+}
+#main .weibo_content_data dt{
+	width:65px;
+	float:left;
+}
+#main .weibo_content_data dt img{
+	border:none;
+}
+#main .weibo_content_data dd{
+	width:585px;
+	float:right;
+}
+#main .weibo_content_data dd h4{
+	padding:0 0 3pxo;
+}
+#main .weibo_content_data dd h4 a{
+	font-size:14px;
+	color:#049;
+	text-decoration:none;
+}
+#main .weibo_content_data dd p{
+	font-size:14px;
+	line-height:150%;
+	color:#555;
+}
+#main .weibo_content_data dd img{
+	border:1px solid #eee;
+	cursor:pointer;
+	margin:10px 0 0 0;
+	display:block;
+}
+#main .weibo_content_data dd .footer{
+	height:35px;
+	line-height:35px;
+	font-size:13px;
+	color:#5e7c85;
+	border-bottom:1px solid #eee;
+}
+#main .weibo_content_data dd .footer .time{
+	float:left;
+}
+#main .weibo_content_data dd .footer .handler {
+	float:right;
+}
+
+
+#main .main_right{
+	float:right;
+	width:269px;
+	min-height:800px;
+	border-left:1px solid #ddd;
+	background:#f7f7f7;
 }
 #footer{
 	width:960px;

@@ -111,7 +111,7 @@ $(function(){
 		thumb:function(src){
 			var len=$('.weibo_pic_thumb').length;
 			var img=$('.weibo_pic_thumb');
-			$(img[len-1]).attr('src',src).hide();
+			$(img[len-1]).attr('src',THINKPHP['root']+'/'+src).hide();
 			setTimeout(function(){
 				if ($(img[len - 1]).width() > 100) {
 					$(img[len - 1]).css('left', -($(img[len - 1]).width() - 100) / 2);
@@ -124,5 +124,13 @@ $(function(){
 		},
 	}
 	
-	pic.init()
+	pic.init();
+	
+	//图片数量重置
+	window.resetCount={
+		clear:function(){
+			pic.uploadTotal=0
+			pic.uploadLimit=8
+		}
+	}
 })
