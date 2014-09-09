@@ -17,6 +17,7 @@ class TopicModel extends RelationModel{
 			'mapping_type' => self::HAS_MANY,
 			'foreign_key' => 'tid',
 			'class_name' => 'Images',
+			'mapping_fields'=>'data',
 		),
 		
 	);
@@ -40,5 +41,18 @@ class TopicModel extends RelationModel{
 			return $this->getError();
 		}
 	}
-	
+	//数据格式化
+	public function format($data){
+		
+		foreach($data as $key=>$value){
+			if(!is_null($value['images'])){
+				foreach($value['images'] as $k=>$v){					
+					$value['images'][$k]=json_decode($v['data'],true);
+				}
+			}
+			$data[$key]=$value;
+			$data[$key]['count']=count($value['images']);
+		};
+		return $data;
+	}
 }

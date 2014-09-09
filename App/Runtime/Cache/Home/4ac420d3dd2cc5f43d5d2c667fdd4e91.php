@@ -111,7 +111,13 @@
 				<dt class="face"><a href="javascript:void(0)"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a></dt>
 				<dd class="content">
 					<h4><a href="javascript:void(0)"><?php echo ($obj["username"]); ?></a></h4>
-					<p><?php echo ($obj["content"]); echo ($obj["content_over"]); ?></p>
+					<p><?php echo ($obj["content"]); echo ($obj["content_over"]); ?></p>					
+					<?php switch($obj["count"]): case "0": break;?>
+						<?php case "1": ?><div class="oneImage"><img src="/weibo/<?php echo ($obj['images'][0]['thumb']); ?>" alt="" /></div><?php break;?>
+						<?php default: ?>
+								<?php if(is_array($obj["images"])): $i = 0; $__LIST__ = $obj["images"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$images): $mod = ($i % 2 );++$i;?><div class="images">
+										<img src="/weibo/<?php echo ($images['thumb']); ?>" alt="" />
+									</div><?php endforeach; endif; else: echo "" ;endif; endswitch;?>
 					<div class="footer">
 						<span class="time">8月25日 08:35</span>
 						<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>

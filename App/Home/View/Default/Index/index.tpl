@@ -52,7 +52,17 @@
 				<dt class="face"><a href="javascript:void(0)"><img src="__IMG__/small_face.jpg" alt="" ></a></dt>
 				<dd class="content">
 					<h4><a href="javascript:void(0)">{$obj.username}</a></h4>
-					<p>{$obj.content}{$obj.content_over}</p>
+					<p>{$obj.content}{$obj.content_over}</p>					
+					<switch name="obj.count">
+						<case value="0"></case>
+						<case value="1"><div class="oneImage"><img src="__ROOT__/{$obj['images'][0]['thumb']}" alt="" /></div></case>
+						<default/>
+								<volist name="obj.images" id="images">									
+									<div class="images">
+										<img src="__ROOT__/{$images['thumb']}" alt="" />
+									</div>
+								</volist>
+					</switch>
 					<div class="footer">
 						<span class="time">8月25日 08:35</span>
 						<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>

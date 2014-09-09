@@ -11,7 +11,7 @@ class IndexController extends HomeController {
  		 						->limit('0,10')
  		 						->order('a.create DESC')
  		 						->select();
- 		 
+ 		 	$topicList=$Topic->format($topicList);
  		 	$this->assign('topicList',$topicList);
        		$this->display();
        }

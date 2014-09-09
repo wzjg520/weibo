@@ -4,6 +4,16 @@ $(function(){
 		$('.main_right').height($('.main_left').height() + 30);
 		$('#main').height($('.main_left').height() + 30);
 	}
+	//微博图片获得焦点
+	if ($(".images img").width() > 120) {
+		$(".images img").css('left', -($(".images img").width() - 120) / 2);
+	}
+	if ($(".images img").height() > 120) {
+		$(".images img").css('top', -($(".images img").height() - 120) / 2);
+	}
+	
+	
+	
 	$('li.app').hover(function(){
 		$(this).css({
 			'background':'#fff',

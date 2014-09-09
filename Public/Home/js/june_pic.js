@@ -70,7 +70,7 @@ $(function(){
 				},
 				
 				onUploadSuccess:function(file,data,response){
-					$(".weibo_pic_list").append('<input type="hidden" name="images" value='+data+'/>');
+					$(".weibo_pic_list").append('<input type="hidden" name="images" value='+data+'>');
 					var imgUrl=$.parseJSON(data);
 					pic.thumb(imgUrl.thumb)
 					pic.hover();

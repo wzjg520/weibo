@@ -13,7 +13,7 @@ class TopicController extends Controller{
 			$img=I('post.images','',false);
 			if(is_array($img)){
 				$Images=new ImagesModel();
-				$iid=$Images->storage(I('post.images'),$tid);
+				$iid=$Images->storage($img,$tid);
 				echo $iid ? $iid : $tid;
 			}else{
 				echo $tid;

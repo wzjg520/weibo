@@ -347,11 +347,27 @@ a.pic{
 	line-height:150%;
 	color:#555;
 }
-#main .weibo_content_data dd img{
+#main .weibo_content_data dd .oneImage img{
 	border:1px solid #eee;
 	cursor:pointer;
 	margin:10px 0 0 0;
 	display:block;
+}
+#main .weibo_content_data dd .images{
+	float:left;
+	width:120px;
+	height:120px;
+	overflow:hidden;
+	position:relative;
+	margin:10px 10px 0 0;
+}
+#main .weibo_content_data dd .images img{
+	border:1px solid #eee;
+	cursor:pointer;	
+	display:block;
+	position:absolute;
+	top:0;
+	left:0;
 }
 #main .weibo_content_data dd .footer{
 	height:35px;
@@ -359,6 +375,7 @@ a.pic{
 	font-size:13px;
 	color:#5e7c85;
 	border-bottom:1px solid #eee;
+	clear:both;
 }
 #main .weibo_content_data dd .footer .time{
 	float:left;
@@ -366,6 +383,8 @@ a.pic{
 #main .weibo_content_data dd .footer .handler {
 	float:right;
 }
+
+
 
 
 #main .main_right{
