@@ -67,6 +67,7 @@
 			'uploadify':'/weibo/Public/Home/uploadify',
 			'uploader':'<?php echo U("File/upload");?>',
 			'root':'/weibo',
+			'unfold':[],
 		}
 	</script>
 	<div class="main_left">
@@ -107,24 +108,49 @@
 				<li><a href="javascript:void(0)" class="selected">我关注的<i class="nav_arrow"></i></a></li>
 				<li><a href="javascript:void(0)">互听的</a></li>
 			</ul>
-			<?php if(is_array($topicList)): $i = 0; $__LIST__ = $topicList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$obj): $mod = ($i % 2 );++$i;?><dl class="weibo_content_data">
-				<dt class="face"><a href="javascript:void(0)"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a></dt>
-				<dd class="content">
-					<h4><a href="javascript:void(0)"><?php echo ($obj["username"]); ?></a></h4>
-					<p><?php echo ($obj["content"]); echo ($obj["content_over"]); ?></p>					
-					<?php switch($obj["count"]): case "0": break;?>
-						<?php case "1": ?><div class="oneImage"><img src="/weibo/<?php echo ($obj['images'][0]['thumb']); ?>" alt="" /></div><?php break;?>
-						<?php default: ?>
-								<?php if(is_array($obj["images"])): $i = 0; $__LIST__ = $obj["images"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$images): $mod = ($i % 2 );++$i;?><div class="images">
-										<img src="/weibo/<?php echo ($images['thumb']); ?>" alt="" />
-									</div><?php endforeach; endif; else: echo "" ;endif; endswitch;?>
-					<div class="footer">
-						<span class="time">8月25日 08:35</span>
-						<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
-					</div>
-				</dd>
-			</dl><?php endforeach; endif; else: echo "" ;endif; ?>
-			
+			<?php if(is_array($topicList)): $k = 0; $__LIST__ = $topicList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$obj): $mod = ($k % 2 );++$k;?><dl class="weibo_content_data">
+					<dt class="face"><a href="javascript:void(0)"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a></dt>
+					<dd class="content">
+						<h4><a href="javascript:void(0)"><?php echo ($obj["username"]); ?></a></h4>
+						<p><?php echo ($obj["content"]); echo ($obj["content_over"]); ?></p>					
+						<?php switch($obj["count"]): case "0": break;?>
+							<?php case "1": ?><div class="oneImage"><img src="/weibo/<?php echo ($obj['images'][0]['thumb']); ?>" alt="" /></div>
+								<div class="image_zoom" style="display:none;">
+									<ol>
+										<li><a href="javascript:void(0)" class="image_zoom_in">收起</a></li>
+										<li ><a target="_blank" class="image_zoom_source" href="/weibo/<?php echo ($obj['images'][0]['source']); ?>">原图</a></li>
+									</ol>
+									<img source="/weibo/<?php echo ($obj['images'][0]['unfold']); ?>" src="/weibo/Public/Home/images/loading_100.png" alt="" />
+								</div><?php break;?>
+							<?php default: ?>
+									<?php if(is_array($obj["images"])): $i = 0; $__LIST__ = $obj["images"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$images): $mod = ($i % 2 );++$i;?><div class="images">
+											<img src="/weibo/<?php echo ($images['thumb']); ?>" key="<?php echo ($k); ?>" alt="" unfold="/weibo/<?php echo ($images['unfold']); ?>" source="/weibo/<?php echo ($images['source']); ?>" />
+										</div>
+										<script>
+											if(typeof THINKPHP["<?php echo ($k); ?>"] == 'undefined')THINKPHP["<?php echo ($k); ?>"]=[];
+											
+											if("<?php echo ($obj['images'][0]['unfold']); ?>" != ''){
+												THINKPHP["<?php echo ($k); ?>"].push("/weibo/<?php echo ($images['source']); ?>")
+												THINKPHP["<?php echo ($k); ?>"].push("/weibo/<?php echo ($images['unfold']); ?>")
+												
+											}				
+										</script><?php endforeach; endif; else: echo "" ;endif; endswitch;?>
+						<div class="footer">
+							<span class="time">8月25日 08:35</span>
+							<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
+						</div>
+					</dd>
+				</dl><?php endforeach; endif; else: echo "" ;endif; ?>
+			<div id="images_zoom">				
+				<ol>
+					<li ><a target="_blank" class="image_zoom_source" href="/weibo/<?php echo ($obj['images'][0]['source']); ?>">原图</a></li>
+				</ol>
+				<img src="/weibo/Public/Home/images/loading_100.png" alt="" />
+				<div class="left">上一张</div>
+				<div class="right">下一张</div>
+			</div>
+			<img src="/weibo/Public/Home/images/close.png" alt="" class="image_close">
+					
 		</div>
 	</div>
 	<div class="main_right">right</div>

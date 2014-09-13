@@ -21,10 +21,12 @@ body{
 body,h1,h2,h3,h4,h5,h6,p,ul,ol,dl,dd,form{
 	margin:0;
 	padding:0;
+	
 }
-ul,dl{
+ul,dl,ol{
 	list-style-type:none;
 }
+
 #header{
 	height:42px;
 	width:100%;
@@ -92,7 +94,9 @@ ul,dl{
 }
 #header ul li a:hover{
 	background:#333;
+
 }
+
 #header .app{
 	color:#fff;
 	padding:0 12px;
@@ -353,6 +357,44 @@ a.pic{
 	margin:10px 0 0 0;
 	display:block;
 }
+#main .weibo_content_data dd .image_zoom{
+	border-radius:4px;
+	border:1px solid #ccc;
+	background:#fafafa;
+	margin:5px 0 0 0;
+}
+#main .weibo_content_data dd .image_zoom ol{
+	padding:0 0 0 8px;
+	display:block;
+	height:30px;
+}
+#main .weibo_content_data dd .image_zoom ol li{
+	float:left;	
+}
+#main .weibo_content_data dd .image_zoom ol li a{
+	height:30px;
+	line-height:30px;
+	padding:0 10px;
+	outline:none;
+	text-decoration:none;
+	color:#5e7c85;
+	cursor:pointer;
+	display:block;
+	text-indent:8px;
+}
+#main .weibo_content_data dd .image_zoom .image_zoom_in{
+	background:url(../images/image_zoom_in.png) no-repeat left center;
+	
+}
+#main .weibo_content_data dd .image_zoom .image_zoom_source{
+	background:url(../images/image_zoom_source.png) no-repeat left center;
+	
+}
+
+#main .weibo_content_data dd .image_zoom img{
+	display:block;
+	margin:0 auto 20px auto;	
+}
 #main .weibo_content_data dd .images{
 	float:left;
 	width:120px;
@@ -369,6 +411,72 @@ a.pic{
 	top:0;
 	left:0;
 }
+
+
+#images_zoom{
+	padding:0;
+	position:relative;
+}
+#images_zoom .left{
+	position:absolute;
+	left:0;
+	background:#333;
+	opacity:0;
+	filter:alpha(opacity=0);
+	cursor:pointer;
+	line-height:70px;
+	color:#fff;
+	font-weight:bold;
+	font-size:20px;
+	text-align:center;
+}
+#images_zoom .right{
+	cursor:pointer;
+	position:absolute;
+	right:0;
+	background:#333;
+	opacity:0;
+	color:#fff;
+	font-size:20px;
+	line-height:70px;
+	font-weight:bold;
+	text-align:center;
+	filter:alpha(opacity=0);
+}
+#images_zoom ol{
+	display:block;
+	height:30px;
+	margin:0;
+	padding:0 5px;
+}
+#images_zoom ol li{
+	float:left;	
+}
+#images_zoom ol li a{
+	height:30px;
+	line-height:30px;
+	padding:0 10px;
+	outline:none;
+	text-decoration:none;
+	color:#5e7c85;
+	cursor:pointer;
+	display:block;
+	text-indent:8px;
+}
+#images_zoom .image_zoom_source{
+	background:url(../images/image_zoom_source.png) no-repeat left center;
+	
+}
+#images_zoom  img{
+	display:block;
+	margin:0 auto 20px auto;	
+}
+.image_close{
+	display:none;
+	border:none;
+	cursor:pointer;
+} 
+
 #main .weibo_content_data dd .footer{
 	height:35px;
 	line-height:35px;

@@ -20,6 +20,7 @@ $(function(){
 				$('#pic_box').hide();
 				$('.pic_arrow_top').hide();
 			});
+			
 /*
 			$(document).on('click',function(e){
 				var target = $(e.target)

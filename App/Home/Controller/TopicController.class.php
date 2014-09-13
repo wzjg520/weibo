@@ -21,5 +21,6 @@ class TopicController extends Controller{
 		}else{
 			$this->error('非法操作');
 		}
+		
 	}
 }

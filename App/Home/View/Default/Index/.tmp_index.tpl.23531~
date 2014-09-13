@@ -48,8 +48,13 @@
 				<li><a href="javascript:void(0)" class="selected">我关注的<i class="nav_arrow"></i></a></li>
 				<li><a href="javascript:void(0)">互听的</a></li>
 			</ul>
-			<volist name="topicList" id="obj" key="k">
-				
+			<volist name="topicList" id="obj">
+				<script>
+					if("{$obj['images'][0]['unfold']}" != ''){
+						THINKPHP['unfold'].push("__ROOT__/{$obj['images'][0]['unfold']}")
+					}
+										
+				</script>
 				<dl class="weibo_content_data">
 					<dt class="face"><a href="javascript:void(0)"><img src="__IMG__/small_face.jpg" alt="" ></a></dt>
 					<dd class="content">
@@ -70,17 +75,8 @@
 							<default/>
 									<volist name="obj.images" id="images">									
 										<div class="images">
-											<img src="__ROOT__/{$images['thumb']}" key="{$k}" alt="" unfold="__ROOT__/{$images['unfold']}" source="__ROOT__/{$images['source']}" />
+											<img src="__ROOT__/{$images['thumb']}" alt="" source="__ROOT__/{$obj['images'][0]['unfold']}" />
 										</div>
-										<script>
-											if(typeof THINKPHP["{$k}"] == 'undefined')THINKPHP["{$k}"]=[];
-											
-											if("{$obj['images'][0]['unfold']}" != ''){
-												THINKPHP["{$k}"].push("__ROOT__/{$images['source']}")
-												THINKPHP["{$k}"].push("__ROOT__/{$images['unfold']}")
-												
-											}				
-										</script>
 									</volist>
 						</switch>
 						<div class="footer">
