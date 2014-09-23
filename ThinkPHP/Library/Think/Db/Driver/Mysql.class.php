@@ -52,7 +52,7 @@ class Mysql extends Db{
                 $this->linkID[$linkNum] = mysql_connect( $host, $config['username'], $config['password'],true,131072);
             }
             if ( !$this->linkID[$linkNum] || (!empty($config['database']) && !mysql_select_db($config['database'], $this->linkID[$linkNum])) ) {
-                E(mysql_error());
+            	E(mysql_error());
             }
             $dbVersion = mysql_get_server_info($this->linkID[$linkNum]);
             //使用UTF8存取数据库

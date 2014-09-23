@@ -67,7 +67,6 @@
 			'uploadify':'/weibo/Public/Home/uploadify',
 			'uploader':'<?php echo U("File/upload");?>',
 			'root':'/weibo',
-			'unfold':[],
 		}
 	</script>
 	<div class="main_left">
@@ -108,11 +107,11 @@
 				<li><a href="javascript:void(0)" class="selected">我关注的<i class="nav_arrow"></i></a></li>
 				<li><a href="javascript:void(0)">互听的</a></li>
 			</ul>
-			<?php if(is_array($topicList)): $k = 0; $__LIST__ = $topicList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$obj): $mod = ($k % 2 );++$k;?><dl class="weibo_content_data">
+			<?php if(is_array($topicList)): $i = 0; $__LIST__ = $topicList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$obj): $mod = ($i % 2 );++$i;?><dl class="weibo_content_data">
 					<dt class="face"><a href="javascript:void(0)"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a></dt>
 					<dd class="content">
 						<h4><a href="javascript:void(0)"><?php echo ($obj["username"]); ?></a></h4>
-						<p><?php echo ($obj["content"]); echo ($obj["content_over"]); ?></p>					
+						<p style="padding:5px 0 0 0"><?php echo ($obj["content"]); ?></p>					
 						<?php switch($obj["count"]): case "0": break;?>
 							<?php case "1": ?><div class="oneImage"><img src="/weibo/<?php echo ($obj['images'][0]['thumb']); ?>" alt="" /></div>
 								<div class="image_zoom" style="display:none;">
@@ -124,23 +123,24 @@
 								</div><?php break;?>
 							<?php default: ?>
 									<?php if(is_array($obj["images"])): $i = 0; $__LIST__ = $obj["images"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$images): $mod = ($i % 2 );++$i;?><div class="images">
-											<img src="/weibo/<?php echo ($images['thumb']); ?>" key="<?php echo ($k); ?>" alt="" unfold="/weibo/<?php echo ($images['unfold']); ?>" source="/weibo/<?php echo ($images['source']); ?>" />
+											<img class="show_unfold_pic" src="/weibo/<?php echo ($images['thumb']); ?>" key="<?php echo ($obj["username"]); ?>_<?php echo ($obj["create"]); ?>" alt="" unfold="/weibo/<?php echo ($images['unfold']); ?>" source="/weibo/<?php echo ($images['source']); ?>" />
 										</div>
 										<script>
-											if(typeof THINKPHP["<?php echo ($k); ?>"] == 'undefined')THINKPHP["<?php echo ($k); ?>"]=[];
+											if(typeof THINKPHP["<?php echo ($obj["username"]); ?>_<?php echo ($obj["create"]); ?>"] == 'undefined')THINKPHP["<?php echo ($obj["username"]); ?>_<?php echo ($obj["create"]); ?>"]=[];
 											
 											if("<?php echo ($obj['images'][0]['unfold']); ?>" != ''){
-												THINKPHP["<?php echo ($k); ?>"].push("/weibo/<?php echo ($images['source']); ?>")
-												THINKPHP["<?php echo ($k); ?>"].push("/weibo/<?php echo ($images['unfold']); ?>")
+												THINKPHP["<?php echo ($obj["username"]); ?>_<?php echo ($obj["create"]); ?>"].push("/weibo/<?php echo ($images['source']); ?>")
+												THINKPHP["<?php echo ($obj["username"]); ?>_<?php echo ($obj["create"]); ?>"].push("/weibo/<?php echo ($images['unfold']); ?>")
 												
 											}				
 										</script><?php endforeach; endif; else: echo "" ;endif; endswitch;?>
 						<div class="footer">
-							<span class="time">8月25日 08:35</span>
+							<span class="time"><?php echo ($obj['time']); ?></span>
 							<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
 						</div>
 					</dd>
 				</dl><?php endforeach; endif; else: echo "" ;endif; ?>
+			<div id="loadmore">加载更多<img src="/weibo/Public/Home/images/loadmore.gif" alt="" /></div>
 			<div id="images_zoom">				
 				<ol>
 					<li ><a target="_blank" class="image_zoom_source" href="/weibo/<?php echo ($obj['images'][0]['source']); ?>">原图</a></li>
@@ -149,9 +149,63 @@
 				<div class="left">上一张</div>
 				<div class="right">下一张</div>
 			</div>
-			<img src="/weibo/Public/Home/images/close.png" alt="" class="image_close">
-					
+			
+			<img src="/weibo/Public/Home/images/close.png" alt="" class="image_close">	
 		</div>
+		
+		<!-- 无图片微博ajax加载 -->
+		<div class="ajax_none_pic">	
+			<dl class="weibo_content_data">
+				<dt class="face"><a href="javascript:void(0)"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a></dt>
+				<dd class="content">
+					<h4><a href="javascript:void(0)"><?php echo session("auth")['username'];?></a></h4>
+					<p>#内容#</p>
+					<div class="footer">
+						<span class="time">刚刚发布</span>
+						<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
+					</div>
+				</dd>
+			</dl>
+		</div>
+		
+		<!-- 单张图片微博ajax加载 -->
+		<div class="ajax_single_pic">
+			<dl class="weibo_content_data">
+			<dt class="face"><a href="javascript:void(0)"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a></dt>
+			<dd class="content">
+				<h4><a href="javascript:void(0)"><?php echo session("auth")['username'];?></a></h4>
+				<p>#内容#</p>
+				<div class="oneImage"><img src="#图片地址#" alt="" /></div>
+				<div class="image_zoom" style="display:none;">
+					<ol>
+						<li><a href="javascript:void(0)" class="image_zoom_in">收起</a></li>
+						<li ><a target="_blank" class="image_zoom_source" href="#原图地址#">原图</a></li>
+					</ol>
+					<img source="#显示地址#" src="/weibo/Public/Home/images/loading_100.png" alt="" />
+				</div>
+				<div class="footer">
+					<span class="time">刚刚发布</span>
+					<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
+				</div>
+			</dd>
+		</dl>
+		</div>
+		
+		<!-- 多张图片微博ajax加载 -->
+		<div class="ajax_muti_pic">	
+			<dl class="weibo_content_data">
+				<dt class="face"><a href="javascript:void(0)"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a></dt>
+				<dd class="content">
+					<h4><a href="javascript:void(0)"><?php echo session("auth")['username'];?></a></h4>
+					<p>#内容#</p>
+					<div class="footer">
+						<span class="time">刚刚发布</span>
+						<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
+					</div>
+				</dd>
+			</dl>
+		</div>
+		<div class="clear">	</div>
 	</div>
 	<div class="main_right">right</div>
 

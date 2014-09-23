@@ -20,7 +20,29 @@ class TopicController extends Controller{
 			}			
 		}else{
 			$this->error('非法操作');
-		}
-		
+		}	
 	}
+	//ajax获得总页数
+	public function ajaxPages(){
+		if(IS_AJAX){
+			$Topic=D('Topic');
+			$pages=$Topic->where('1=1')->count();
+			echo ceil($pages/I('post.unit'));
+		}else{
+			$this->error('非法操作');
+		}
+	}
+	//ajax获得列表
+	public function ajaxList(){
+		if(IS_AJAX){
+			$Topic=D('Topic');
+			$topicList=$Topic->getList(I('post.start'),I('post.step'));
+ 		 	$topicList=$Topic->format($topicList);
+ 		 	$this->assign('topicList',$topicList);
+       		$this->display();
+		}else{
+			$this->error('非法操作');
+		}
+	}
+	
 }

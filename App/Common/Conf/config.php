@@ -22,6 +22,6 @@ return array(
 	'DB_USER'=>'root',
 	'DB_PWD'=>'ABC201314',
 	'DB_PREFIX'=>'weibo_',
-	'DB_DSN'=>'mysql:host=localhost;dbname=weibo;charset=UTF-8',
+	'DB_DSN'=>'mysql:host=localhost;dbname=weibo;charset=utf8',
 		
 );

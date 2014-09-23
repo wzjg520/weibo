@@ -7,7 +7,6 @@
 			'uploadify':'__UPLOADIFY__',
 			'uploader':'{:U("File/upload")}',
 			'root':'__ROOT__',
-			'unfold':[],
 		}
 	</script>
 	<div class="main_left">
@@ -48,13 +47,12 @@
 				<li><a href="javascript:void(0)" class="selected">我关注的<i class="nav_arrow"></i></a></li>
 				<li><a href="javascript:void(0)">互听的</a></li>
 			</ul>
-			<volist name="topicList" id="obj" key="k">
-				
+			<volist name="topicList" id="obj">				
 				<dl class="weibo_content_data">
 					<dt class="face"><a href="javascript:void(0)"><img src="__IMG__/small_face.jpg" alt="" ></a></dt>
 					<dd class="content">
 						<h4><a href="javascript:void(0)">{$obj.username}</a></h4>
-						<p>{$obj.content}{$obj.content_over}</p>					
+						<p style="padding:5px 0 0 0">{$obj.content}</p>					
 						<switch name="obj.count">
 							<case value="0"></case>
 							<case value="1">
@@ -70,26 +68,27 @@
 							<default/>
 									<volist name="obj.images" id="images">									
 										<div class="images">
-											<img src="__ROOT__/{$images['thumb']}" key="{$k}" alt="" unfold="__ROOT__/{$images['unfold']}" source="__ROOT__/{$images['source']}" />
+											<img class="show_unfold_pic" src="__ROOT__/{$images['thumb']}" key="{$obj.username}_{$obj.create}" alt="" unfold="__ROOT__/{$images['unfold']}" source="__ROOT__/{$images['source']}" />
 										</div>
 										<script>
-											if(typeof THINKPHP["{$k}"] == 'undefined')THINKPHP["{$k}"]=[];
+											if(typeof THINKPHP["{$obj.username}_{$obj.create}"] == 'undefined')THINKPHP["{$obj.username}_{$obj.create}"]=[];
 											
 											if("{$obj['images'][0]['unfold']}" != ''){
-												THINKPHP["{$k}"].push("__ROOT__/{$images['source']}")
-												THINKPHP["{$k}"].push("__ROOT__/{$images['unfold']}")
+												THINKPHP["{$obj.username}_{$obj.create}"].push("__ROOT__/{$images['source']}")
+												THINKPHP["{$obj.username}_{$obj.create}"].push("__ROOT__/{$images['unfold']}")
 												
 											}				
 										</script>
 									</volist>
 						</switch>
 						<div class="footer">
-							<span class="time">8月25日 08:35</span>
+							<span class="time">{$obj['time']}</span>
 							<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
 						</div>
 					</dd>
 				</dl>
 			</volist>
+			<div id="loadmore">加载更多<img src="__IMG__/loadmore.gif" alt="" /></div>
 			<div id="images_zoom">				
 				<ol>
 					<li ><a target="_blank" class="image_zoom_source" href="__ROOT__/{$obj['images'][0]['source']}">原图</a></li>
@@ -98,9 +97,63 @@
 				<div class="left">上一张</div>
 				<div class="right">下一张</div>
 			</div>
-			<img src="__IMG__/close.png" alt="" class="image_close">
-					
+			
+			<img src="__IMG__/close.png" alt="" class="image_close">	
 		</div>
+		
+		<!-- 无图片微博ajax加载 -->
+		<div class="ajax_none_pic">	
+			<dl class="weibo_content_data">
+				<dt class="face"><a href="javascript:void(0)"><img src="__IMG__/small_face.jpg" alt="" ></a></dt>
+				<dd class="content">
+					<h4><a href="javascript:void(0)">{:session("auth")['username']}</a></h4>
+					<p>#内容#</p>
+					<div class="footer">
+						<span class="time">刚刚发布</span>
+						<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
+					</div>
+				</dd>
+			</dl>
+		</div>
+		
+		<!-- 单张图片微博ajax加载 -->
+		<div class="ajax_single_pic">
+			<dl class="weibo_content_data">
+			<dt class="face"><a href="javascript:void(0)"><img src="__IMG__/small_face.jpg" alt="" ></a></dt>
+			<dd class="content">
+				<h4><a href="javascript:void(0)">{:session("auth")['username']}</a></h4>
+				<p>#内容#</p>
+				<div class="oneImage"><img src="#图片地址#" alt="" /></div>
+				<div class="image_zoom" style="display:none;">
+					<ol>
+						<li><a href="javascript:void(0)" class="image_zoom_in">收起</a></li>
+						<li ><a target="_blank" class="image_zoom_source" href="#原图地址#">原图</a></li>
+					</ol>
+					<img source="#显示地址#" src="__IMG__/loading_100.png" alt="" />
+				</div>
+				<div class="footer">
+					<span class="time">刚刚发布</span>
+					<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
+				</div>
+			</dd>
+		</dl>
+		</div>
+		
+		<!-- 多张图片微博ajax加载 -->
+		<div class="ajax_muti_pic">	
+			<dl class="weibo_content_data">
+				<dt class="face"><a href="javascript:void(0)"><img src="__IMG__/small_face.jpg" alt="" ></a></dt>
+				<dd class="content">
+					<h4><a href="javascript:void(0)">{:session("auth")['username']}</a></h4>
+					<p>#内容#</p>
+					<div class="footer">
+						<span class="time">刚刚发布</span>
+						<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
+					</div>
+				</dd>
+			</dl>
+		</div>
+		<div class="clear">	</div>
 	</div>
 	<div class="main_right">right</div>
 </block>

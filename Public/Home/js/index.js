@@ -1,6 +1,22 @@
+/*
+全局变量
+window.imgSourceRight
+window.tmp
+window.imgSourceLeft
+window.imgSrcLeft
+window.imgSrcRight
+window.src
+
+
+尽量避免使用或重新赋值以上变量
+*/
+
 $(function(){
 	//微博高度保持一致
-	keepAlign();
+	$(window).load(function(){
+		keepAlign();
+	})
+	
 	//微博图片获得焦点
 	for (var i = 0; i < $('.images img').length; i++) {
 		if ($('.images img').eq(i).width() > 120) {
@@ -15,7 +31,7 @@ $(function(){
 		}
 	}
 	//图片点击放大
-	$('.oneImage img').click(function(){
+	$('.weibo_content').on('click','.oneImage img',function(){
 		$(this).parent().hide();
 		$(this).parent().next('.image_zoom').show();
 		var obj=$(this).parent().next('.image_zoom').find('img')
@@ -23,7 +39,7 @@ $(function(){
 		keepAlign();
 	})
 	//图片点击缩小
-	$('.image_zoom_in').click(function(){
+	$('.weibo_content').on('click','.image_zoom_in',function(){
 		$(this).parent().parent().parent().hide();
 		$(this).parent().parent().parent().prev('.oneImage').show();
 		keepAlign();
@@ -90,14 +106,46 @@ $(function(){
 					success:function(text){
 						resetCount.clear();
 						$('.weibo_pic_content').remove();
-						$("input[name='images']").remove();
-						$("textarea[name='content']").val('');
+						$("input[name='images']").remove();						
 						$('.pic_arrow_top').fadeOut();
 						$('#pic_box').fadeOut();
+						var html=''
+						switch(imgPool.length){
+							case 0:
+								html=$('.ajax_none_pic').html();
+								break;
+							case 1:
+								html=$('.ajax_single_pic').html()
+								break;
+							default:
+								THINKPHP["muti_pic"]=[]
+								for(var i=imgPool.length-1;i>=0;i--){
+									$('.ajax_muti_pic p').after('<div class="images"> <img class="show_unfold_pic" src="'+THINKPHP['root']+'/'+ $.parseJSON(imgPool[i])['thumb']+'" key="muti_pic" alt="" unfold="'+THINKPHP['root']+'/'+ $.parseJSON(imgPool[i])['unfold']+'" source="'+THINKPHP['root']+'/'+ $.parseJSON(imgPool[i])['source']+'" /> </div>')
+									THINKPHP["muti_pic"].push(THINKPHP['root']+"/"+$.parseJSON(imgPool[i])['source'])
+									THINKPHP["muti_pic"].push(THINKPHP['root']+"/"+$.parseJSON(imgPool[i])['unfold'])
+								}
+								html=$('.ajax_muti_pic').html()
+								
+						}
+						if(html.indexOf('#内容#')){
+							html=html.replace(/#内容#/g,$("textarea[name='content']").val())
+						}
+						if(html.indexOf('图片地址')){
+							if (imgPool.length > 0) {
+								var imgObj = $.parseJSON(imgPool[0])
+								html = html.replace(/#图片地址#/g, THINKPHP['root'] + '/' + imgObj['thumb'])
+								html = html.replace(/#原图地址#/g, THINKPHP['root'] + '/' + imgObj['source'])
+								html = html.replace(/#显示地址#/g, THINKPHP['root'] + '/' + imgObj['unfold'])
+								
+							}
+						}
 						
+						html = html.replace(/\[(a|b|c|d)_([0-9]+)\]/g,'<img src="'+THINKPHP['img']+'/face/$1/$2.gif" border="0">')
 						
 						$('#msg').css('background','url('+THINKPHP['img']+'/success.gif) no-repeat 20px center').html('发表成功！').dialog('open');
 							setTimeout(function(){
+								$('.weibo_content ul').after(html);
+								$("textarea[name='content']").val('');
 								$('#msg').html('...').dialog('close');
 							},1500) 
 						}
@@ -139,11 +187,14 @@ $(function(){
 		'position' : 'fixed',
 		'z-index' : 10000,		
 	})
-	$('.images img').click(function(){
-		var _this=this,
-		src=$(this).attr('unfold'),
+	//多图点击弹出
+	$('.weibo_content ').on('click','.show_unfold_pic',function(){
+		var _this=this,		
 		sourceSrc=$(this).attr('source'),
-		k=$(this).attr('key')
+		key=$(this).attr('key')
+		
+		window.src=$(this).attr('unfold')
+		
 		imgLoadEvent(function(obj){
 				$('#images_zoom').dialog('open').dialog({
 					height: obj.h + 60,
@@ -178,51 +229,117 @@ $(function(){
 					})
 				})
 				//图片翻页
-				var imgSourceRight = THINKPHP[k].concat([]), 
-					imgSourceLeft = THINKPHP[k].reverse();
-				$('#images_zoom .left').click(function(){					
-					$(imgSourceLeft).each(function(i, v){
-						
-						if (v == src) {													
-							if(i==imgSourceLeft.length-2){
-								var url=imgSourceLeft[0],
-								sourceUrl=imgSourceLeft[1]
-							}else{
-								var url=imgSourceLeft[i+2],
-								sourceUrl=imgSourceLeft[i+2]
-							}
-							console.log(url+'+++++'+sourceUrl)
-							console.log(imgSourceLeft)						
-							pic(url,sourceUrl)
-							src=url
-							return false;							
-						}
-					})
-				})
-				$('#images_zoom .right').click(function(){
-					$(imgSourceRight).each(function(i, v){						
-						if (v == src) {					
-							if(i==imgSourceRight.length-1){
-								var url=imgSourceRight[1],
-								sourceUrl=imgSourceRight[0]
-							}else{
-								var url=imgSourceRight[i+2],
-								sourceUrl=imgSourceRight[i+2]
-							}
-							pic(url,sourceUrl)
-							src=url;
-							return false;
-						}
-					})
-				})
-				keepAlign();
+				window.imgSourceRight = THINKPHP[key].concat([]),
+				window.tmp=THINKPHP[key].concat([]), 
+				window.imgSourceLeft = tmp.reverse(),
+				window.imgSrcLeft='',
+				window.imgSrcRight=''	
+				
 			}, src);
 		
+	})	
+	//左右翻图
+	$('#images_zoom ').on('click','.left',function(){				
+		imgSrcLeft= imgSrcLeft ? imgSrcLeft : src
+		$(imgSourceLeft).each(function(i, v){
+			if (v == imgSrcLeft) {														
+				if(i==imgSourceLeft.length-2){
+					var url=imgSourceLeft[0],
+					sourceUrl=imgSourceLeft[1]
+				}else{
+					var url=imgSourceLeft[i+2],
+					sourceUrl=imgSourceLeft[i+2]
+				}								
+				pic(url,sourceUrl)
+				imgSrcLeft=url
+				keepAlign();
+				return false;							
+			}
+		})
+	})
+	$('#images_zoom ').on('click','.right',function(){
+		
+		$(imgSourceRight).each(function(i, v){
+			imgSrcRight= imgSrcRight ? imgSrcRight : src						
+			if (v == imgSrcRight) {					
+				if(i==imgSourceRight.length-1){
+					var url=imgSourceRight[1],
+					sourceUrl=imgSourceRight[0]
+				}else{
+					var url=imgSourceRight[i+2],
+					sourceUrl=imgSourceRight[i+2]
+				}
+				pic(url,sourceUrl)
+				imgSrcRight=url;
+				keepAlign();
+				return false;
+			}
+		})
 	})
 	
+	//每页显示数据量
+	window.unit=10
+	//第几条数据
+	window.start=10
+	//当前页码
+	window.count=1
+	//是否禁用滚动条事件
+	window.flag=true
 	
 	
+	//ajax获得页码
+	$.ajax({
+		url:THINKPHP['module']+'/Topic/ajaxPages',
+		type:'post',
+		data:{
+			unit:window.unit,
+		},
+		success:function(data,response,state){
+			//总页码
+			window.pages=parseInt(data)
+		},
+		
+	})
+	//ajax加载更多
+	$(window).scroll(function(){
+		if(window.count<window.pages){
+			if(window.flag){
+				if($(window).scrollTop()>$('#loadmore').offset().top+$('#loadmore').outerHeight(true)-$(window).height()){
+					window.flag=false
+					setTimeout(function(){
+						$.ajax({
+							url:THINKPHP['module']+'/Topic/ajaxList',
+							type:'POST',
+							data:{
+								start:window.start,
+								step:window.unit,
+							},
+							success:function(data,response,status){
+								$('#loadmore').before(data)
+								window.flag=true
+								keepAlign();
+							}
+						})
+						window.start += 10
+						window.count += 1
+						
+					},500)
+						
+				}		
+			}
+		}else{
+			$('#loadmore').html('数据加载完毕')
+		}
+		
+		
+	})
+			
 })
+
+
+
+
+
 //检测输入长度
 function checkStrLen(obj){
 	if($(obj).val().length>0){
@@ -249,10 +366,13 @@ function checkStrLen(obj){
 }
 //屏幕高度保持一致
 function keepAlign(){
-	if ($('.main_left').height() > 800) {
-		$('.main_right').height($('.main_left').height() + 30);
-		$('#main').height($('.main_left').height() + 30);
-	}
+	setTimeout(function(){
+		if ($('.main_left').height() > 800) {
+			$('.main_right').height($('.main_left').height() + 30);
+			$('#main').height($('.main_left').height() + 30);
+		}
+	},50)
+	
 }
 
 //通过URL得到图片的长和高
