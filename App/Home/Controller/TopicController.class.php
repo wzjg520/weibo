@@ -1,9 +1,8 @@
 <?php
 namespace Home\Controller;
-use Think\Controller;
 use Home\Model\ImagesModel;
 
-class TopicController extends Controller{
+class TopicController extends HomeController{
 	//发布微博
 	public function publish(){
 		if(IS_AJAX){

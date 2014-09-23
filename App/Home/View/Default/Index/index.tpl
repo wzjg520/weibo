@@ -1,14 +1,14 @@
 <extend name="Base/common" />
+<block name="head">
+	<link rel="stylesheet" href="__CSS__/index.css">
+	<link rel="stylesheet" href="__UPLOADIFY__/uploadify.css">
+	<link rel="stylesheet" href="__CSS__/rl_exp.css" />
+	<script type="text/javascript" src="__UPLOADIFY__/jquery.uploadify.min.js"></script>	
+	<script type="text/javascript" src="__JS__/rl_exp.js"></script>
+	<script type="text/javascript" src="__JS__/june_pic.js"></script>
+	<script type="text/javascript" src="__JS__/index.js"></script>	
+</block>
 <block name="main">
-	<script>
-		var	THINKPHP={
-			'img': '__IMG__',
-			'module':'__MODULE__',
-			'uploadify':'__UPLOADIFY__',
-			'uploader':'{:U("File/upload")}',
-			'root':'__ROOT__',
-		}
-	</script>
 	<div class="main_left">
 		<form class="weibo_form">
 			<span class="left">和大家一起分享点新鲜事吧</span>

@@ -3,7 +3,7 @@
 		<div class="logo">微博系统</div>
 		<div class="nav">
 			<ul>
-				<li class="selected"><a href="#">首页</a></li>
+				<li class="selected"><a href="{:U('Index/index')}">首页</a></li>
 				<li><a href="#">图片</a></li>
 				<li><a href="#">广场</a></li>
 				<li><a href="#">找人</a></li>
@@ -24,7 +24,7 @@
 				</li>
 				<li class="app">账号
 					<dl class="list">
-						<dd><a href="#">个人设置</a></dd>
+						<dd><a href="{:U('Set/index')}">个人设置</a></dd>
 						<dd><a href="#">申请认证</a></dd>
 						<dd><a href="#">排行榜</a></dd>
 						<dd><a href="{:U('User/logout')}" class="line">退出&gt;&gt;</a></dd>

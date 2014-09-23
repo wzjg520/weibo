@@ -1,0 +1,161 @@
+@CHARSET "UTF-8";
+/*
+jquery ui
+*/
+.ui-button{
+	background:url(../images/button.png) repeat-x left top !important;
+	border-radius:0 !important;
+	border:none !important;
+	color:#fff !important;
+}
+.ui-button:active{
+	broder:none;
+}
+.ui-button:hover{
+	background:url(../images/button_hover.png) repeat-x left top !important;
+}
+
+
+
+body{
+	background:url(../images/weibo_bg.jpg);
+	font-family:Arial, Helvetica, sans-serif;
+}
+body,h1,h2,h3,h4,h5,h6,p,ul,ol,dl,dd,form{
+	margin:0;
+	padding:0;
+	
+}
+ul,dl,ol{
+	list-style-type:none;
+}
+
+
+#header{
+	height:42px;
+	width:100%;
+	background:url(../images/header_bg.png);
+	border:1px solid #ccc;
+	position:fixed;
+	top:0;
+	z-index:9999;
+}
+#header .header_main{
+	width:960px;
+	margin:0 auto;
+	height:42px;
+}
+#header .header_main .logo{
+	background:url(../images/weibo_logo.png) no-repeat center;
+	text-indent:-9999px;
+	width:86px;
+	height;42px;
+	cursor:pointer;
+	float:left;
+}
+#header .header_main .nav{
+	float:left;
+	margin:0 0 0 30px;
+}
+#header .header_main .person{
+	float:right;
+}
+
+#header .search{
+	float:right;
+	padding:8px 30px 0 0;
+	position:relative;
+}
+#header .search input{
+	border-radius:4px;
+	width:200px;
+	height:16px;
+	background:#fff;
+	color:#999;
+	padding:5px;
+	border:none;
+}
+#header .search a{
+	display:block;
+	width:17px;
+	height:18px;
+	background:url(../images/search_btn.png) no-repeat;
+	position:absolute;
+	top:13px;
+	left:183px;
+}
+#header ul li{
+	float:left;
+	height:42px;
+	line-height:42px;
+}
+#header ul li a{
+	display:block;
+	padding:0 10px;
+	font-size:13px;
+	color:#fff;
+	text-decoration:none;
+}
+#header ul li a:hover{
+	background:#333;
+
+}
+
+#header .app{
+	color:#fff;
+	padding:0 12px;
+	font-size:13px;
+	cursor:pointer;
+	position:relative;
+	
+}
+#header .app:hover{
+	background:#333;	
+}
+#header .app dl.list{
+	background:#fff;
+	display:none;
+	width:100px;
+	border:1px solid #ccc;
+	border-top:none;
+	position:absolute;
+	right:0
+}
+
+#header .app dl.list dd a{
+	color:#444;
+}
+#header .app dl.list dd a:hover{
+	color:#fff;
+}
+#header .app dl.list dd a.line{
+	border-top:1px solid #ccc;
+}
+#main{
+	width:960px;
+	min-height:800px;
+	margin:58px auto 0 auto;
+	background:#fff;
+	box-shadow:0 0 5px #ccc;
+}
+
+
+#footer{
+	width:960px;
+	height:40px;
+	margin:0 auto;
+	line-height:40px;
+	font-size:13px;
+}
+#footer .footer_left{
+	float:left;
+}
+#footer .footer_right{
+	float:right;
+}
+#msg{
+	background:url(../images/error.png) no-repeat 0px center;
+	padding:13px 0 0 0;
+	font-size:14px;
+	text-indent:50px;
+}

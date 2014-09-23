@@ -1,8 +1,7 @@
 <?php
 namespace Home\Model;
-
-use Think\Model;
-class UserModel extends Model{
+use Think\Model\RelationModel;
+class UserModel extends RelationModel{
 	protected $_validate = array(
 		//-1,'帐号长度不合法！'
 		array('username', '/^[^@]{2,20}$/i', -1, self::EXISTS_VALIDATE,'length'),
@@ -27,6 +26,15 @@ class UserModel extends Model{
 		array('password','sha1',self::MODEL_BOTH,'function') , 
 		array('create','time',self::MODEL_INSERT,'function')
 	);
+	//一对一关联模型
+	protected $_link=array(
+		'extend'=>array(
+			'mapping_type' => self::HAS_ONE,
+			'class_name'=>'UserExtend',
+			'foreign_key'=>'uid',
+			'mapping_fields'=>'intro',
+		),
+	); 
 	//注册数据
 	public function register($username,$password,$email){
 		$data=array(
@@ -88,6 +96,31 @@ class UserModel extends Model{
 		}
 		
 		
+	}
+	//一对一关联获得用户信息
+	public function getUser(){
+		$map['id']=session('auth')['id'];
+		$user=$this->relation(true)->field('id,username,email')->where($map)->find();
+		if(!is_array($user['extend'])){
+			$UserExtend=M('UserExtend');
+			$data=array(
+				'uid'=>session('auth')['id'],
+			);
+			$UserExtend->add($data);
+		}
+		return $user;
+	}
+	//一对一关联修改数据用户信息
+	public function update($email,$intro){
+		$map['id']=session('auth')['id'];
+		$data=array(
+			'email'=>$email,
+			'extend'=>array(
+				'intro'=>$intro,
+			),
+		);
+		
+		return $this->relation(true)->where($map)->save($data);
 	}
 	//ajax验证字段时候重复
 	public function checkFields($field,$type){

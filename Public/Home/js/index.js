@@ -12,10 +12,7 @@ window.src
 */
 
 $(function(){
-	//微博高度保持一致
-	$(window).load(function(){
-		keepAlign();
-	})
+	
 	
 	//微博图片获得焦点
 	for (var i = 0; i < $('.images img').length; i++) {
@@ -45,17 +42,7 @@ $(function(){
 		keepAlign();
 	})
 	
-	$('li.app').hover(function(){
-		$(this).css({
-			'background':'#fff',
-			'color':'#333',
-		}).find('.list').show()
-	},function(){
-		$(this).css({
-			'background':'',
-			'color':'#fff',
-		}).find('.list').hide()
-	})
+	//微博输入检测
 	$('.button').button();
 	$('.text').on('keyup',function(){
 		checkStrLen(this);
@@ -161,17 +148,6 @@ $(function(){
 			}
 		}
 	})
-	//信息交互框
-	$('#msg').dialog({
-		width:230,
-		height:50,
-		autoOpen:false,
-		modal:false,
-		resizable:false,
-		draggable:false,
-		show:'clip',
-		closeOnEscape:false,
-	}).parent().find('.ui-widget-header').hide();
 	//多图浏览放大
 	$('#images_zoom').dialog({
 		minWidth:580,
@@ -364,16 +340,7 @@ function checkStrLen(obj){
 				$('strong').html(140)
 		}
 }
-//屏幕高度保持一致
-function keepAlign(){
-	setTimeout(function(){
-		if ($('.main_left').height() > 800) {
-			$('.main_right').height($('.main_left').height() + 30);
-			$('#main').height($('.main_left').height() + 30);
-		}
-	},50)
-	
-}
+
 
 //通过URL得到图片的长和高
 function imgLoadEvent(callback, url) {//圖片事件加載

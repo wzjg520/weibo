@@ -3,25 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <title>微博--首页</title>
-<link rel="stylesheet" href="/weibo/Public/Home/css/index.css">
 <script type="text/javascript" src="/weibo/Public/Home/js/jquery.js"></script>
 <script type="text/javascript" src="/weibo/Public/Home/js/jquery.ui.js"></script>
-<script type="text/javascript" src="/weibo/Public/Home/uploadify/jquery.uploadify.min.js"></script>
-<script type="text/javascript" src="/weibo/Public/Home/js/index.js"></script>
-<script type="text/javascript" src="/weibo/Public/Home/js/rl_exp.js"></script>
-<script type="text/javascript" src="/weibo/Public/Home/js/june_pic.js"></script>
+<script type="text/javascript" src="/weibo/Public/Home/js/base.js"></script>
 <link rel="stylesheet" href="/weibo/Public/Home/css/jquery.ui.css">
-<link rel="stylesheet" href="/weibo/Public/Home/uploadify/uploadify.css">
-<link rel="stylesheet" href="/weibo/Public/Home/css/rl_exp.css" />
+<link rel="stylesheet" href="/weibo/Public/Home/css/base.css">
+
+	<link rel="stylesheet" href="/weibo/Public/Home/css/index.css">
+	<link rel="stylesheet" href="/weibo/Public/Home/uploadify/uploadify.css">
+	<link rel="stylesheet" href="/weibo/Public/Home/css/rl_exp.css" />
+	<script type="text/javascript" src="/weibo/Public/Home/uploadify/jquery.uploadify.min.js"></script>	
+	<script type="text/javascript" src="/weibo/Public/Home/js/rl_exp.js"></script>
+	<script type="text/javascript" src="/weibo/Public/Home/js/june_pic.js"></script>
+	<script type="text/javascript" src="/weibo/Public/Home/js/index.js"></script>	
+
+<script>
+		var	THINKPHP={
+			'img': '/weibo/Public/Home/images',
+			'module':'/weibo/Home',
+			'uploadify':'/weibo/Public/Home/uploadify',
+			'uploader':'<?php echo U("File/upload");?>',
+			'root':'/weibo',
+		}
+</script>
 </head>
 <body>
-
 <div id="header">
 	<div class="header_main">
 		<div class="logo">微博系统</div>
 		<div class="nav">
 			<ul>
-				<li class="selected"><a href="#">首页</a></li>
+				<li class="selected"><a href="<?php echo U('Index/index');?>">首页</a></li>
 				<li><a href="#">图片</a></li>
 				<li><a href="#">广场</a></li>
 				<li><a href="#">找人</a></li>
@@ -42,7 +54,7 @@
 				</li>
 				<li class="app">账号
 					<dl class="list">
-						<dd><a href="#">个人设置</a></dd>
+						<dd><a href="<?php echo U('Set/index');?>">个人设置</a></dd>
 						<dd><a href="#">申请认证</a></dd>
 						<dd><a href="#">排行榜</a></dd>
 						<dd><a href="<?php echo U('User/logout');?>" class="line">退出&gt;&gt;</a></dd>
@@ -60,15 +72,6 @@
 </div>
 <div id="main">
 	
-	<script>
-		var	THINKPHP={
-			'img': '/weibo/Public/Home/images',
-			'module':'/weibo/Home',
-			'uploadify':'/weibo/Public/Home/uploadify',
-			'uploader':'<?php echo U("File/upload");?>',
-			'root':'/weibo',
-		}
-	</script>
 	<div class="main_left">
 		<form class="weibo_form">
 			<span class="left">和大家一起分享点新鲜事吧</span>

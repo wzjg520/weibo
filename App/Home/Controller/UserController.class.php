@@ -1,10 +1,6 @@
 <?php
 namespace Home\Controller;
-
-use Think\Controller;
-use Think\Verify;
-
-class UserController extends Controller {
+class UserController extends HomeController {
 	public function register() {
 		if (IS_AJAX) {
 			$User = D('User');

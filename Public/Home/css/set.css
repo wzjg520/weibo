@@ -1,0 +1,67 @@
+@CHARSET "UTF-8";
+#main .main_left{
+	width:169px;
+	min-height:800px;
+	background:#f7f7f7;
+	padding:0 10px;
+	float:left;
+}
+#main .main_left ul{
+	padding:20px 0 0 0;
+}
+#main .main_left ul li{
+	height:30px;
+	line-height:30px;
+	font-size:14px;
+	
+}
+#main .main_left ul li a{
+	color:#444;
+	text-decoration:none;
+	display:block;
+	text-indent:20px;
+	font-weight:normal;
+}
+#main .main_left ul li a:hover{
+	background:#666;
+	color:#fff;
+}
+#main .main_right{
+	width:730px;
+	min-height:800px;
+	background:#fff;
+	padding:0 20px;
+	border-left:1px solid #ddd;
+	float:right;
+}
+#main .main_right h2{
+	font-size:18px;
+	color:#666;
+	padding:25px 0 0 0;
+}
+#main .main_right dl{
+	display:block;
+	padding:10px 0 0 20px;
+}
+#main .main_right dl dd{
+	padding:8px 0;
+}
+#main .main_right dl dd .text{
+	height:22px;
+	width:250px;
+	text-indent:5px;
+	font-size:14px;
+	background:#fff;
+	border:1px solid #aaa;
+}
+#main .main_right dl dd span{
+	vertical-align:55px;
+}
+#main .main_right dl dd textarea{
+	width:350px;
+	max-width:600px;
+	height:120px;
+	max-height:500px;
+	background:#fff;
+	border:1px solid #aaa;
+}
