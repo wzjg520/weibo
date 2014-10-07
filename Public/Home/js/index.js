@@ -12,21 +12,28 @@ window.src
 */
 
 $(function(){
-	
+	//图片加载完成居中以及左右主题对其
+	$(window).load(function(){
+		setImgCenter();
+		keepAlign();
+	})
 	
 	//微博图片获得焦点
-	for (var i = 0; i < $('.images img').length; i++) {
-		if ($('.images img').eq(i).width() > 120) {
-			$('.images img').eq(i).css('left', -($('.images img').eq(i).width() - 120) / 2);
-		} else {
-			$('.images img').eq(i).width(120);
-		}
-		if ($('.images img').eq(i).height() > 120) {
-			$('.images img').eq(i).css('top', -($('.images img').eq(i).height() - 120) / 2);
-		} else {
-			$('.images img').eq(i).height(120);
+	function setImgCenter(){
+		for (var i = 0; i < $('.images img').length; i++) {
+			if ($('.images img').eq(i).width() > 120) {
+				$('.images img').eq(i).css('left', -($('.images img').eq(i).width() - 120) / 2);
+			} else {
+				$('.images img').eq(i).width(120);
+			}
+			if ($('.images img').eq(i).height() > 120) {
+				$('.images img').eq(i).css('top', -($('.images img').eq(i).height() - 120) / 2);
+			} else {
+				$('.images img').eq(i).height(120);
+			}
 		}
 	}
+	
 	//图片点击放大
 	$('.weibo_content').on('click','.oneImage img',function(){
 		$(this).parent().hide();
@@ -64,7 +71,7 @@ $(function(){
 		}
 		
 		if($('.text').val()==''){
-			$('#msg').css('background','url('+THINKPHP['img']+'/error.png) no-repeat 20px center').html('您还没有分享新鲜事呀！').dialog('open');
+			$('#msg').css('background','url('+THINKPHP['img']+'/error.png) no-repeat 18px 8px').html('您还没有分享新鲜事呀！').dialog('open');
 			setTimeout(function(){
 				$('#msg').html('...').dialog('close');
 				$('.text').focus();
@@ -87,7 +94,7 @@ $(function(){
 					},
 					beforeSend:function(){
 						$('#msg').css({
-							'background':'url('+THINKPHP['img']+'/loading.gif) no-repeat 20px center',
+							'background':'url('+THINKPHP['img']+'/loading.gif) no-repeat 18px 8px',
 						}).html('正在提交中，请稍等...').dialog('open');
 					},
 					success:function(text){
@@ -129,7 +136,7 @@ $(function(){
 						
 						html = html.replace(/\[(a|b|c|d)_([0-9]+)\]/g,'<img src="'+THINKPHP['img']+'/face/$1/$2.gif" border="0">')
 						
-						$('#msg').css('background','url('+THINKPHP['img']+'/success.gif) no-repeat 20px center').html('发表成功！').dialog('open');
+						$('#msg').css('background','url('+THINKPHP['img']+'/success.gif) no-repeat 18px 8px').html('发表成功！').dialog('open');
 							setTimeout(function(){
 								$('.weibo_content ul').after(html);
 								$("textarea[name='content']").val('');
@@ -139,7 +146,7 @@ $(function(){
 				})
 				
 			}else{
-				$('#msg').css('background','url('+THINKPHP['img']+'/error.png) no-repeat 20px center').html('您写的太多了！').dialog('open');
+				$('#msg').css('background','url('+THINKPHP['img']+'/error.png) no-repeat 18px 8px').html('您写的太多了！').dialog('open');
 				setTimeout(function(){
 					$('#msg').html('...').dialog('close');
 					$('.text').focus();
@@ -305,10 +312,19 @@ $(function(){
 			}
 		}else{
 			$('#loadmore').html('数据加载完毕')
-		}
-		
-		
+		}	
 	})
+	//返回顶部
+	$.scrollUp({
+		scrollName: 'scrollUp', // Element ID
+		topDistance: '300', // Distance from top before showing element (px)
+		topSpeed: 300, // Speed back to top (ms)
+		animation: 'fade', // Fade, slide, none
+		animationInSpeed: 200, // Animation in speed (ms)
+		animationOutSpeed: 200, // Animation out speed (ms)
+		scrollText: '', // Text for element
+		activeOverlay: false, // Set CSS color to display scrollUp active
+	});
 			
 })
 

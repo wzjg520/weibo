@@ -18,8 +18,16 @@ class SetController extends HomeController{
 		}else{
 			$this->error('非法操作');
 		}
-		
-		
-		
+	}
+	//头像设置
+	public function avatar(){
+		if($this->login()){
+			$User=D('User');
+			$face=$User->getFace();
+			//重置session信息
+			session('auth')['face']=json_decode($face['face']);
+			$this->assign('bigFace',json_decode($face['face'])->big);
+			$this->display();
+		}
 	}
 }

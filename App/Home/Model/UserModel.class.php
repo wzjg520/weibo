@@ -67,7 +67,7 @@ class UserModel extends RelationModel{
 		}
 		
 		//验证密码
-		$user=$this->field('id,password,last_login,username')->where($map)->find();
+		$user=$this->field('id,password,last_login,username,face')->where($map)->find();
 		if($user['password']==sha1($password)){
 			
 			//登录验证后写入登录信息
@@ -82,7 +82,8 @@ class UserModel extends RelationModel{
 			$auth=array(
 				'username'=>$user['username'],
 				'last_login'=>NOW_TIME,
-				'id'=>$user['id']
+				'id'=>$user['id'],
+				'face'=>json_decode($user['face']),
 			);
 			
 			session('auth',$auth);
@@ -94,8 +95,6 @@ class UserModel extends RelationModel{
 		}else{
 			return -9;	//账号或密码错误
 		}
-		
-		
 	}
 	//一对一关联获得用户信息
 	public function getUser(){
@@ -110,6 +109,11 @@ class UserModel extends RelationModel{
 		}
 		return $user;
 	}
+	//获得用户头像
+	public function getFace(){
+		$map['id']=session('auth')['id'];
+		return $this->where($map)->field('face')->find();
+	}
 	//一对一关联修改数据用户信息
 	public function update($email,$intro){
 		$map['id']=session('auth')['id'];
@@ -121,6 +125,14 @@ class UserModel extends RelationModel{
 		);
 		
 		return $this->relation(true)->where($map)->save($data);
+	}
+	//修改用户头像信息
+	public function updateFace($path){
+		$map['id']=session('auth')['id'];
+		$data=array(
+			'face'=>$path,
+		);
+		return $this->where($map)->save($data);
 	}
 	//ajax验证字段时候重复
 	public function checkFields($field,$type){

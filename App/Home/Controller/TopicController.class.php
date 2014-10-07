@@ -36,7 +36,6 @@ class TopicController extends HomeController{
 		if(IS_AJAX){
 			$Topic=D('Topic');
 			$topicList=$Topic->getList(I('post.start'),I('post.step'));
- 		 	$topicList=$Topic->format($topicList);
  		 	$this->assign('topicList',$topicList);
        		$this->display();
 		}else{

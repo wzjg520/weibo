@@ -374,19 +374,6 @@ a.pic{
 	top:1px;
 	left:1px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 #main .main_right{
 	float:right;
 	width:269px;
@@ -395,3 +382,13 @@ a.pic{
 	background:#f7f7f7;
 }
 
+
+#scrollUp {
+	bottom:20px;
+	right:20px;
+	padding:0 20px;
+	height:38px;
+	widht:38px;
+	outline:none;
+	background:url(../images/top.png) no-repeat;
+}

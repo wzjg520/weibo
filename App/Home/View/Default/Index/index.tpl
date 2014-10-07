@@ -3,9 +3,10 @@
 	<link rel="stylesheet" href="__CSS__/index.css">
 	<link rel="stylesheet" href="__UPLOADIFY__/uploadify.css">
 	<link rel="stylesheet" href="__CSS__/rl_exp.css" />
-	<script type="text/javascript" src="__UPLOADIFY__/jquery.uploadify.min.js"></script>	
+	<script type="text/javascript" src="__UPLOADIFY__/jquery.uploadify.min.js"></script>		
 	<script type="text/javascript" src="__JS__/rl_exp.js"></script>
 	<script type="text/javascript" src="__JS__/june_pic.js"></script>
+	<script type="text/javascript" src="__JS__/jquery.scrollUp.js"></script>
 	<script type="text/javascript" src="__JS__/index.js"></script>	
 </block>
 <block name="main">
@@ -49,7 +50,15 @@
 			</ul>
 			<volist name="topicList" id="obj">				
 				<dl class="weibo_content_data">
-					<dt class="face"><a href="javascript:void(0)"><img src="__IMG__/small_face.jpg" alt="" ></a></dt>
+					<dt class="face"><a href="javascript:void(0)">
+						<empty name="obj.face">
+							<img src="__IMG__/small_face.jpg" alt="" >
+						<else/>
+							<img src="__ROOT__/{$obj['face']->small}" alt="2" >
+						</empty>
+						
+					
+					</a></dt>
 					<dd class="content">
 						<h4><a href="javascript:void(0)">{$obj.username}</a></h4>
 						<p style="padding:5px 0 0 0">{$obj.content}</p>					
@@ -104,7 +113,13 @@
 		<!-- 无图片微博ajax加载 -->
 		<div class="ajax_none_pic">	
 			<dl class="weibo_content_data">
-				<dt class="face"><a href="javascript:void(0)"><img src="__IMG__/small_face.jpg" alt="" ></a></dt>
+				<dt class="face"><a href="javascript:void(0)">
+					<empty name="smallFace">
+						<img src="__IMG__/small_face.jpg" alt="" >
+					<else/>
+						<img src="__ROOT__/{$smallFace}" alt="2" >
+					</empty>
+				</a></dt>
 				<dd class="content">
 					<h4><a href="javascript:void(0)">{:session("auth")['username']}</a></h4>
 					<p>#内容#</p>
@@ -119,7 +134,13 @@
 		<!-- 单张图片微博ajax加载 -->
 		<div class="ajax_single_pic">
 			<dl class="weibo_content_data">
-			<dt class="face"><a href="javascript:void(0)"><img src="__IMG__/small_face.jpg" alt="" ></a></dt>
+			<dt class="face"><a href="javascript:void(0)">
+				<empty name="smallFace">
+					<img src="__IMG__/small_face.jpg" alt="" >
+				<else/>
+					<img src="__ROOT__/{$smallFace}" alt="2" >
+				</empty>
+			</a></dt>
 			<dd class="content">
 				<h4><a href="javascript:void(0)">{:session("auth")['username']}</a></h4>
 				<p>#内容#</p>
@@ -142,7 +163,13 @@
 		<!-- 多张图片微博ajax加载 -->
 		<div class="ajax_muti_pic">	
 			<dl class="weibo_content_data">
-				<dt class="face"><a href="javascript:void(0)"><img src="__IMG__/small_face.jpg" alt="" ></a></dt>
+				<dt class="face"><a href="javascript:void(0)">
+					<empty name="smallFace">
+						<img src="__IMG__/small_face.jpg" alt="" >
+					<else/>
+						<img src="__ROOT__/{$smallFace}" alt="2" >
+					</empty>
+				</a></dt>
 				<dd class="content">
 					<h4><a href="javascript:void(0)">{:session("auth")['username']}</a></h4>
 					<p>#内容#</p>

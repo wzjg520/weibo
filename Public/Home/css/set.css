@@ -34,14 +34,18 @@
 	border-left:1px solid #ddd;
 	float:right;
 }
+
 #main .main_right h2{
 	font-size:18px;
 	color:#666;
 	padding:25px 0 0 0;
 }
+#main .main_right hr{
+	color:#ccc;
+}
 #main .main_right dl{
 	display:block;
-	padding:10px 0 0 20px;
+	padding:0 0 0 20px;
 }
 #main .main_right dl dd{
 	padding:8px 0;
@@ -65,3 +69,28 @@
 	background:#fff;
 	border:1px solid #aaa;
 }
+
+#main .main_right p{
+	padding:0 0 10px 0;
+}
+#main .main_right .avatar{
+	position:relative;
+}
+#main .main_right .avatar #file{
+	margin:10px 0 0 0;
+}
+#main .main_right .avatar #preview_box{
+	width:200px;
+	height:200px;
+	position:absolute;
+	top:0px;
+	right:0px;
+	overflow:hidden;
+	display:none;
+}
+#main .main_right .avatar #face{
+	display:block;
+	border:none;
+}
+	
+

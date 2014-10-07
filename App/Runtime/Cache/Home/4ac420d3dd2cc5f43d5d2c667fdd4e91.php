@@ -12,9 +12,10 @@
 	<link rel="stylesheet" href="/weibo/Public/Home/css/index.css">
 	<link rel="stylesheet" href="/weibo/Public/Home/uploadify/uploadify.css">
 	<link rel="stylesheet" href="/weibo/Public/Home/css/rl_exp.css" />
-	<script type="text/javascript" src="/weibo/Public/Home/uploadify/jquery.uploadify.min.js"></script>	
+	<script type="text/javascript" src="/weibo/Public/Home/uploadify/jquery.uploadify.min.js"></script>		
 	<script type="text/javascript" src="/weibo/Public/Home/js/rl_exp.js"></script>
 	<script type="text/javascript" src="/weibo/Public/Home/js/june_pic.js"></script>
+	<script type="text/javascript" src="/weibo/Public/Home/js/jquery.scrollUp.js"></script>
 	<script type="text/javascript" src="/weibo/Public/Home/js/index.js"></script>	
 
 <script>
@@ -22,7 +23,8 @@
 			'img': '/weibo/Public/Home/images',
 			'module':'/weibo/Home',
 			'uploadify':'/weibo/Public/Home/uploadify',
-			'uploader':'<?php echo U("File/upload");?>',
+			'indexImg':'<?php echo U("File/indexImg");?>',
+			'avatar':'<?php echo U("File/avatar");?>',
 			'root':'/weibo',
 		}
 </script>
@@ -111,7 +113,13 @@
 				<li><a href="javascript:void(0)">互听的</a></li>
 			</ul>
 			<?php if(is_array($topicList)): $i = 0; $__LIST__ = $topicList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$obj): $mod = ($i % 2 );++$i;?><dl class="weibo_content_data">
-					<dt class="face"><a href="javascript:void(0)"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a></dt>
+					<dt class="face"><a href="javascript:void(0)">
+						<?php if(empty($obj["face"])): ?><img src="/weibo/Public/Home/images/small_face.jpg" alt="" >
+						<?php else: ?>
+							<img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ><?php endif; ?>
+						
+					
+					</a></dt>
 					<dd class="content">
 						<h4><a href="javascript:void(0)"><?php echo ($obj["username"]); ?></a></h4>
 						<p style="padding:5px 0 0 0"><?php echo ($obj["content"]); ?></p>					
@@ -159,7 +167,11 @@
 		<!-- 无图片微博ajax加载 -->
 		<div class="ajax_none_pic">	
 			<dl class="weibo_content_data">
-				<dt class="face"><a href="javascript:void(0)"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a></dt>
+				<dt class="face"><a href="javascript:void(0)">
+					<?php if(empty($smallFace)): ?><img src="/weibo/Public/Home/images/small_face.jpg" alt="" >
+					<?php else: ?>
+						<img src="/weibo/<?php echo ($smallFace); ?>" alt="2" ><?php endif; ?>
+				</a></dt>
 				<dd class="content">
 					<h4><a href="javascript:void(0)"><?php echo session("auth")['username'];?></a></h4>
 					<p>#内容#</p>
@@ -174,7 +186,11 @@
 		<!-- 单张图片微博ajax加载 -->
 		<div class="ajax_single_pic">
 			<dl class="weibo_content_data">
-			<dt class="face"><a href="javascript:void(0)"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a></dt>
+			<dt class="face"><a href="javascript:void(0)">
+				<?php if(empty($smallFace)): ?><img src="/weibo/Public/Home/images/small_face.jpg" alt="" >
+				<?php else: ?>
+					<img src="/weibo/<?php echo ($smallFace); ?>" alt="2" ><?php endif; ?>
+			</a></dt>
 			<dd class="content">
 				<h4><a href="javascript:void(0)"><?php echo session("auth")['username'];?></a></h4>
 				<p>#内容#</p>
@@ -197,7 +213,11 @@
 		<!-- 多张图片微博ajax加载 -->
 		<div class="ajax_muti_pic">	
 			<dl class="weibo_content_data">
-				<dt class="face"><a href="javascript:void(0)"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a></dt>
+				<dt class="face"><a href="javascript:void(0)">
+					<?php if(empty($smallFace)): ?><img src="/weibo/Public/Home/images/small_face.jpg" alt="" >
+					<?php else: ?>
+						<img src="/weibo/<?php echo ($smallFace); ?>" alt="2" ><?php endif; ?>
+				</a></dt>
 				<dd class="content">
 					<h4><a href="javascript:void(0)"><?php echo session("auth")['username'];?></a></h4>
 					<p>#内容#</p>
@@ -217,6 +237,6 @@
 	<div class="footer_left">&copy; 2014 ihuahua.cc All Rights Reserved.</div>
 	<div class="footer_right">Powered By ThinkPHP.</div>
 </div>
-<div id="msg">数据交互中...</div>
+<div id="msg"></div>
 </body>
 </html>

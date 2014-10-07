@@ -1,6 +1,5 @@
 <?php
 namespace Home\Model;
-use Think\Model;
 use Think\Model\RelationModel;
 class TopicModel extends RelationModel{
 	protected $_validate = array(
@@ -46,12 +45,12 @@ class TopicModel extends RelationModel{
 	public function getList($start,$step){
 		$topicList=$this->relation(true)
 		->table('__TOPIC__ a, __USER__ b')
-		->field('a.id,a.content,a.content_over,a.create,b.username')
+		->field('a.id,a.content,a.content_over,a.create,b.username,b.face')
 		->where('a.uid=b.id')
 		->limit($start,$step)
 		->order('a.create DESC')
 		->select();
-		return $topicList;
+		return $this->format($topicList);
 	}
 	
 	//数据格式化
@@ -83,6 +82,7 @@ class TopicModel extends RelationModel{
 			$value['content']=preg_replace('/\[(a|b|c|d)_([0-9]+)\]/i','<img src="'.__ROOT__.'/Public/'.MODULE_NAME.'/images/face/$1/$2.gif" border="0">', $value['content']);
 			$data[$key]=$value;
 			$data[$key]['count']=count($value['images']);
+			$data[$key]['face']=json_decode($value['face']);
 		};
 		return $data;
 	}

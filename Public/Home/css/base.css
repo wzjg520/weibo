@@ -3,16 +3,19 @@
 jquery ui
 */
 .ui-button{
-	background:url(../images/button.png) repeat-x left top !important;
-	border-radius:0 !important;
+	background:url(../images/button.png)  left top !important;
+	/*
+border-radius:0 !important;
+*/	
 	border:none !important;
+	font-size:14px !important;
 	color:#fff !important;
 }
 .ui-button:active{
 	broder:none;
 }
 .ui-button:hover{
-	background:url(../images/button_hover.png) repeat-x left top !important;
+	background:url(../images/button_hover.png) left top !important;
 }
 
 
@@ -46,10 +49,10 @@ ul,dl,ol{
 	height:42px;
 }
 #header .header_main .logo{
-	background:url(../images/weibo_logo.png) no-repeat center;
+	background:url(../images/weibo_logo.png) no-repeat left center;
 	text-indent:-9999px;
 	width:86px;
-	height;42px;
+	height:42px;
 	cursor:pointer;
 	float:left;
 }
@@ -154,8 +157,7 @@ ul,dl,ol{
 	float:right;
 }
 #msg{
-	background:url(../images/error.png) no-repeat 0px center;
-	padding:13px 0 0 0;
 	font-size:14px;
-	text-indent:50px;
+	padding:10px 0 0 0;
+	text-indent:43px;
 }

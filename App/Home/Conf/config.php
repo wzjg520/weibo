@@ -12,6 +12,9 @@ return array(
 		//默认成功跳转对应的模板文件
 		'TMPL_ACTION_SUCCESS' => 'Public/jump',
 		
+		//头像保存地址
+		'FACE_PATH'=>'Uploads/face/',
+		
 		'FILE_UPLOAD'=>array(
 				'maxSize'=>3145728,
 				'rootPath'=>'Uploads/',

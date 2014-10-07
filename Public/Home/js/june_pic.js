@@ -36,7 +36,7 @@ $(function(){
 		},
 		uploadify:function(){
 			$('#file').uploadify({
-				uploader:THINKPHP['uploader'],
+				uploader:THINKPHP['indexImg'],
 				swf : THINKPHP['uploadify'] + '/uploadify.swf',
 				width:120,
 				height:35,

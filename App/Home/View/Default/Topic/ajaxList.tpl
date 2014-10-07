@@ -1,6 +1,12 @@
 <volist name="topicList" id="obj" key="k">				
 	<dl class="weibo_content_data">
-		<dt class="face"><a href="javascript:void(0)"><img src="__IMG__/small_face.jpg" alt="" ></a></dt>
+		<dt class="face"><a href="javascript:void(0)">
+			<empty name="obj.face">
+				<img src="__IMG__/small_face.jpg" alt="" >
+			<else/>
+				<img src="__ROOT__/{$obj['face']->small}" alt="2" >
+			</empty>
+		</a></dt>
 		<dd class="content">
 			<h4><a href="javascript:void(0)">{$obj.username}</a></h4>
 			<p style="padding:5px 0 0 0">{$obj.content}</p>					
