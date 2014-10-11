@@ -4,7 +4,6 @@ class IndexController extends HomeController {
     public function index(){
        if($this->login()){
  		 	$Topic = D('Topic');
- 		 	//print_r($_SESSION);
  		 	$topicList=$Topic->getList(0,10);
  		 	$this->assign('topicList',$topicList);
  		 	$this->assign('smallFace', session('auth')['face']->small);

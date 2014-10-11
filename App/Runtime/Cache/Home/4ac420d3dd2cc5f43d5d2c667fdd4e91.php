@@ -43,7 +43,7 @@
 		</div>
 		<div class="person">
 			<ul>
-				<li><a href="#">蜡笔小新</a></li>
+				<li><a href="#"><?php echo session('auth')['username'];?></a></li>
 				<li class="app">消息
 					<dl class="list">
 						<dd><a href="#">@提到我的</a></dd>
@@ -116,12 +116,10 @@
 					<dt class="face"><a href="javascript:void(0)">
 						<?php if(empty($obj["face"])): ?><img src="/weibo/Public/Home/images/small_face.jpg" alt="" >
 						<?php else: ?>
-							<img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ><?php endif; ?>
-						
-					
+							<img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ><?php endif; ?>				
 					</a></dt>
 					<dd class="content">
-						<h4><a href="javascript:void(0)"><?php echo ($obj["username"]); ?></a></h4>
+						<h4><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><?php echo ($obj["username"]); ?></a></h4>
 						<p style="padding:5px 0 0 0"><?php echo ($obj["content"]); ?></p>					
 						<?php switch($obj["count"]): case "0": break;?>
 							<?php case "1": ?><div class="oneImage"><img src="/weibo/<?php echo ($obj['images'][0]['thumb']); ?>" alt="" /></div>

@@ -11,7 +11,7 @@
 		</div>
 		<div class="person">
 			<ul>
-				<li><a href="#">蜡笔小新</a></li>
+				<li><a href="#">{:session('auth')['username']}</a></li>
 				<li class="app">消息
 					<dl class="list">
 						<dd><a href="#">@提到我的</a></dd>

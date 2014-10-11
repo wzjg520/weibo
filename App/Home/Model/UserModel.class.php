@@ -97,8 +97,12 @@ class UserModel extends RelationModel{
 		}
 	}
 	//一对一关联获得用户信息
-	public function getUser(){
-		$map['id']=session('auth')['id'];
+	public function getUser($id=0){
+		if($id){
+			$map['id']=$id;
+		}else{
+			$map['id']=session('auth')['id'];
+		}		
 		$user=$this->relation(true)->field('id,username,email')->where($map)->find();
 		if(!is_array($user['extend'])){
 			$UserExtend=M('UserExtend');

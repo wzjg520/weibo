@@ -9,7 +9,8 @@
 			'img': '__IMG__',
 			'module':'__MODULE__',
 			'uploadify':'__UPLOADIFY__',
-			'uploader':'{:U("File/upload")}',
+			'indexImg':'{:U("File/indexImg")}',
+			'avatar':'{:U("File/avatar")}',
 			'root':'__ROOT__',
 		}
 </script>

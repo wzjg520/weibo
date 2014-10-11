@@ -45,7 +45,7 @@ class TopicModel extends RelationModel{
 	public function getList($start,$step){
 		$topicList=$this->relation(true)
 		->table('__TOPIC__ a, __USER__ b')
-		->field('a.id,a.content,a.content_over,a.create,b.username,b.face')
+		->field('a.id,a.content,a.content_over,a.create,b.username,b.face,a.uid')
 		->where('a.uid=b.id')
 		->limit($start,$step)
 		->order('a.create DESC')
