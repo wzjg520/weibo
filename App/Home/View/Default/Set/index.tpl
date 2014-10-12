@@ -6,8 +6,9 @@
 <block name="main">
 	<div class="main_left">
 		<ul>
-			<li><a href="{:U('Set/index')}">个人设置</a></li>
+			<li><a href="{:U('Set/index')}" class="selected">个人设置</a></li>
 			<li><a href="{:U('Set/avatar')}">头像设置</a></li>
+			<li><a href="{:U('Set/domain')}">个性域名</a></li>
 		</ul>
 	</div>
 	<div class="main_right">

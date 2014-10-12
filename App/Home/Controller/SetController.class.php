@@ -30,4 +30,23 @@ class SetController extends HomeController{
 			$this->display();
 		}
 	}
+	//显示个性域名
+	public function domain(){
+		if($this->login()){
+			$User=D('User');
+			$this->assign('domain',$User->getUser()['domain']);
+			$this->display();
+		}
+	}
+	//设置个性域名
+	public function setDomain(){
+		if(IS_AJAX){
+			$User=D('User');
+			$uid=$User->setDomain(I('post.domain'));
+			echo $uid ;
+		}else{
+			$this->error('非法操作');
+		}
+		
+	} 
 }

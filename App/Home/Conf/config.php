@@ -22,6 +22,12 @@ return array(
 				'autoSub' =>true,
 				'subName' =>array('date','Ymd'),
 		),
+		//开启路由
+		'URL_ROUTER_ON'=>true,
+		'URL_ROUTE_RULES'=>array(
+			'june/:domain'=>'Space/index',
+		)
+		
 	
 		
 );

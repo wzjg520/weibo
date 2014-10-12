@@ -113,13 +113,22 @@
 				<li><a href="javascript:void(0)">互听的</a></li>
 			</ul>
 			<?php if(is_array($topicList)): $i = 0; $__LIST__ = $topicList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$obj): $mod = ($i % 2 );++$i;?><dl class="weibo_content_data">
-					<dt class="face"><a href="javascript:void(0)">
-						<?php if(empty($obj["face"])): ?><img src="/weibo/Public/Home/images/small_face.jpg" alt="" >
+					<dt class="face">
+						<?php if(empty($obj["face"])): if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a>
+								<?php else: ?>
+								<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a><?php endif; ?>
+							
 						<?php else: ?>
-							<img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ><?php endif; ?>				
-					</a></dt>
+							<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a>
+								<?php else: ?>
+								<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a><?php endif; endif; ?>				
+					</dt>
 					<dd class="content">
-						<h4><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><?php echo ($obj["username"]); ?></a></h4>
+						<h4>
+							<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><?php echo ($obj["username"]); ?></a>
+								<?php else: ?>
+								<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><?php echo ($obj["username"]); ?></a><?php endif; ?>	
+						</h4>
 						<p style="padding:5px 0 0 0"><?php echo ($obj["content"]); ?></p>					
 						<?php switch($obj["count"]): case "0": break;?>
 							<?php case "1": ?><div class="oneImage"><img src="/weibo/<?php echo ($obj['images'][0]['thumb']); ?>" alt="" /></div>
@@ -165,13 +174,21 @@
 		<!-- 无图片微博ajax加载 -->
 		<div class="ajax_none_pic">	
 			<dl class="weibo_content_data">
-				<dt class="face"><a href="javascript:void(0)">
-					<?php if(empty($smallFace)): ?><img src="/weibo/Public/Home/images/small_face.jpg" alt="" >
-					<?php else: ?>
-						<img src="/weibo/<?php echo ($smallFace); ?>" alt="2" ><?php endif; ?>
-				</a></dt>
+				<dt class="face">
+					<?php if(empty($obj["face"])): if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a>
+								<?php else: ?>
+								<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a><?php endif; ?>						
+						<?php else: ?>
+							<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a>
+								<?php else: ?>
+								<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a><?php endif; endif; ?>
+				</dt>
 				<dd class="content">
-					<h4><a href="javascript:void(0)"><?php echo session("auth")['username'];?></a></h4>
+					<h4>
+						<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><?php echo ($obj["username"]); ?></a>
+							<?php else: ?>
+							<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><?php echo ($obj["username"]); ?></a><?php endif; ?>
+					</h4>
 					<p>#内容#</p>
 					<div class="footer">
 						<span class="time">刚刚发布</span>
@@ -184,13 +201,21 @@
 		<!-- 单张图片微博ajax加载 -->
 		<div class="ajax_single_pic">
 			<dl class="weibo_content_data">
-			<dt class="face"><a href="javascript:void(0)">
-				<?php if(empty($smallFace)): ?><img src="/weibo/Public/Home/images/small_face.jpg" alt="" >
+			<dt class="face">
+				<?php if(empty($obj["face"])): if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a>
+						<?php else: ?>
+						<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a><?php endif; ?>				
 				<?php else: ?>
-					<img src="/weibo/<?php echo ($smallFace); ?>" alt="2" ><?php endif; ?>
-			</a></dt>
+					<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a>
+						<?php else: ?>
+						<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a><?php endif; endif; ?>
+			</dt>
 			<dd class="content">
-				<h4><a href="javascript:void(0)"><?php echo session("auth")['username'];?></a></h4>
+				<h4>
+					<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><?php echo ($obj["username"]); ?></a>
+						<?php else: ?>
+						<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><?php echo ($obj["username"]); ?></a><?php endif; ?>
+				</h4>
 				<p>#内容#</p>
 				<div class="oneImage"><img src="#图片地址#" alt="" /></div>
 				<div class="image_zoom" style="display:none;">
@@ -211,13 +236,21 @@
 		<!-- 多张图片微博ajax加载 -->
 		<div class="ajax_muti_pic">	
 			<dl class="weibo_content_data">
-				<dt class="face"><a href="javascript:void(0)">
-					<?php if(empty($smallFace)): ?><img src="/weibo/Public/Home/images/small_face.jpg" alt="" >
+				<dt class="face">
+					<?php if(empty($obj["face"])): if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a>
+							<?php else: ?>
+							<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a><?php endif; ?>						
 					<?php else: ?>
-						<img src="/weibo/<?php echo ($smallFace); ?>" alt="2" ><?php endif; ?>
-				</a></dt>
+						<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a>
+							<?php else: ?>
+							<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a><?php endif; endif; ?>
+				</dt>
 				<dd class="content">
-					<h4><a href="javascript:void(0)"><?php echo session("auth")['username'];?></a></h4>
+					<h4>
+						<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><?php echo ($obj["username"]); ?></a>
+							<?php else: ?>
+							<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><?php echo ($obj["username"]); ?></a><?php endif; ?>
+					</h4>
 					<p>#内容#</p>
 					<div class="footer">
 						<span class="time">刚刚发布</span>

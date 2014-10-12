@@ -1,11 +1,19 @@
 <?php if (!defined('THINK_PATH')) exit(); if(is_array($topicList)): $k = 0; $__LIST__ = $topicList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$obj): $mod = ($k % 2 );++$k;?><dl class="weibo_content_data">
-		<dt class="face"><a href="javascript:void(0)">
-			<?php if(empty($obj["face"])): ?><img src="/weibo/Public/Home/images/small_face.jpg" alt="" >
+		<dt class="face">
+			<?php if(empty($obj["face"])): if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a>
+					<?php else: ?>
+					<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a><?php endif; ?>				
 			<?php else: ?>
-				<img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ><?php endif; ?>
-		</a></dt>
+				<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a>
+					<?php else: ?>
+					<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a><?php endif; endif; ?>
+		</dt>
 		<dd class="content">
-			<h4><a href="javascript:void(0)"><?php echo ($obj["username"]); ?></a></h4>
+			<h4>
+				<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><?php echo ($obj["username"]); ?></a>
+					<?php else: ?>
+					<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><?php echo ($obj["username"]); ?></a><?php endif; ?>
+			</h4>
 			<p style="padding:5px 0 0 0"><?php echo ($obj["content"]); ?></p>					
 			<?php switch($obj["count"]): case "0": break;?>
 				<?php case "1": ?><div class="oneImage"><img src="/weibo/<?php echo ($obj['images'][0]['thumb']); ?>" alt="" /></div>

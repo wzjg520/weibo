@@ -103,7 +103,7 @@ class UserModel extends RelationModel{
 		}else{
 			$map['id']=session('auth')['id'];
 		}		
-		$user=$this->relation(true)->field('id,username,email,face')->where($map)->find();
+		$user=$this->relation(true)->field('id,username,email,face,domain')->where($map)->find();
 		if(!is_array($user['extend'])){
 			$UserExtend=M('UserExtend');
 			$data=array(
@@ -112,6 +112,11 @@ class UserModel extends RelationModel{
 			$UserExtend->add($data);
 		}
 		return $user;
+	}
+	//通过域名获得用户信息
+	public function getUserByDomain($domain){
+		$map['domain']=$domain;
+		return $this->relation(true)->field('id,username,email,domain,face')->where($map)->find();
 	}
 	//获得用户头像
 	public function getFace(){
@@ -137,6 +142,14 @@ class UserModel extends RelationModel{
 			'face'=>$path,
 		);
 		session('auth')['face']=$data;
+		return $this->where($map)->save($data);
+	}
+	//设置用户域名
+	public function setDomain($domain){
+		$map['id']=session('auth')['id'];
+		$data=array(
+			'domain'=>$domain,
+		);
 		return $this->where($map)->save($data);
 	}
 	//ajax验证字段时候重复

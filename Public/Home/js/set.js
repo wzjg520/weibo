@@ -24,6 +24,7 @@ $(function(){
 			}
 		})
 	})
+	//图片裁剪页面调用
 	if($('#file').length>0){
 		//头像上传
 		$('#file').uploadify({
@@ -112,12 +113,9 @@ $(function(){
 					setTimeout(function(){
 						$('#msg').dialog('close');
 					},500)
-				}
-				
+				}			
 			})
 		})
-		
-	
 		//显示头像右侧缩略图
 		function showPreview(c){
 			$('#x').val(c.x)
@@ -139,13 +137,31 @@ $(function(){
 			e.stopPropagation();
 			e.preventDefault();
 			return false;
-		}; 
-	
-	
-	
-	
-	
-		
+		}; 	
+	}
+	//设置个性域名调用
+	if($('.domain').length>0){
+		$('.domain .submit').button().click(function(){
+			$.ajax({
+				url:THINKPHP['root']+'/Set/setDomain',
+				type:'post',
+				data:{
+					domain:$('.domain_text').val(),
+				},
+				beforeSend:function(){
+					$('#msg').css({
+						'background':'url('+THINKPHP['img']+'/loading.gif) no-repeat 15px 8px',
+					}).html('个性域名设置中...').dialog('open');
+				},
+				success:function(){
+					$('#msg').css('background','url('+THINKPHP['img']+'/success.gif) no-repeat 15px 8px').html('个性域名设置成功！').dialog('open');					
+					setTimeout(function(){
+						$('#msg').dialog('close');
+						location.reload();
+					},500)
+				}
+			})
+		})
 	}
 })
 

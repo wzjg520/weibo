@@ -1,14 +1,28 @@
 <volist name="topicList" id="obj" key="k">				
 	<dl class="weibo_content_data">
-		<dt class="face"><a href="javascript:void(0)">
+		<dt class="face">
 			<empty name="obj.face">
-				<img src="__IMG__/small_face.jpg" alt="" >
+				<empty name="obj.domain">
+					<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+					<else/>
+					<a href="__ROOT__/june/{$obj.domain}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+				</empty>				
 			<else/>
-				<img src="__ROOT__/{$obj['face']->small}" alt="2" >
+				<empty name="obj.domain">
+					<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
+					<else/>
+					<a href="__ROOT__/june/{$obj.domain}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
+				</empty>							
 			</empty>
-		</a></dt>
+		</dt>
 		<dd class="content">
-			<h4><a href="javascript:void(0)">{$obj.username}</a></h4>
+			<h4>
+				<empty name="obj.domain">
+					<a href="{:U('Space/index',array('id'=>$obj['uid']))}">{$obj.username}</a>
+					<else/>
+					<a href="__ROOT__/june/{$obj.domain}">{$obj.username}</a>
+				</empty>
+			</h4>
 			<p style="padding:5px 0 0 0">{$obj.content}</p>					
 			<switch name="obj.count">
 				<case value="0"></case>

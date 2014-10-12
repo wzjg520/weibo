@@ -50,15 +50,30 @@
 			</ul>
 			<volist name="topicList" id="obj">				
 				<dl class="weibo_content_data">
-					<dt class="face"><a href="javascript:void(0)">
+					<dt class="face">
 						<empty name="obj.face">
-							<img src="__IMG__/small_face.jpg" alt="" >
+							<empty name="obj.domain">
+								<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+								<else/>
+								<a href="__ROOT__/june/{$obj.domain}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+							</empty>
+							
 						<else/>
-							<img src="__ROOT__/{$obj['face']->small}" alt="2" >
+							<empty name="obj.domain">
+								<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
+								<else/>
+								<a href="__ROOT__/june/{$obj.domain}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
+							</empty>							
 						</empty>				
-					</a></dt>
+					</dt>
 					<dd class="content">
-						<h4><a href="{:U('Space/index',array('id'=>$obj['uid']))}">{$obj.username}</a></h4>
+						<h4>
+							<empty name="obj.domain">
+								<a href="{:U('Space/index',array('id'=>$obj['uid']))}">{$obj.username}</a>
+								<else/>
+								<a href="__ROOT__/june/{$obj.domain}">{$obj.username}</a>
+							</empty>	
+						</h4>
 						<p style="padding:5px 0 0 0">{$obj.content}</p>					
 						<switch name="obj.count">
 							<case value="0"></case>
@@ -111,15 +126,29 @@
 		<!-- 无图片微博ajax加载 -->
 		<div class="ajax_none_pic">	
 			<dl class="weibo_content_data">
-				<dt class="face"><a href="javascript:void(0)">
-					<empty name="smallFace">
-						<img src="__IMG__/small_face.jpg" alt="" >
-					<else/>
-						<img src="__ROOT__/{$smallFace}" alt="2" >
-					</empty>
-				</a></dt>
+				<dt class="face">
+					<empty name="obj.face">
+							<empty name="obj.domain">
+								<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+								<else/>
+								<a href="__ROOT__/june/{$obj.domain}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+							</empty>						
+						<else/>
+							<empty name="obj.domain">
+								<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
+								<else/>
+								<a href="__ROOT__/june/{$obj.domain}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
+							</empty>							
+						</empty>
+				</dt>
 				<dd class="content">
-					<h4><a href="javascript:void(0)">{:session("auth")['username']}</a></h4>
+					<h4>
+						<empty name="obj.domain">
+							<a href="{:U('Space/index',array('id'=>$obj['uid']))}">{$obj.username}</a>
+							<else/>
+							<a href="__ROOT__/june/{$obj.domain}">{$obj.username}</a>
+						</empty>
+					</h4>
 					<p>#内容#</p>
 					<div class="footer">
 						<span class="time">刚刚发布</span>
@@ -132,15 +161,29 @@
 		<!-- 单张图片微博ajax加载 -->
 		<div class="ajax_single_pic">
 			<dl class="weibo_content_data">
-			<dt class="face"><a href="javascript:void(0)">
-				<empty name="smallFace">
-					<img src="__IMG__/small_face.jpg" alt="" >
+			<dt class="face">
+				<empty name="obj.face">
+					<empty name="obj.domain">
+						<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+						<else/>
+						<a href="__ROOT__/june/{$obj.domain}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+					</empty>				
 				<else/>
-					<img src="__ROOT__/{$smallFace}" alt="2" >
+					<empty name="obj.domain">
+						<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
+						<else/>
+						<a href="__ROOT__/june/{$obj.domain}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
+					</empty>							
 				</empty>
-			</a></dt>
+			</dt>
 			<dd class="content">
-				<h4><a href="javascript:void(0)">{:session("auth")['username']}</a></h4>
+				<h4>
+					<empty name="obj.domain">
+						<a href="{:U('Space/index',array('id'=>$obj['uid']))}">{$obj.username}</a>
+						<else/>
+						<a href="__ROOT__/june/{$obj.domain}">{$obj.username}</a>
+					</empty>
+				</h4>
 				<p>#内容#</p>
 				<div class="oneImage"><img src="#图片地址#" alt="" /></div>
 				<div class="image_zoom" style="display:none;">
@@ -161,15 +204,29 @@
 		<!-- 多张图片微博ajax加载 -->
 		<div class="ajax_muti_pic">	
 			<dl class="weibo_content_data">
-				<dt class="face"><a href="javascript:void(0)">
-					<empty name="smallFace">
-						<img src="__IMG__/small_face.jpg" alt="" >
+				<dt class="face">
+					<empty name="obj.face">
+						<empty name="obj.domain">
+							<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+							<else/>
+							<a href="__ROOT__/june/{$obj.domain}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+						</empty>						
 					<else/>
-						<img src="__ROOT__/{$smallFace}" alt="2" >
+						<empty name="obj.domain">
+							<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
+							<else/>
+							<a href="__ROOT__/june/{$obj.domain}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
+						</empty>							
 					</empty>
-				</a></dt>
+				</dt>
 				<dd class="content">
-					<h4><a href="javascript:void(0)">{:session("auth")['username']}</a></h4>
+					<h4>
+						<empty name="obj.domain">
+							<a href="{:U('Space/index',array('id'=>$obj['uid']))}">{$obj.username}</a>
+							<else/>
+							<a href="__ROOT__/june/{$obj.domain}">{$obj.username}</a>
+						</empty>
+					</h4>
 					<p>#内容#</p>
 					<div class="footer">
 						<span class="time">刚刚发布</span>
