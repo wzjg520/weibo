@@ -228,7 +228,18 @@
 		</div>
 		<div class="clear">	</div>
 	</div>
-	<div class="main_right">right</div>
+	<div class="main_right">
+		<dl>
+			<dt>
+				<?php if(empty($bigFace)): ?><img src="/weibo/Public/Home/images/big.jpg" alt="头像" />
+					<?php else: ?>
+						<img src="/weibo/<?php echo ($bigFace); ?>" alt="头像" /><?php endif; ?>
+				
+				
+			</dt>
+			<dd><?php echo session('auth')['username'];?></dd>
+		</dl>
+	</div>
 
 </div>
 <div id="footer">
