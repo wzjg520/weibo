@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+#main .main_left {
+	width:690px;
+	min-height:800px;
+	background:#fff;
+	float:left;
+}
+#main .main_left .header {
+	background:#fafafa;
+	height:220px;
+	border-bottom:1px solid #ccc;
+}
+#main .main_left .header dl dt {
+	float:left;
+	padding:10px 0 0 10px;
+}
+#main .main_left .header dl dt img {
+	display:block;
+}
+#main .main_left .header dl dd {
+	float:left;
+	width:450px;
+}
+#main .main_left .header dl dd.username {
+	padding:15px 0 0 20px;
+	font-size:20px;
+	font-weight:bold;
+	color:#049;
+}
+#main .main_left .header dl dd.intro {
+	padding:10px 0 0 20px;
+	font-size:14px;
+	color:#666;
+}
+#main .main_right {
+	width:269px;
+	min-height:800px;
+	background:#f7f7f7;
+	border-left:1px solid #ddd;
+	float:right;
+}

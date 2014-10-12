@@ -4,7 +4,9 @@ class SpaceController extends HomeController{
 	public function index(){
 		if($this->login()){
 			$User=D('User');
-			$this->assign('User',I('get.id'));
+			$user=$User->getUser();		
+			$this->assign('user',$user);
+			$this->assign('bigFace',json_decode($user['face'])->big);
 			$this->display();
 		}
 		
