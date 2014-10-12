@@ -103,7 +103,7 @@ class UserModel extends RelationModel{
 		}else{
 			$map['id']=session('auth')['id'];
 		}		
-		$user=$this->relation(true)->field('id,username,email')->where($map)->find();
+		$user=$this->relation(true)->field('id,username,email,face')->where($map)->find();
 		if(!is_array($user['extend'])){
 			$UserExtend=M('UserExtend');
 			$data=array(
