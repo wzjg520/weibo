@@ -381,6 +381,23 @@ a.pic{
 	border-left:1px solid #ddd;
 	background:#f7f7f7;
 }
+#main .main_right dl{
+	padding:20px 10px;
+}
+#main .main_right dl dt{
+	margin:0 auto;
+	padding:0px;
+	border:1px solid #ccc;
+	width:200px;
+	height:200px;	
+}
+#main .main_right dl dd{
+	width:200px;
+	height:20px;
+	padding:5px 0;
+	line-height:20px;
+	margin:0 auto;
+}
 
 
 #scrollUp {

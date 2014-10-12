@@ -136,6 +136,7 @@ class UserModel extends RelationModel{
 		$data=array(
 			'face'=>$path,
 		);
+		session('auth')['face']=$data;
 		return $this->where($map)->save($data);
 	}
 	//ajax验证字段时候重复
