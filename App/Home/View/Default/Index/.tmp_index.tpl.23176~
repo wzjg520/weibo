@@ -144,9 +144,9 @@
 				<dd class="content">
 					<h4>
 						<empty name="obj.domain">
-							<a href="{:U('Space/index',array('id'=>session('auth')['id']))}">{:session('auth')['username']}</a>
+							<a href="{:U('Space/index',array('id'=>$obj['uid']))}">{$obj.username}</a>
 							<else/>
-							<a href="__ROOT__/june/{:session('auth')['domain']}">{:session('auth')['username']}</a>
+							<a href="__ROOT__/june/{$obj.domain}">{$obj.username}</a>
 						</empty>
 					</h4>
 					<p>#内容#</p>
@@ -156,7 +156,8 @@
 					</div>
 				</dd>
 			</dl>
-		</div>		
+		</div>
+		
 		<!-- 单张图片微博ajax加载 -->
 		<div class="ajax_single_pic">
 			<dl class="weibo_content_data">
@@ -243,7 +244,9 @@
 						<img src="__IMG__/big.jpg" alt="头像" />
 					<else/>
 						<img src="__ROOT__/{$bigFace}" alt="头像" />	
-				</empty>				
+				</empty>
+				
+				
 			</dt>
 			<dd>{:session('auth')['username']}</dd>
 		</dl>

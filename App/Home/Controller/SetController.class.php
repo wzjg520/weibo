@@ -43,6 +43,7 @@ class SetController extends HomeController{
 		if(IS_AJAX){
 			$User=D('User');
 			$uid=$User->setDomain(I('post.domain'));
+			$_SESSION['auth']['domain']=I('post.domain');
 			echo $uid ;
 		}else{
 			$this->error('非法操作');

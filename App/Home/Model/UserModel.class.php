@@ -67,7 +67,7 @@ class UserModel extends RelationModel{
 		}
 		
 		//验证密码
-		$user=$this->field('id,password,last_login,username,face')->where($map)->find();
+		$user=$this->field('id,password,last_login,username,face,domain')->where($map)->find();
 		if($user['password']==sha1($password)){
 			
 			//登录验证后写入登录信息
@@ -83,7 +83,8 @@ class UserModel extends RelationModel{
 				'username'=>$user['username'],
 				'last_login'=>NOW_TIME,
 				'id'=>$user['id'],
-				'face'=>json_decode($user['face']),
+				'face'=>$user['face'],
+				'domain'=>$user['domain'],
 			);
 			
 			session('auth',$auth);
@@ -141,7 +142,7 @@ class UserModel extends RelationModel{
 		$data=array(
 			'face'=>$path,
 		);
-		session('auth')['face']=$data;
+		$_SESSION['auth']['face']=json_decode($path);
 		return $this->where($map)->save($data);
 	}
 	//设置用户域名

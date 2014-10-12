@@ -58,11 +58,11 @@ $(function(){
 				$('#msg').dialog('close')
 				$('#face,#jcrop_preview').attr('src',THINKPHP['root']+'/'+$.parseJSON(data));
 				$('#preview_box').fadeIn();
-				$('#url').val($.parseJSON(data));
-				$('.save, .cancel').button().show();
+				$('#url').val($.parseJSON(data));				
 				$('#face').one('load',function(){
 					//隐藏上传按钮
 					$('#file').hide();
+					$('.save, .cancel').button().show();
 					jcrop=$.Jcrop('#face',{
 						onSelect:    showPreview,
 			            bgColor:     'black',
