@@ -8,7 +8,7 @@ class IndexController extends HomeController {
  		 	$this->assign('topicList',$topicList);
  		 	$this->assign('smallFace', session('auth')['face']->small);
  		 	$this->assign('bigFace', session('auth')['face']->big);
- 		 	print_r($_SESSION);
+ 		 	$this->assign('auth',session('auth'));
        		$this->display();
        }
     }

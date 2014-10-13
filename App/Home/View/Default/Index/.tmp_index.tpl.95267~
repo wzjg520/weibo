@@ -127,24 +127,24 @@
 		<div class="ajax_none_pic">	
 			<dl class="weibo_content_data">
 				<dt class="face">
-					<empty name="obj.face">
-							<empty name="obj.domain">
-								<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+					<empty name="auth.face">
+							<empty name="auth.domain">
+								<a href="{:U('Space/index',array('id'=>session('auth')['id']))}"><img src="__IMG__/small_face.jpg" alt="" ></a>
 								<else/>
-								<a href="__ROOT__/june/{$obj.domain}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+								<a href="__ROOT__/june/{$auth.domain}"><img src="__IMG__/small_face.jpg" alt="" ></a>
 							</empty>						
-						<else/>
-							<empty name="obj.domain">
-								<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
+					<else/>
+							<empty name="auth.domain">
+								<a href="{:U('Space/index',array('id'=>session('auth')['id']))}"><img src="__ROOT__/{$smallFace}" alt="3" ></a>
 								<else/>
-								<a href="__ROOT__/june/{$obj.domain}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
+								<a href="__ROOT__/june/{$auth.domain}"><img src="__ROOT__/{$smallFace}" alt="2" ></a>
 							</empty>							
-						</empty>
+					</empty>
 				</dt>
 				<dd class="content">
 					<h4>
-						<empty name="obj.domain">
-							<a href="{:U('Space/index',array('id'=>{:session('auth')['id']})}">{:session('auth')['username']}</a>
+						<empty name="auth.domain">
+							<a href="{:U('Space/index',array('id'=>session('auth')['id']))}">{:session('auth')['username']}</a>
 							<else/>
 							<a href="__ROOT__/june/{:session('auth')['domain']}">{:session('auth')['username']}</a>
 						</empty>
@@ -161,26 +161,26 @@
 		<div class="ajax_single_pic">
 			<dl class="weibo_content_data">
 			<dt class="face">
-				<empty name="obj.face">
-					<empty name="obj.domain">
-						<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__IMG__/small_face.jpg" alt="" ></a>
-						<else/>
-						<a href="__ROOT__/june/{$obj.domain}"><img src="__IMG__/small_face.jpg" alt="" ></a>
-					</empty>				
+				<empty name="auth.face">
+						<empty name="auth.domain">
+							<a href="{:U('Space/index',array('id'=>session('auth')['id']))}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+							<else/>
+							<a href="__ROOT__/june/{$auth.domain}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+						</empty>						
 				<else/>
-					<empty name="obj.domain">
-						<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
-						<else/>
-						<a href="__ROOT__/june/{$obj.domain}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
-					</empty>							
+						<empty name="auth.domain">
+							<a href="{:U('Space/index',array('id'=>session('auth')['id']))}"><img src="__ROOT__/{$smallFace}" alt="2" ></a>
+							<else/>
+							<a href="__ROOT__/june/{$auth.domain}"><img src="__ROOT__/{$smallFace}" alt="2" ></a>
+						</empty>							
 				</empty>
 			</dt>
 			<dd class="content">
 				<h4>
-					<empty name="obj.domain">
-						<a href="{:U('Space/index',array('id'=>$obj['uid']))}">{$obj.username}</a>
+					<empty name="auth.domain">
+						<a href="{:U('Space/index',array('id'=>session('auth')['id']))}">{:session('auth')['username']}</a>
 						<else/>
-						<a href="__ROOT__/june/{$obj.domain}">{$obj.username}</a>
+						<a href="__ROOT__/june/{:session('auth')['domain']}">{:session('auth')['username']}</a>
 					</empty>
 				</h4>
 				<p>#内容#</p>
@@ -204,26 +204,26 @@
 		<div class="ajax_muti_pic">	
 			<dl class="weibo_content_data">
 				<dt class="face">
-					<empty name="obj.face">
-						<empty name="obj.domain">
-							<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+					<empty name="auth.face">
+						<empty name="auth.domain">
+							<a href="{:U('Space/index',array('id'=>session('auth')['id']))}"><img src="__IMG__/small_face.jpg" alt="" ></a>
 							<else/>
-							<a href="__ROOT__/june/{$obj.domain}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+							<a href="__ROOT__/june/{$auth.domain}"><img src="__IMG__/small_face.jpg" alt="" ></a>
 						</empty>						
 					<else/>
-						<empty name="obj.domain">
-							<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
-							<else/>
-							<a href="__ROOT__/june/{$obj.domain}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
-						</empty>							
+							<empty name="auth.domain">
+								<a href="{:U('Space/index',array('id'=>session('auth')['id']))}"><img src="__ROOT__/{$smallFace}" alt="2" ></a>
+								<else/>
+								<a href="__ROOT__/june/{$auth.domain}"><img src="__ROOT__/{$smallFace}" alt="2" ></a>
+							</empty>							
 					</empty>
 				</dt>
 				<dd class="content">
 					<h4>
-						<empty name="obj.domain">
-							<a href="{:U('Space/index',array('id'=>$obj['uid']))}">{$obj.username}</a>
-							<else/>
-							<a href="__ROOT__/june/{$obj.domain}">{$obj.username}</a>
+						<empty name="auth.domain">
+							<a href="{:U('Space/index',array('id'=>session('auth')['id']))}">{:session('auth')['username']}</a>
+						<else/>
+							<a href="__ROOT__/june/{:session('auth')['domain']}">{:session('auth')['username']}</a>
 						</empty>
 					</h4>
 					<p>#内容#</p>
@@ -243,9 +243,7 @@
 						<img src="__IMG__/big.jpg" alt="头像" />
 					<else/>
 						<img src="__ROOT__/{$bigFace}" alt="头像" />	
-				</empty>
-				
-				
+				</empty>				
 			</dt>
 			<dd>{:session('auth')['username']}</dd>
 		</dl>

@@ -1,6 +1,9 @@
 @CHARSET "UTF-8";
 #main .main_left{
-	float:left;
+	/*
+float:left;
+*/
+	overflow:hidden;
 	width:650px;
 	padding:0 20px;
 	min-height:800px;
@@ -190,7 +193,10 @@ a.pic{
 #main .weibo_content_data{
 	width:650px;
 	padding:10px 0;
-	float:left;
+	/*
+float:left;
+*/
+	overflow:hidden;
 }
 #main .weibo_content_data dt{
 	width:65px;
@@ -375,9 +381,17 @@ a.pic{
 	left:1px;
 }
 #main .main_right{
-	float:right;
+	/*
+float:right;
+*/
+	position:absolute;
+	top:0px;
+	right:0px;
 	width:269px;
-	min-height:800px;
+	/*
+min-height:800px;
+*/
+	height:100%;
 	border-left:1px solid #ddd;
 	background:#f7f7f7;
 }

@@ -288,7 +288,6 @@ $(function(){
 		if(window.count<window.pages){
 			if(window.flag){
 				if($(window).scrollTop()>$('#loadmore').offset().top+$('#loadmore').outerHeight(true)-$(window).height()){
-					window.flag=false
 					setTimeout(function(){
 						$.ajax({
 							url:THINKPHP['module']+'/Topic/ajaxList',
@@ -297,17 +296,17 @@ $(function(){
 								start:window.start,
 								step:window.unit,
 							},
-							success:function(data,response,status){
+							beforeSend:function(){},
+							success:function(data,response,status){								
 								$('#loadmore').before(data)
-								window.flag=true
 								keepAlign();
-							}
+							}							
 						})
+						window.flag=true
 						window.start += 10
-						window.count += 1
-						
+						window.count += 1						
 					},500)
-						
+					window.flag=false	
 				}		
 			}
 		}else{

@@ -33,11 +33,11 @@ $(function(){
 })
 	//屏幕高度保持一致
 function keepAlign(){
-	setTimeout(function(){
-		if ($('.main_left').height() > 800) {
-			$('.main_right').height($('.main_left').height() + 30);
-			$('#main').height($('.main_left').height() + 30);
-		}
-	},50)
+//	setTimeout(function(){
+//		if ($('.main_left').height() > 800) {
+//			$('.main_right').height($('.main_left').height() + 30);
+//			$('#main').height($('.main_left').height() + 30);
+//		}
+//	},50)
 	
 }

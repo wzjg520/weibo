@@ -175,17 +175,17 @@
 		<div class="ajax_none_pic">	
 			<dl class="weibo_content_data">
 				<dt class="face">
-					<?php if(empty($obj["face"])): if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a>
+					<?php if(empty($auth["face"])): if(empty($auth["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>session('auth')['id']));?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a>
 								<?php else: ?>
-								<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a><?php endif; ?>						
-						<?php else: ?>
-							<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a>
+								<a href="/weibo/june/<?php echo ($auth["domain"]); ?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a><?php endif; ?>						
+					<?php else: ?>
+							<?php if(empty($auth["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>session('auth')['id']));?>"><img src="/weibo/<?php echo ($smallFace); ?>" alt="3" ></a>
 								<?php else: ?>
-								<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a><?php endif; endif; ?>
+								<a href="/weibo/june/<?php echo ($auth["domain"]); ?>"><img src="/weibo/<?php echo ($smallFace); ?>" alt="2" ></a><?php endif; endif; ?>
 				</dt>
 				<dd class="content">
 					<h4>
-						<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>session('auth')['id']));?>"><?php echo session('auth')['username'];?></a>
+						<?php if(empty($auth["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>session('auth')['id']));?>"><?php echo session('auth')['username'];?></a>
 							<?php else: ?>
 							<a href="/weibo/june/<?php echo session('auth')['domain'];?>"><?php echo session('auth')['username'];?></a><?php endif; ?>
 					</h4>
@@ -201,19 +201,19 @@
 		<div class="ajax_single_pic">
 			<dl class="weibo_content_data">
 			<dt class="face">
-				<?php if(empty($obj["face"])): if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a>
-						<?php else: ?>
-						<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a><?php endif; ?>				
+				<?php if(empty($auth["face"])): if(empty($auth["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>session('auth')['id']));?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a>
+							<?php else: ?>
+							<a href="/weibo/june/<?php echo ($auth["domain"]); ?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a><?php endif; ?>						
 				<?php else: ?>
-					<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a>
-						<?php else: ?>
-						<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a><?php endif; endif; ?>
+						<?php if(empty($auth["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>session('auth')['id']));?>"><img src="/weibo/<?php echo ($smallFace); ?>" alt="2" ></a>
+							<?php else: ?>
+							<a href="/weibo/june/<?php echo ($auth["domain"]); ?>"><img src="/weibo/<?php echo ($smallFace); ?>" alt="2" ></a><?php endif; endif; ?>
 			</dt>
 			<dd class="content">
 				<h4>
-					<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><?php echo ($obj["username"]); ?></a>
+					<?php if(empty($auth["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>session('auth')['id']));?>"><?php echo session('auth')['username'];?></a>
 						<?php else: ?>
-						<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><?php echo ($obj["username"]); ?></a><?php endif; ?>
+						<a href="/weibo/june/<?php echo session('auth')['domain'];?>"><?php echo session('auth')['username'];?></a><?php endif; ?>
 				</h4>
 				<p>#内容#</p>
 				<div class="oneImage"><img src="#图片地址#" alt="" /></div>
@@ -236,19 +236,19 @@
 		<div class="ajax_muti_pic">	
 			<dl class="weibo_content_data">
 				<dt class="face">
-					<?php if(empty($obj["face"])): if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a>
+					<?php if(empty($auth["face"])): if(empty($auth["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>session('auth')['id']));?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a>
 							<?php else: ?>
-							<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a><?php endif; ?>						
+							<a href="/weibo/june/<?php echo ($auth["domain"]); ?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a><?php endif; ?>						
 					<?php else: ?>
-						<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a>
-							<?php else: ?>
-							<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a><?php endif; endif; ?>
+							<?php if(empty($auth["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>session('auth')['id']));?>"><img src="/weibo/<?php echo ($smallFace); ?>" alt="2" ></a>
+								<?php else: ?>
+								<a href="/weibo/june/<?php echo ($auth["domain"]); ?>"><img src="/weibo/<?php echo ($smallFace); ?>" alt="2" ></a><?php endif; endif; ?>
 				</dt>
 				<dd class="content">
 					<h4>
-						<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><?php echo ($obj["username"]); ?></a>
-							<?php else: ?>
-							<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><?php echo ($obj["username"]); ?></a><?php endif; ?>
+						<?php if(empty($auth["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>session('auth')['id']));?>"><?php echo session('auth')['username'];?></a>
+						<?php else: ?>
+							<a href="/weibo/june/<?php echo session('auth')['domain'];?>"><?php echo session('auth')['username'];?></a><?php endif; ?>
 					</h4>
 					<p>#内容#</p>
 					<div class="footer">

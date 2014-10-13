@@ -83,7 +83,7 @@ class UserModel extends RelationModel{
 				'username'=>$user['username'],
 				'last_login'=>NOW_TIME,
 				'id'=>$user['id'],
-				'face'=>$user['face'],
+				'face'=>json_decode($user['face']),
 				'domain'=>$user['domain'],
 			);
 			
