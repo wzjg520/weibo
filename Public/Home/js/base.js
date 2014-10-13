@@ -39,5 +39,4 @@ function keepAlign(){
 //			$('#main').height($('.main_left').height() + 30);
 //		}
 //	},50)
-	
 }
