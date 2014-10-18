@@ -119,6 +119,11 @@ class UserModel extends RelationModel{
 		$map['domain']=$domain;
 		return $this->relation(true)->field('id,username,email,domain,face')->where($map)->find();
 	}
+	//通过用户名获得用户信息
+	public function getUserByName($username){
+		$map['username']=$username;
+		return $this->relation(false)->field('id,domain')->where($map)->find();
+	}
 	//获得用户头像
 	public function getFace(){
 		$map['id']=session('auth')['id'];

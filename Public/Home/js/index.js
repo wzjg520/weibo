@@ -324,6 +324,22 @@ $(function(){
 		scrollText: '', // Text for element
 		activeOverlay: false, // Set CSS color to display scrollUp active
 	});
+	
+	
+	//解析@会员功能
+	var len=$('.space').length
+	for(var i=0;i<len;i++){
+		var username=$('.space').eq(i).text().substr(1);
+		$.ajax({
+			url:THINKPHP['module']+'/Space/setUrl',
+			async:false,
+			type:'post',
+			data:{
+				'username':username
+			}
+		})
+	}
+	
 			
 })
 
