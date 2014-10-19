@@ -29,6 +29,9 @@ body,h1,h2,h3,h4,h5,h6,p,ul,ol,dl,dd,form{
 	padding:0;
 	
 }
+a{
+	text-decoration:none;
+}
 ul,dl,ol{
 	list-style-type:none;
 }

@@ -79,10 +79,18 @@ class TopicModel extends RelationModel{
 			} else {
 				$value['time'] = date('Y年m月d日 H:i', $value['create']);
 			}
+			//表情解析
 			$value['content']=preg_replace('/\[(a|b|c|d)_([0-9]+)\]/i','<img src="'.__ROOT__.'/Public/'.MODULE_NAME.'/images/face/$1/$2.gif" border="0">', $value['content']);
+			//@会员解析
+			$value['content'] .=' ';
+			$value['content']=preg_replace('/(@\S+)\s/i','<a href="'.__ROOT__.'/$1" class="space" target="_blank" >$1</a>',$value['content']);
 			$data[$key]=$value;
 			$data[$key]['count']=count($value['images']);
+			//头像解析
 			$data[$key]['face']=json_decode($value['face']);
+			
+			
+			
 		};
 		return $data;
 	}

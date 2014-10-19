@@ -13,7 +13,20 @@ class SpaceController extends HomeController{
 			$this->assign('user',$getUser);
 			$this->assign('bigFace',json_decode($getUser['face'])->big);
 			$this->display();		
+		}		
+	}
+	
+	//@用户
+	public function setUrl($username=''){
+		if(IS_AJAX && $username != ''){
+			$User = D('User');
+			$getUser=$User->getUserByName($username);
+			if(is_array($getUser)){
+				$this->ajaxReturn($getUser);
+			}
+			
+		}else{
+			$this->error('非法操作');
 		}
-		
 	}
 }
