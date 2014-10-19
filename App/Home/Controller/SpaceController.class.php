@@ -21,6 +21,9 @@ class SpaceController extends HomeController{
 		if(IS_AJAX && $username != ''){
 			$User = D('User');
 			$getUser=$User->getUserByName($username);
+			if(is_array($getUser)){
+				$this->ajaxReturn($getUser);
+			}
 			
 		}else{
 			$this->error('非法操作');

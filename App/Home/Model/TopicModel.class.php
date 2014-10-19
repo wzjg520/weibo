@@ -84,7 +84,6 @@ class TopicModel extends RelationModel{
 			//@会员解析
 			$value['content'] .=' ';
 			$value['content']=preg_replace('/(@\S+)\s/i','<a href="'.__ROOT__.'/$1" class="space" target="_blank" >$1</a>',$value['content']);
-			
 			$data[$key]=$value;
 			$data[$key]['count']=count($value['images']);
 			//头像解析

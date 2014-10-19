@@ -12,7 +12,7 @@ window.src
 */
 
 $(function(){
-	//图片加载完成居中以及左右主题对其
+	//图片加载完成居中以及左右主题对齐
 	$(window).load(function(){
 		setImgCenter();
 		keepAlign();
@@ -122,7 +122,8 @@ $(function(){
 								
 						}
 						if(html.indexOf('#内容#')){
-							html=html.replace(/#内容#/g,$("textarea[name='content']").val())
+							var str=$("textarea[name='content']").val()+' '
+							html=html.replace(/#内容#/g,str.replace(/(@\S+)\s/i,'<a href="'+THINKPHP['root']+'/$1" class="space" target="_blank" >$1</a>'))
 						}
 						if(html.indexOf('图片地址')){
 							if (imgPool.length > 0) {
@@ -137,12 +138,16 @@ $(function(){
 						html = html.replace(/\[(a|b|c|d)_([0-9]+)\]/g,'<img src="'+THINKPHP['img']+'/face/$1/$2.gif" border="0">')
 						
 						$('#msg').css('background','url('+THINKPHP['img']+'/success.gif) no-repeat 18px 8px').html('发表成功！').dialog('open');
-							setTimeout(function(){
-								$('.weibo_content ul').after(html);
-								$("textarea[name='content']").val('');
-								$('#msg').html('...').dialog('close');
-							},1500) 
-						}
+						setTimeout(function(){
+							$('.weibo_content ul').after(html);
+							$("textarea[name='content']").val('');
+							$('#msg').html('...').dialog('close');
+							
+							setUrl(); 
+							
+						},1500)
+						
+					}
 				})
 				
 			}else{
@@ -269,7 +274,6 @@ $(function(){
 	//是否禁用滚动条事件
 	window.flag=true
 	
-	
 	//ajax获得页码
 	$.ajax({
 		url:THINKPHP['module']+'/Topic/ajaxPages',
@@ -280,8 +284,7 @@ $(function(){
 		success:function(data,response,state){
 			//总页码
 			window.pages=parseInt(data)
-		},
-		
+		},		
 	})
 	//ajax加载更多
 	$(window).scroll(function(){
@@ -300,6 +303,7 @@ $(function(){
 							success:function(data,response,status){								
 								$('#loadmore').before(data)
 								keepAlign();
+								setUrl();
 							}							
 						})
 						window.flag=true
@@ -325,27 +329,38 @@ $(function(){
 		activeOverlay: false, // Set CSS color to display scrollUp active
 	});
 	
-	
 	//解析@会员功能
-	var len=$('.space').length
-	for(var i=0;i<len;i++){
-		var username=$('.space').eq(i).text().substr(1);
-		$.ajax({
-			url:THINKPHP['module']+'/Space/setUrl',
-			async:false,
-			type:'post',
-			data:{
-				'username':username
-			}
-		})
-	}
-	
-			
+	setUrl();			
 })
 
+//解析@会员功能
+function setUrl(){
+	$(document).ready(function(){
+		$('.weibo_content').find('.space').each(function(i){
+			var username=$(this).text().substr(1);
+			var _this=this;		
+			if($(this).attr('flag') != 'true'){
+				$.ajax({
+					url:THINKPHP['module']+'/Space/setUrl',
+					async:false,
+					type:'post',
+					data:{
+						'username':username
+					},
+					success:function(data){
+						if(data){
+							$(_this).attr('href',THINKPHP['root']+'/june/'+data.domain).attr('flag','true');
+						}else{
+							$(_this).after('@'+username);
+							$(_this).remove();
+						}
+					}
+				})
+			}			
+		})		
+	})
 
-
-
+}
 
 //检测输入长度
 function checkStrLen(obj){
