@@ -97,8 +97,7 @@
 											
 											if("{$obj['images'][0]['unfold']}" != ''){
 												THINKPHP["{$obj.username}_{$obj.create}"].push("__ROOT__/{$images['source']}")
-												THINKPHP["{$obj.username}_{$obj.create}"].push("__ROOT__/{$images['unfold']}")
-												
+												THINKPHP["{$obj.username}_{$obj.create}"].push("__ROOT__/{$images['unfold']}")												
 											}				
 										</script>
 									</volist>

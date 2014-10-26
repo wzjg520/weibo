@@ -362,6 +362,53 @@ float:left;
 #main .weibo_content_data dd .footer .handler {
 	float:right;
 }
+
+
+#main .weibo_content_data dd .footer a {
+	text-decoration:none;
+	color:#5e7c85;
+}
+#main .weibo_content_data dd .footer .re_box {
+	width:584px;
+	border:1px solid #ccc;
+	background:#fafafa;
+	border-radius:4px;
+	float:right;
+}
+#main .weibo_content_data dd .footer .re_box p {
+	text-align:right;
+	color:#5e7c85;
+	font-size:12px;
+	padding:10px 23px 0 0;
+}
+#main .weibo_content_data dd .footer .re_box .re_text {
+	width:520px;
+	height:80px;
+	background:#fff;
+	border:1px solid #ddd;
+	box-shadow:1px 1px 3px #dcdcdc inset;
+	resize:none;
+	padding:8px;
+	color:#666;
+	margin:5px 25px 0 25px;
+}
+#main .weibo_content_data dd .footer .re_box .re_button {
+	width:70px;
+	float:right;
+	margin:0 20px 10px 0;
+}
+#main .weibo_content_data dd .re_content {
+	margin:10px 0 0 0;
+	border:1px solid #ccc;
+	background:#fafafa;
+	border-radius:4px;
+	padding:10px;
+}
+#main .weibo_content_data dd .re_content p {
+	margin:5px 0 0 0;
+}
+
+
 #main  .clear{
 	clear:both;
 }
