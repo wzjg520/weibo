@@ -207,63 +207,64 @@ $(function(){
 					'border-radius': 8,
 					'border-radius': 8,
 					'width': 150,
-				}).hover(function(){
-					$(this).stop().animate({
-						opacity: 0.7,
-					})
-				}, function(){
-					$(this).stop().animate({
-						opacity: 0,
-					})
 				})
+//				.hover(function(){
+//					$(this).stop().animate({
+//						opacity: 0.7,
+//					})
+//				}, function(){
+//					$(this).stop().animate({
+//						opacity: 0,
+//					})
+//				})
 				//图片翻页
-				window.imgSourceRight = THINKPHP[key].concat([]),
-				window.tmp=THINKPHP[key].concat([]), 
-				window.imgSourceLeft = tmp.reverse(),
-				window.imgSrcLeft='',
-				window.imgSrcRight=''	
+//				window.imgSourceRight = THINKPHP[key].concat([]),
+//				window.tmp=THINKPHP[key].concat([]), 
+//				window.imgSourceLeft = tmp.reverse(),
+//				window.imgSrcLeft='',
+//				window.imgSrcRight=''	
 				
 			}, src);
 		
 	})	
-	//左右翻图
-	$('#images_zoom ').on('click','.left',function(){				
-		imgSrcLeft= imgSrcLeft ? imgSrcLeft : src
-		$(imgSourceLeft).each(function(i, v){
-			if (v == imgSrcLeft) {														
-				if(i==imgSourceLeft.length-2){
-					var url=imgSourceLeft[0],
-					sourceUrl=imgSourceLeft[1]
-				}else{
-					var url=imgSourceLeft[i+2],
-					sourceUrl=imgSourceLeft[i+2]
-				}								
-				pic(url,sourceUrl)
-				imgSrcLeft=url
-				keepAlign();
-				return false;							
-			}
-		})
-	})
-	$('#images_zoom ').on('click','.right',function(){
-		
-		$(imgSourceRight).each(function(i, v){
-			imgSrcRight= imgSrcRight ? imgSrcRight : src						
-			if (v == imgSrcRight) {					
-				if(i==imgSourceRight.length-1){
-					var url=imgSourceRight[1],
-					sourceUrl=imgSourceRight[0]
-				}else{
-					var url=imgSourceRight[i+2],
-					sourceUrl=imgSourceRight[i+2]
-				}
-				pic(url,sourceUrl)
-				imgSrcRight=url;
-				keepAlign();
-				return false;
-			}
-		})
-	})
+//	//左右翻图
+//	$('#images_zoom ').on('click','.left',function(){				
+//		imgSrcLeft= imgSrcLeft ? imgSrcLeft : src
+//		$(imgSourceLeft).each(function(i, v){
+//			if (v == imgSrcLeft) {														
+//				if(i==imgSourceLeft.length-2){
+//					var url=imgSourceLeft[0],
+//					sourceUrl=imgSourceLeft[1]
+//				}else{
+//					var url=imgSourceLeft[i+2],
+//					sourceUrl=imgSourceLeft[i+2]
+//				}								
+//				pic(url,sourceUrl)
+//				imgSrcLeft=url
+//				keepAlign();
+//				return false;							
+//			}
+//		})
+//	})
+//	$('#images_zoom ').on('click','.right',function(){
+//		
+//		$(imgSourceRight).each(function(i, v){
+//			imgSrcRight= imgSrcRight ? imgSrcRight : src						
+//			if (v == imgSrcRight) {					
+//				if(i==imgSourceRight.length-1){
+//					var url=imgSourceRight[1],
+//					sourceUrl=imgSourceRight[0]
+//				}else{
+//					var url=imgSourceRight[i+2],
+//					sourceUrl=imgSourceRight[i+2]
+//				}
+//				pic(url,sourceUrl)
+//				imgSrcRight=url;
+//				keepAlign();
+//				return false;
+//			}
+//		})
+//	})
 	
 	//每页显示数据量
 	window.unit=10
@@ -330,7 +331,43 @@ $(function(){
 	});
 	
 	//解析@会员功能
-	setUrl();			
+	setUrl();
+	//回复转发功能
+	$('.weibo_content').on('click','.re',function(){
+		var re=$(this).parent().parent().find('.re_box');
+		if(re.is(':hidden')){			
+			$('.re_box').hide();
+			re.find('.re_button').button().click(function(){
+				$.ajax({
+					url:THINKPHP['module']+'/Topic/re_topic',
+					type:'post',
+					data:{
+						reid:re.find('input[name="reid"]').val(),
+						content:re.find('.re_text').val(),
+					},
+					beforeSend:function(){
+						$('#msg').css({
+							'background':'url('+THINKPHP['img']+'/loading.gif) no-repeat 18px 8px',
+						}).html('正在转发中，请稍等...').dialog('open');
+					},
+					success:function(data){
+						$('#msg').css('background','url('+THINKPHP['img']+'/success.gif) no-repeat 18px 8px').html('发表成功！').dialog('open');
+						setTimeout(function(){
+							$('#msg').dialog('close');
+							re.find('.re_text').val('')
+							location.reload(true);
+						},500);
+					}
+				})
+			});
+			
+			re.show();
+			re.find('.re_text').focus();
+		}else{
+			re.hide();
+		}
+		
+	})			
 })
 
 //解析@会员功能

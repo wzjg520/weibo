@@ -42,73 +42,167 @@
 			<input type="button" value="发布" class="button" />
 		</form>
 		
-		
+		<!-- 主题部分 -->
 		<div class="weibo_content">
 			<ul>
 				<li><a href="javascript:void(0)" class="selected">我关注的<i class="nav_arrow"></i></a></li>
 				<li><a href="javascript:void(0)">互听的</a></li>
 			</ul>
-			<volist name="topicList" id="obj">				
-				<dl class="weibo_content_data">
-					<dt class="face">
-						<empty name="obj.face">
-							<empty name="obj.domain">
-								<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__IMG__/small_face.jpg" alt="" ></a>
-								<else/>
-								<a href="__ROOT__/june/{$obj.domain}"><img src="__IMG__/small_face.jpg" alt="" ></a>
-							</empty>
-							
-						<else/>
-							<empty name="obj.domain">
-								<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
-								<else/>
-								<a href="__ROOT__/june/{$obj.domain}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
-							</empty>							
-						</empty>				
-					</dt>
-					<dd class="content">
-						<h4>
-							<empty name="obj.domain">
-								<a href="{:U('Space/index',array('id'=>$obj['uid']))}">{$obj.username}</a>
-								<else/>
-								<a href="__ROOT__/june/{$obj.domain}">{$obj.username}</a>
-							</empty>	
-						</h4>
-						<p style="padding:5px 0 0 0">{$obj.content}</p>					
-						<switch name="obj.count">
-							<case value="0"></case>
-							<case value="1">
-								<div class="oneImage"><img src="__ROOT__/{$obj['images'][0]['thumb']}" alt="" /></div>
-								<div class="image_zoom" style="display:none;">
-									<ol>
-										<li><a href="javascript:void(0)" class="image_zoom_in">收起</a></li>
-										<li ><a target="_blank" class="image_zoom_source" href="__ROOT__/{$obj['images'][0]['source']}">原图</a></li>
-									</ol>
-									<img source="__ROOT__/{$obj['images'][0]['unfold']}" src="__IMG__/loading_100.png" alt="" />
-								</div>
-							</case>
-							<default/>
-									<volist name="obj.images" id="images">									
-										<div class="images">
-											<img class="show_unfold_pic" src="__ROOT__/{$images['thumb']}" key="{$obj.username}_{$obj.create}" alt="" unfold="__ROOT__/{$images['unfold']}" source="__ROOT__/{$images['source']}" />
-										</div>
-										<script>
-											if(typeof THINKPHP["{$obj.username}_{$obj.create}"] == 'undefined')THINKPHP["{$obj.username}_{$obj.create}"]=[];
-											
-											if("{$obj['images'][0]['unfold']}" != ''){
-												THINKPHP["{$obj.username}_{$obj.create}"].push("__ROOT__/{$images['source']}")
-												THINKPHP["{$obj.username}_{$obj.create}"].push("__ROOT__/{$images['unfold']}")
+			<volist name="topicList" id="obj">
+				<empty name="obj.reid">
+					
+									
+					<dl class="weibo_content_data">
+						<dt class="face">
+							<empty name="obj.face">
+								<empty name="obj.domain">
+									<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+									<else/>
+									<a href="__ROOT__/june/{$obj.domain}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+								</empty>
+								
+							<else/>
+								<empty name="obj.domain">
+									<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
+									<else/>
+									<a href="__ROOT__/june/{$obj.domain}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
+								</empty>							
+							</empty>				
+						</dt>
+						<dd class="content">
+							<h4>
+								<empty name="obj.domain">
+									<a href="{:U('Space/index',array('id'=>$obj['uid']))}">{$obj.username}</a>
+									<else/>
+									<a href="__ROOT__/june/{$obj.domain}">{$obj.username}</a>
+								</empty>	
+							</h4>
+							<p style="padding:5px 0 0 0">{$obj.content}</p>					
+							<switch name="obj.count">
+								<case value="0"></case>
+								<case value="1">
+									<div class="oneImage"><img src="__ROOT__/{$obj['images'][0]['thumb']}" alt="" /></div>
+									<div class="image_zoom" style="display:none;">
+										<ol>
+											<li><a href="javascript:void(0)" class="image_zoom_in">收起</a></li>
+											<li ><a target="_blank" class="image_zoom_source" href="__ROOT__/{$obj['images'][0]['source']}">原图</a></li>
+										</ol>
+										<img source="__ROOT__/{$obj['images'][0]['unfold']}" src="__IMG__/loading_100.png" alt="" />
+									</div>
+								</case>
+								<default/>
+										<volist name="obj.images" id="images">									
+											<div class="images">
+												<img class="show_unfold_pic" src="__ROOT__/{$images['thumb']}" key="{$obj.username}_{$obj.create}" alt="" unfold="__ROOT__/{$images['unfold']}" source="__ROOT__/{$images['source']}" />
+											</div>
+											<script>
+												if(typeof THINKPHP["{$obj.username}_{$obj.create}"] == 'undefined')THINKPHP["{$obj.username}_{$obj.create}"]=[];
 												
-											}				
-										</script>
-									</volist>
-						</switch>
-						<div class="footer">
-							<span class="time">{$obj['time']}</span>
-							<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
-						</div>
-					</dd>
-				</dl>
+												if("{$obj['images'][0]['unfold']}" != ''){
+													THINKPHP["{$obj.username}_{$obj.create}"].push("__ROOT__/{$images['source']}")
+													THINKPHP["{$obj.username}_{$obj.create}"].push("__ROOT__/{$images['unfold']}")												
+												}				
+											</script>
+										</volist>
+							</switch>
+							<div class="footer">
+								<span class="time">{$obj['time']}</span>
+								<span class="handler">赞(0) | 
+								<a href="javascript:;" class="re">转播</a> 
+								| 评论 | 收藏</span>
+								<div class="re_box" style="display:none;">
+									<p>250字以内</p>
+									<textarea class="re_text" name="commend"></textarea>
+									<input type="hidden" name="reid" value="{$obj.id}" />
+									<input class="re_button" type="button" value="转播">
+								</div>
+							</div>
+						</dd>
+					</dl>
+				<else/>
+					
+						<dl class="weibo_content_data">
+							<dt class="face">
+								<empty name="obj.face">
+									<empty name="obj.domain">
+										<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+										<else/>
+										<a href="__ROOT__/june/{$obj.domain}"><img src="__IMG__/small_face.jpg" alt="" ></a>
+									</empty>
+									
+								<else/>
+									<empty name="obj.domain">
+										<a href="{:U('Space/index',array('id'=>$obj['uid']))}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
+										<else/>
+										<a href="__ROOT__/june/{$obj.domain}"><img src="__ROOT__/{$obj['face']->small}" alt="2" ></a>
+									</empty>							
+								</empty>				
+							</dt>
+							<dd class="content">
+								<h4>
+									<empty name="obj.domain">
+										<a href="{:U('Space/index',array('id'=>$obj['uid']))}">{$obj.username}</a>
+										<else/>
+										<a href="__ROOT__/june/{$obj.domain}">{$obj.username}</a>
+									</empty>	
+								</h4>
+								<p style="padding:5px 0 0 0">{$obj.content}</p>
+								<div class="re_content" style="overflow:auto;">
+										<h5>
+											<empty name="obj.recontent.domain">
+												<a href="{:U('Space/index', array('id'=>$obj['recontent']['uid']))}">@{$obj.recontent.username}</a>
+											<else/>
+												<a href="__ROOT__/june/{$obj.recontent.domain}">@{$obj.recontent.username}</a>
+											</empty>
+										</h5>
+										<p style="padding:5px 0 0 0">{$obj.recontent.content}</p>		
+										<switch name="obj.recontent.count">
+											<case value="0"></case>
+											<case value="1">
+												<div class="oneImage"><img src="__ROOT__/{$obj.recontent['images'][0]['thumb']}" alt="" /></div>
+												<div class="image_zoom" style="display:none;">
+													<ol>
+														<li><a href="javascript:void(0)" class="image_zoom_in">收起</a></li>
+														<li ><a target="_blank" class="image_zoom_source" href="__ROOT__/{$obj.recontent['images'][0]['source']}">原图</a></li>
+													</ol>
+													<img source="__ROOT__/{$obj['images'][0]['unfold']}" src="__IMG__/loading_100.png" alt="" />
+												</div>
+											</case>
+											<default/>
+													<volist name="obj.recontent.images" id="images">									
+														<div class="images">
+															<img class="show_unfold_pic" src="__ROOT__/{$images['thumb']}" key="{$obj.recontent.username}_{$obj.recontent.create}" alt="" unfold="__ROOT__/{$images['unfold']}" source="__ROOT__/{$images['source']}" />
+														</div>
+														<script>
+															if(typeof THINKPHP["{$obj.username}_{$obj.create}"] == 'undefined')THINKPHP["{$obj.username}_{$obj.create}"]=[];
+															
+															if("{$obj.recontent['images'][0]['unfold']}" != ''){
+																THINKPHP["{$obj.recontent.username}_{$obj.recontent.create}"].push("__ROOT__/{$images['source']}")
+																THINKPHP["{$obj.recontent.username}_{$obj.recontent.create}"].push("__ROOT__/{$images['unfold']}")												
+															}				
+														</script>
+													</volist>
+										</switch>
+										<div class="footer">
+											<span class="time">{$obj.recontent.time} 该微博共被转播了{$obj.recontent.re_count}次</span>
+										</div>
+								</div>	
+								<div class="footer">
+									<span class="time">{$obj['time']}</span>
+									<span class="handler">赞(0) | 
+									<a href="javascript:;" class="re">转播</a> 
+									| 评论 | 收藏</span>
+									<div class="re_box" style="display:none;">
+										<p>250字以内</p>
+										<textarea class="re_text" name="commend"></textarea>
+										<input type="hidden" name="reid" value="{$obj.recontent.id}" />
+										<input class="re_button" type="button" value="转播">
+									</div>
+								</div>
+							</dd>
+						</dl>				
+				
+			</empty>
 			</volist>
 			<div id="loadmore">加载更多<img src="__IMG__/loadmore.gif" alt="" /></div>
 			<div id="images_zoom">				
@@ -152,7 +246,15 @@
 					<p>#内容#</p>
 					<div class="footer">
 						<span class="time">刚刚发布</span>
-						<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
+						<span class="handler">赞(0) | 
+							<a href="javascript:;" class="re">转播</a> 
+							| 评论 | 收藏</span>
+							<div class="re_box" style="display:none;">
+								<p>250字以内</p>
+								<textarea class="re_text" name="commend"></textarea>
+								<input type="hidden" name="reid" value="{$obj.id}" />
+								<input class="re_button" type="button" value="转播">
+							</div>
 					</div>
 				</dd>
 			</dl>
@@ -194,7 +296,15 @@
 				</div>
 				<div class="footer">
 					<span class="time">刚刚发布</span>
-					<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
+					<span class="handler">赞(0) | 
+							<a href="javascript:;" class="re">转播</a> 
+							| 评论 | 收藏</span>
+							<div class="re_box" style="display:none;">
+								<p>250字以内</p>
+								<textarea class="re_text" name="commend"></textarea>
+								<input type="hidden" name="reid" value="{$obj.id}" />
+								<input class="re_button" type="button" value="转播">
+							</div>
 				</div>
 			</dd>
 		</dl>
@@ -229,7 +339,15 @@
 					<p>#内容#</p>
 					<div class="footer">
 						<span class="time">刚刚发布</span>
-						<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
+						<span class="handler">赞(0) | 
+							<a href="javascript:;" class="re">转播</a> 
+							| 评论 | 收藏</span>
+							<div class="re_box" style="display:none;">
+								<p>250字以内</p>
+								<textarea class="re_text" name="commend"></textarea>
+								<input type="hidden" name="reid" value="{$obj.id}" />
+								<input class="re_button" type="button" value="转播">
+							</div>
 					</div>
 				</dd>
 			</dl>

@@ -39,7 +39,15 @@
 							</script><?php endforeach; endif; else: echo "" ;endif; endswitch;?>
 			<div class="footer">
 				<span class="time"><?php echo ($obj['time']); ?></span>
-				<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
+				<span class="handler">赞(0) | 
+							<a href="javascript:;" class="re">转播</a> 
+							| 评论 | 收藏</span>
+							<div class="re_box" style="display:none;">
+								<p>250字以内</p>
+								<textarea class="re_text" name="commend"></textarea>
+								<input type="hidden" name="reid" value="<?php echo ($obj["id"]); ?>" />
+								<input class="re_button" type="button" value="转播">
+							</div>
 			</div>
 		</dd>
 	</dl><?php endforeach; endif; else: echo "" ;endif; ?>

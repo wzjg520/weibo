@@ -106,58 +106,131 @@
 			<input type="button" value="发布" class="button" />
 		</form>
 		
-		
+		<!-- 主题部分 -->
 		<div class="weibo_content">
 			<ul>
 				<li><a href="javascript:void(0)" class="selected">我关注的<i class="nav_arrow"></i></a></li>
 				<li><a href="javascript:void(0)">互听的</a></li>
 			</ul>
-			<?php if(is_array($topicList)): $i = 0; $__LIST__ = $topicList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$obj): $mod = ($i % 2 );++$i;?><dl class="weibo_content_data">
-					<dt class="face">
-						<?php if(empty($obj["face"])): if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a>
-								<?php else: ?>
-								<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a><?php endif; ?>
-							
-						<?php else: ?>
-							<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a>
-								<?php else: ?>
-								<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a><?php endif; endif; ?>				
-					</dt>
-					<dd class="content">
-						<h4>
-							<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><?php echo ($obj["username"]); ?></a>
-								<?php else: ?>
-								<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><?php echo ($obj["username"]); ?></a><?php endif; ?>	
-						</h4>
-						<p style="padding:5px 0 0 0"><?php echo ($obj["content"]); ?></p>					
-						<?php switch($obj["count"]): case "0": break;?>
-							<?php case "1": ?><div class="oneImage"><img src="/weibo/<?php echo ($obj['images'][0]['thumb']); ?>" alt="" /></div>
-								<div class="image_zoom" style="display:none;">
-									<ol>
-										<li><a href="javascript:void(0)" class="image_zoom_in">收起</a></li>
-										<li ><a target="_blank" class="image_zoom_source" href="/weibo/<?php echo ($obj['images'][0]['source']); ?>">原图</a></li>
-									</ol>
-									<img source="/weibo/<?php echo ($obj['images'][0]['unfold']); ?>" src="/weibo/Public/Home/images/loading_100.png" alt="" />
-								</div><?php break;?>
-							<?php default: ?>
-									<?php if(is_array($obj["images"])): $i = 0; $__LIST__ = $obj["images"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$images): $mod = ($i % 2 );++$i;?><div class="images">
-											<img class="show_unfold_pic" src="/weibo/<?php echo ($images['thumb']); ?>" key="<?php echo ($obj["username"]); ?>_<?php echo ($obj["create"]); ?>" alt="" unfold="/weibo/<?php echo ($images['unfold']); ?>" source="/weibo/<?php echo ($images['source']); ?>" />
-										</div>
-										<script>
-											if(typeof THINKPHP["<?php echo ($obj["username"]); ?>_<?php echo ($obj["create"]); ?>"] == 'undefined')THINKPHP["<?php echo ($obj["username"]); ?>_<?php echo ($obj["create"]); ?>"]=[];
-											
-											if("<?php echo ($obj['images'][0]['unfold']); ?>" != ''){
-												THINKPHP["<?php echo ($obj["username"]); ?>_<?php echo ($obj["create"]); ?>"].push("/weibo/<?php echo ($images['source']); ?>")
-												THINKPHP["<?php echo ($obj["username"]); ?>_<?php echo ($obj["create"]); ?>"].push("/weibo/<?php echo ($images['unfold']); ?>")
+			<?php if(is_array($topicList)): $i = 0; $__LIST__ = $topicList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$obj): $mod = ($i % 2 );++$i; if(empty($obj["reid"])): ?><dl class="weibo_content_data">
+						<dt class="face">
+							<?php if(empty($obj["face"])): if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a>
+									<?php else: ?>
+									<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a><?php endif; ?>
+								
+							<?php else: ?>
+								<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a>
+									<?php else: ?>
+									<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a><?php endif; endif; ?>				
+						</dt>
+						<dd class="content">
+							<h4>
+								<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><?php echo ($obj["username"]); ?></a>
+									<?php else: ?>
+									<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><?php echo ($obj["username"]); ?></a><?php endif; ?>	
+							</h4>
+							<p style="padding:5px 0 0 0"><?php echo ($obj["content"]); ?></p>					
+							<?php switch($obj["count"]): case "0": break;?>
+								<?php case "1": ?><div class="oneImage"><img src="/weibo/<?php echo ($obj['images'][0]['thumb']); ?>" alt="" /></div>
+									<div class="image_zoom" style="display:none;">
+										<ol>
+											<li><a href="javascript:void(0)" class="image_zoom_in">收起</a></li>
+											<li ><a target="_blank" class="image_zoom_source" href="/weibo/<?php echo ($obj['images'][0]['source']); ?>">原图</a></li>
+										</ol>
+										<img source="/weibo/<?php echo ($obj['images'][0]['unfold']); ?>" src="/weibo/Public/Home/images/loading_100.png" alt="" />
+									</div><?php break;?>
+								<?php default: ?>
+										<?php if(is_array($obj["images"])): $i = 0; $__LIST__ = $obj["images"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$images): $mod = ($i % 2 );++$i;?><div class="images">
+												<img class="show_unfold_pic" src="/weibo/<?php echo ($images['thumb']); ?>" key="<?php echo ($obj["username"]); ?>_<?php echo ($obj["create"]); ?>" alt="" unfold="/weibo/<?php echo ($images['unfold']); ?>" source="/weibo/<?php echo ($images['source']); ?>" />
+											</div>
+											<script>
+												if(typeof THINKPHP["<?php echo ($obj["username"]); ?>_<?php echo ($obj["create"]); ?>"] == 'undefined')THINKPHP["<?php echo ($obj["username"]); ?>_<?php echo ($obj["create"]); ?>"]=[];
 												
-											}				
-										</script><?php endforeach; endif; else: echo "" ;endif; endswitch;?>
-						<div class="footer">
-							<span class="time"><?php echo ($obj['time']); ?></span>
-							<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
-						</div>
-					</dd>
-				</dl><?php endforeach; endif; else: echo "" ;endif; ?>
+												if("<?php echo ($obj['images'][0]['unfold']); ?>" != ''){
+													THINKPHP["<?php echo ($obj["username"]); ?>_<?php echo ($obj["create"]); ?>"].push("/weibo/<?php echo ($images['source']); ?>")
+													THINKPHP["<?php echo ($obj["username"]); ?>_<?php echo ($obj["create"]); ?>"].push("/weibo/<?php echo ($images['unfold']); ?>")												
+												}				
+											</script><?php endforeach; endif; else: echo "" ;endif; endswitch;?>
+							<div class="footer">
+								<span class="time"><?php echo ($obj['time']); ?></span>
+								<span class="handler">赞(0) | 
+								<a href="javascript:;" class="re">转播</a> 
+								| 评论 | 收藏</span>
+								<div class="re_box" style="display:none;">
+									<p>250字以内</p>
+									<textarea class="re_text" name="commend"></textarea>
+									<input type="hidden" name="reid" value="<?php echo ($obj["id"]); ?>" />
+									<input class="re_button" type="button" value="转播">
+								</div>
+							</div>
+						</dd>
+					</dl>
+				<?php else: ?>
+					
+						<dl class="weibo_content_data">
+							<dt class="face">
+								<?php if(empty($obj["face"])): if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a>
+										<?php else: ?>
+										<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/Public/Home/images/small_face.jpg" alt="" ></a><?php endif; ?>
+									
+								<?php else: ?>
+									<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a>
+										<?php else: ?>
+										<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><img src="/weibo/<?php echo ($obj['face']->small); ?>" alt="2" ></a><?php endif; endif; ?>				
+							</dt>
+							<dd class="content">
+								<h4>
+									<?php if(empty($obj["domain"])): ?><a href="<?php echo U('Space/index',array('id'=>$obj['uid']));?>"><?php echo ($obj["username"]); ?></a>
+										<?php else: ?>
+										<a href="/weibo/june/<?php echo ($obj["domain"]); ?>"><?php echo ($obj["username"]); ?></a><?php endif; ?>	
+								</h4>
+								<p style="padding:5px 0 0 0"><?php echo ($obj["content"]); ?></p>
+								<div class="re_content" style="overflow:auto;">
+										<h5>
+											<?php if(empty($obj["recontent"]["domain"])): ?><a href="<?php echo U('Space/index', array('id'=>$obj['recontent']['uid']));?>">@<?php echo ($obj["recontent"]["username"]); ?></a>
+											<?php else: ?>
+												<a href="/weibo/june/<?php echo ($obj["recontent"]["domain"]); ?>">@<?php echo ($obj["recontent"]["username"]); ?></a><?php endif; ?>
+										</h5>
+										<p style="padding:5px 0 0 0"><?php echo ($obj["recontent"]["content"]); ?></p>		
+										<?php switch($obj["recontent"]["count"]): case "0": break;?>
+											<?php case "1": ?><div class="oneImage"><img src="/weibo/<?php echo ($obj["recontent['images'][0]['thumb']"]); ?>" alt="" /></div>
+												<div class="image_zoom" style="display:none;">
+													<ol>
+														<li><a href="javascript:void(0)" class="image_zoom_in">收起</a></li>
+														<li ><a target="_blank" class="image_zoom_source" href="/weibo/<?php echo ($obj["recontent['images'][0]['source']"]); ?>">原图</a></li>
+													</ol>
+													<img source="/weibo/<?php echo ($obj['images'][0]['unfold']); ?>" src="/weibo/Public/Home/images/loading_100.png" alt="" />
+												</div><?php break;?>
+											<?php default: ?>
+													<?php if(is_array($obj["recontent"]["images"])): $i = 0; $__LIST__ = $obj["recontent"]["images"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$images): $mod = ($i % 2 );++$i;?><div class="images">
+															<img class="show_unfold_pic" src="/weibo/<?php echo ($images['thumb']); ?>" key="<?php echo ($obj["recontent"]["username"]); ?>_<?php echo ($obj["recontent"]["create"]); ?>" alt="" unfold="/weibo/<?php echo ($images['unfold']); ?>" source="/weibo/<?php echo ($images['source']); ?>" />
+														</div>
+														<script>
+															if(typeof THINKPHP["<?php echo ($obj["username"]); ?>_<?php echo ($obj["create"]); ?>"] == 'undefined')THINKPHP["<?php echo ($obj["username"]); ?>_<?php echo ($obj["create"]); ?>"]=[];
+															
+															if("<?php echo ($obj["recontent['images'][0]['unfold']"]); ?>" != ''){
+																THINKPHP["<?php echo ($obj["recontent"]["username"]); ?>_<?php echo ($obj["recontent"]["create"]); ?>"].push("/weibo/<?php echo ($images['source']); ?>")
+																THINKPHP["<?php echo ($obj["recontent"]["username"]); ?>_<?php echo ($obj["recontent"]["create"]); ?>"].push("/weibo/<?php echo ($images['unfold']); ?>")												
+															}				
+														</script><?php endforeach; endif; else: echo "" ;endif; endswitch;?>
+										<div class="footer">
+											<span class="time"><?php echo ($obj["recontent"]["time"]); ?> 该微博共被转播了<?php echo ($obj["recontent"]["re_count"]); ?>次</span>
+										</div>
+								</div>	
+								<div class="footer">
+									<span class="time"><?php echo ($obj['time']); ?></span>
+									<span class="handler">赞(0) | 
+									<a href="javascript:;" class="re">转播</a> 
+									| 评论 | 收藏</span>
+									<div class="re_box" style="display:none;">
+										<p>250字以内</p>
+										<textarea class="re_text" name="commend"></textarea>
+										<input type="hidden" name="reid" value="<?php echo ($obj["recontent"]["id"]); ?>" />
+										<input class="re_button" type="button" value="转播">
+									</div>
+								</div>
+							</dd>
+						</dl><?php endif; endforeach; endif; else: echo "" ;endif; ?>
 			<div id="loadmore">加载更多<img src="/weibo/Public/Home/images/loadmore.gif" alt="" /></div>
 			<div id="images_zoom">				
 				<ol>
@@ -192,7 +265,15 @@
 					<p>#内容#</p>
 					<div class="footer">
 						<span class="time">刚刚发布</span>
-						<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
+						<span class="handler">赞(0) | 
+							<a href="javascript:;" class="re">转播</a> 
+							| 评论 | 收藏</span>
+							<div class="re_box" style="display:none;">
+								<p>250字以内</p>
+								<textarea class="re_text" name="commend"></textarea>
+								<input type="hidden" name="reid" value="<?php echo ($obj["id"]); ?>" />
+								<input class="re_button" type="button" value="转播">
+							</div>
 					</div>
 				</dd>
 			</dl>
@@ -226,7 +307,15 @@
 				</div>
 				<div class="footer">
 					<span class="time">刚刚发布</span>
-					<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
+					<span class="handler">赞(0) | 
+							<a href="javascript:;" class="re">转播</a> 
+							| 评论 | 收藏</span>
+							<div class="re_box" style="display:none;">
+								<p>250字以内</p>
+								<textarea class="re_text" name="commend"></textarea>
+								<input type="hidden" name="reid" value="<?php echo ($obj["id"]); ?>" />
+								<input class="re_button" type="button" value="转播">
+							</div>
 				</div>
 			</dd>
 		</dl>
@@ -253,7 +342,15 @@
 					<p>#内容#</p>
 					<div class="footer">
 						<span class="time">刚刚发布</span>
-						<span class="handler">赞(0) | 转播 | 评论 | 收藏</span>
+						<span class="handler">赞(0) | 
+							<a href="javascript:;" class="re">转播</a> 
+							| 评论 | 收藏</span>
+							<div class="re_box" style="display:none;">
+								<p>250字以内</p>
+								<textarea class="re_text" name="commend"></textarea>
+								<input type="hidden" name="reid" value="<?php echo ($obj["id"]); ?>" />
+								<input class="re_button" type="button" value="转播">
+							</div>
 					</div>
 				</dd>
 			</dl>

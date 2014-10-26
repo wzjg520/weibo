@@ -42,5 +42,15 @@ class TopicController extends HomeController{
 			$this->error('非法操作');
 		}
 	}
+	//转发微博
+	public function re_topic(){
+		if(IS_AJAX){
+			$Topic=D('Topic');
+			$tid=$Topic->publish(I('post.content'),session('auth')['id'],I('post.reid'));
+			echo $tid;
+		}else{
+			$this->error('法非访问');
+		}
+	}
 	
 }
