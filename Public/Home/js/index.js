@@ -337,6 +337,7 @@ $(function(){
 		var re=$(this).parent().parent().find('.re_box');
 		if(re.is(':hidden')){			
 			$('.re_box').hide();
+			$('.comm_box').hide();
 			re.find('.re_button').button().click(function(){
 				$.ajax({
 					url:THINKPHP['module']+'/Topic/re_topic',
@@ -365,9 +366,22 @@ $(function(){
 			re.find('.re_text').focus();
 		}else{
 			re.hide();
+		}		
+	})
+	//点击开启评论
+	$('.weibo_content').on('click','.comment',function(){
+		var comment=$(this).parent().parent().find('.comm_box');
+		var re=$(this).parent().parent().find('.re_box');
+		if (comment.is(':hidden')) {
+			$('.comm_box').hide();
+			$('.re_box').hide();
+			comment.find('.comm_button').button()
+			comment.show();
+			comment.find('.comm_text').focus();
+		}else{
+			comment.hide();
 		}
-		
-	})			
+	})		
 })
 
 //解析@会员功能

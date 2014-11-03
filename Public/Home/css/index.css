@@ -368,20 +368,20 @@ float:left;
 	text-decoration:none;
 	color:#5e7c85;
 }
-#main .weibo_content_data dd .footer .re_box {
+#main .weibo_content_data dd .footer .re_comm_box {
 	width:584px;
 	border:1px solid #ccc;
 	background:#fafafa;
 	border-radius:4px;
 	float:right;
 }
-#main .weibo_content_data dd .footer .re_box p {
+#main .weibo_content_data dd .footer .re_comm_box p {
 	text-align:right;
 	color:#5e7c85;
 	font-size:12px;
 	padding:10px 23px 0 0;
 }
-#main .weibo_content_data dd .footer .re_box .re_text {
+#main .weibo_content_data dd .footer .re_comm_box .re_comm_text {
 	width:520px;
 	height:80px;
 	background:#fff;
@@ -392,7 +392,12 @@ float:left;
 	color:#666;
 	margin:5px 25px 0 25px;
 }
-#main .weibo_content_data dd .footer .re_box .re_button {
+#main .weibo_content_data dd .footer .re_comm_box .re_button {
+	width:70px;
+	float:right;
+	margin:0 20px 10px 0;
+}
+#main .weibo_content_data dd .footer .re_comm_box .comm_button {
 	width:70px;
 	float:right;
 	margin:0 20px 10px 0;
