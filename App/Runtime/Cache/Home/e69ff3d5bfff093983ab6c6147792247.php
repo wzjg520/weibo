@@ -41,13 +41,21 @@
 				<span class="time"><?php echo ($obj['time']); ?></span>
 				<span class="handler">赞(0) | 
 							<a href="javascript:;" class="re">转播</a> 
-							| 评论 | 收藏</span>
-							<div class="re_box" style="display:none;">
-								<p>250字以内</p>
-								<textarea class="re_text" name="commend"></textarea>
-								<input type="hidden" name="reid" value="<?php echo ($obj["id"]); ?>" />
-								<input class="re_button" type="button" value="转播">
-							</div>
+								| <a href="javascript:;" class="comment">评论</a> 
+								| 收藏</span>
+								<div class="re_box re_comm_box" style="display:none;">
+									<p>250字以内</p>
+									<textarea class="re_text re_comm_text" name="commend"></textarea>
+									<input type="hidden" name="reid" value="<?php echo ($obj["id"]); ?>" />
+									<input class="re_button" type="button" value="转播">
+								</div>
+								<div class="comm_box re_comm_box" style="display:none;">
+									<p>250字以内</p>
+									<textarea class="comm_text re_comm_text" name="comment"></textarea>
+									<input type="hidden" name="tid" value="<?php echo ($obj["id"]); ?>" />
+									<input class="comm_button" type="button" value="评论">
+									<div class="comment_content"></div>
+								</div>
 			</div>
 		</dd>
 	</dl><?php endforeach; endif; else: echo "" ;endif; ?>

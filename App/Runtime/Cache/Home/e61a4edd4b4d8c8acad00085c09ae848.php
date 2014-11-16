@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="/weibo/Public/Home/css/jquery.ui.css">
 <link rel="stylesheet" href="/weibo/Public/Home/css/base.css">
 
-	<link rel="stylesheet" href="/weibo/Public/Home/css/space.css">
+	<link rel="stylesheet" href="/weibo/Public/Home/css/set.css">
+	<script type="text/javascript" src="/weibo/Public/Home/js/set.js"></script>
 
 <script>
 		var	THINKPHP={
@@ -68,19 +69,21 @@
 <div id="main">
 	
 	<div class="main_left">
-		<div class="header">
-			<dl>
-				<dt>
-					<?php if(empty($bigFace)): ?><img src="/weibo/Public/Home/images/big.jpg" alt="头像" />
-					<?php else: ?>
-						<img src="/weibo/<?php echo ($bigFace); ?>" alt="头像" /><?php endif; ?>	
-				</dt>
-				<dd class="username"><?php echo ($user['username']); ?></dd>
-				<dd class="intro">个人简介：<?php echo ($user["extend"]["intro"]); ?></dd>
-			</dl>
-		</div>
+		<ul>
+			<li><a href="<?php echo U('Set/index');?>" class="selected">个人设置</a></li>
+			<li><a href="<?php echo U('Set/avatar');?>">头像设置</a></li>
+			<li><a href="<?php echo U('Set/domain');?>">个性域名</a></li>
+		</ul>
 	</div>
 	<div class="main_right">
+		<h2>个人设置</h2>
+		<hr/>
+		<dl>
+			<dd>账号名称：<?php echo ($user['username']); ?></dd>
+			<dd>邮箱地址：<input type="text" name="email" value="<?php echo ($user['email']); ?>" class="text"/></dd>
+			<dd><span >个人简介：</span><textarea name="intro"><?php echo ($user['extend']['intro']); ?></textarea></dd>
+			<dd><input type="submit" name="send"  class="button" value="修改"/></dd>
+		</dl>
 	</div>
 
 </div>

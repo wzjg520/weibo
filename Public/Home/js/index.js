@@ -351,13 +351,16 @@ $(function(){
 							'background':'url('+THINKPHP['img']+'/loading.gif) no-repeat 18px 8px',
 						}).html('正在转发中，请稍等...').dialog('open');
 					},
-					success:function(data){
-						$('#msg').css('background','url('+THINKPHP['img']+'/success.gif) no-repeat 18px 8px').html('发表成功！').dialog('open');
-						setTimeout(function(){
-							$('#msg').dialog('close');
-							re.find('.re_text').val('')
-							location.reload(true);
-						},500);
+					success:function(data,response,status){
+						if(data){
+							$('#msg').css('background','url('+THINKPHP['img']+'/success.gif) no-repeat 18px 8px').html('发表成功！').dialog('open');
+							setTimeout(function(){
+								$('#msg').dialog('close');
+								re.find('.re_text').val('')
+								location.reload(true);
+							},500);
+						}					
+						
 					}
 				})
 			});
@@ -368,21 +371,112 @@ $(function(){
 			re.hide();
 		}		
 	})
-	//点击开启评论
+	//点击切换评论
 	$('.weibo_content').on('click','.comment',function(){
 		var comment=$(this).parent().parent().find('.comm_box');
 		var re=$(this).parent().parent().find('.re_box');
 		if (comment.is(':hidden')) {
 			$('.comm_box').hide();
 			$('.re_box').hide();
-			comment.find('.comm_button').button()
 			comment.show();
 			comment.find('.comm_text').focus();
+			
+			var tid=$(this).parent().parent().find('input[name="tid"]').val(),
+			comment_content=$(this).parent().parent().find('.comment_content');
+			//加载评论
+			$.ajax({
+				url : THINKPHP['module'] + '/Comment/getList',
+				type : 'POST',
+				data : {
+					tid : tid,
+					page : 1,
+				},
+				beforeSend : function () {
+					//加载中。。。
+					comment_content.append('<p style="text-align:center;">评论加载中<img src="' + THINKPHP['img'] + '/loadmore.gif" alt=""></p>');
+				},
+				success : function(data, response, status){
+					if (data) {
+						//删除子节点所有评论
+						comment_content.find('*').remove();
+						//添加评论内容
+						comment_content.append(data);
+						//@帐号
+						setUrl();
+					}
+				}
+			});
 		}else{
 			comment.hide();
 		}
-	})		
+	})
+	
+	//评论分页点击
+	$('.comm_box').on('click', '.page_comment', function () {
+		var page = $(this).attr('page');
+		var comment_content = $(this).parent().parent().parent().find('.comment_content');
+		var tid = $(this).parent().parent().parent().find('input[name="tid"]').val();
+		//删除子节点所有评论
+		comment_content.find('*').remove();
+		$.ajax({
+			url : THINKPHP['module'] + '/Comment/getList',
+			type : 'POST',
+			data : {
+				tid : tid,
+				page : page,
+			},
+			beforeSend : function () {
+				//加载中。。。
+				comment_content.append('<p style="text-align:center;">评论加载中<img src="' + THINKPHP['img'] + '/loadmore.gif" alt=""></p>');
+			},
+			success : function(data, response, status){
+				if (data) {
+					//删除子节点所有评论
+					comment_content.find('*').remove();
+					//添加评论内容
+					comment_content.append(data);
+					//@帐号
+					setUrl();
+				}
+			}
+		});
+	})
+	//评论按钮
+	$('.comm_button').button()
+	$('body').on('click','.comm_button',function(){
+		var tid=$(this).parent().find('input[name="tid"]').val(),
+		content=$(this).parent().find('textarea[name="comment"]').val(),
+		comment=$(this).parent().find('textarea[name="comment"]')
+		
+		//ajax提交至服务器
+		$.ajax({
+			url:THINKPHP['module']+'/Comment/publish',
+			type:'post',
+			data:{
+				tid:tid,
+				content:content,
+			},
+			beforeSend:function(){
+				$('#msg').css({
+					'background':'url('+THINKPHP['img']+'/loading.gif) no-repeat 18px 8px',
+				}).html('正在提交中，请稍等...').dialog('open');
+			},
+			success:function(data,response,status){
+				if(data){							
+					$('#msg').css('background','url('+THINKPHP['img']+'/success.gif) no-repeat 18px 8px').html('评论成功！').dialog('open');
+					setTimeout(function(){
+						$('#msg').dialog('close');
+						comment.find('.comm_text').val('')
+						location.reload(true);
+					},500);
+				}
+			}
+		})
+	})
+
+				
 })
+
 
 //解析@会员功能
 function setUrl(){

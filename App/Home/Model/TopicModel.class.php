@@ -55,6 +55,11 @@ class TopicModel extends RelationModel{
 		$map['id'] = $reid;
 		$this->where($map)->setInc('re_count');
 	}
+	//被评论的源微博＋１
+	public function setCommcount($reid){
+		$map['id'] = $reid;
+		$this->where($map)->setInc('comm_count');
+	}
 	//获得数据列表
 	public function getList($start,$step){
 		$topicList=$this->relation(true)

@@ -68,6 +68,7 @@ class UserModel extends RelationModel{
 		
 		//验证密码
 		$user=$this->field('id,password,last_login,username,face,domain')->where($map)->find();
+
 		if($user['password']==sha1($password)){
 			
 			//登录验证后写入登录信息

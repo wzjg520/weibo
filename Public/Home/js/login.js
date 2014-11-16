@@ -181,7 +181,7 @@ $(function () {
 	}).parent().find('.ui-widget-header').hide();
 	//验证码
 	$('#verify_form').dialog({
-		width:290,
+		width:300,
 		height:270,
 		autoOpen:false,
 		modal:true,

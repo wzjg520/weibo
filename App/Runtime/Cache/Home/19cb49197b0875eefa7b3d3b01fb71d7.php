@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="/weibo/Public/Home/css/jquery.ui.css">
 <link rel="stylesheet" href="/weibo/Public/Home/css/base.css">
 
-	<link rel="stylesheet" href="/weibo/Public/Home/css/space.css">
+	<link rel="stylesheet" href="/weibo/Public/Home/css/set.css">
+	<script type="text/javascript" src="/weibo/Public/Home/js/set.js"></script>
 
 <script>
 		var	THINKPHP={
@@ -68,19 +69,22 @@
 <div id="main">
 	
 	<div class="main_left">
-		<div class="header">
-			<dl>
-				<dt>
-					<?php if(empty($bigFace)): ?><img src="/weibo/Public/Home/images/big.jpg" alt="头像" />
-					<?php else: ?>
-						<img src="/weibo/<?php echo ($bigFace); ?>" alt="头像" /><?php endif; ?>	
-				</dt>
-				<dd class="username"><?php echo ($user['username']); ?></dd>
-				<dd class="intro">个人简介：<?php echo ($user["extend"]["intro"]); ?></dd>
-			</dl>
-		</div>
+		<ul>
+			<li><a href="<?php echo U('Set/index');?>">个人设置</a></li>
+			<li><a href="<?php echo U('Set/avatar');?>">头像设置</a></li>
+			<li><a href="<?php echo U('Set/domain');?>" class="selected">个性域名</a></li>
+		</ul>
 	</div>
 	<div class="main_right">
+		<h2>个性域名设置</h2>
+		<hr/>
+		<dl class="domain">
+			<dd>个性域名必须是由长度4到10位之间的数字，或字母组成，且未被注册，一经注册不得更改。</dd>
+			<?php if(empty($domain)): ?><dd><input type="text" name="domain" class="domain_text" value="<?php echo ($domain); ?>" /> <strong style="color:red;line-height:25px;">*</strong></dd>
+				<dd><input type="submit" name="send" value="设置域名" class="submit" /></dd>
+				<?php else: ?>
+				您的个性域名地址为：<a href="/weibo/june/<?php echo ($domain); ?>" target="_blank">http://<?php echo $_SERVER['SERVER_NAME'];?>/weibo/june/<?php echo ($domain); ?></a><?php endif; ?>
+		</dl>
 	</div>
 
 </div>

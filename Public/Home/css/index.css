@@ -413,6 +413,40 @@ float:left;
 	margin:5px 0 0 0;
 }
 
+#main .weibo_content_data .comment_content {
+	border-top:1px solid #eee;
+	width:100%;
+	padding:0 0 10px 0;
+	float:left;
+}
+#main .weibo_content_data .comment_content ol {
+	padding:5px 15px 0 15px;
+}
+#main .weibo_content_data .comment_content ol li {
+	line-height:200%;
+}
+#main .weibo_content_data .comment_content ol li.line {
+	border-bottom:1px solid #eee;
+	color:#999;
+}
+#main .weibo_content_data .comment_content ol li a {
+	color:#049;
+}
+
+.page {
+	text-align:right;
+	padding:0 15px 0 0;
+}
+.page a {
+	margin:0 0 0 5px;
+	padding:2px 8px 2px 8px;
+	border:1px solid #eee;
+}
+.page a:hover,.page a.select {
+	color:#fff !important;
+	background:#333;
+}
+
 
 #main  .clear{
 	clear:both;

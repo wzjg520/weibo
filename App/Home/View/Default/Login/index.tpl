@@ -9,7 +9,6 @@
 <script type="text/javascript" src="__JS__/jquery.validate.js"></script>
 <script type="text/javascript" src="__JS__/login.js"></script>
 <link rel="stylesheet" href="__CSS__/jquery.ui.css">
-<link rel="stylesheet" href="__CSS__/basic.css">
 <link rel="stylesheet" href="__CSS__/login.css">
 <script type="text/javascript">
 	var	THINKPHP={
