@@ -8,5 +8,5 @@
 		<li class="line"><?php echo ($obj["time"]); ?></li><?php endforeach; endif; else: echo "" ;endif; ?>
 </ol>
 <div class="page">
-	<?php $__FOR_START_1385805817__=1;$__FOR_END_1385805817__=$total+1;for($i=$__FOR_START_1385805817__;$i < $__FOR_END_1385805817__;$i+=1){ ?><a href="javascript:void(0)" page="<?php echo ($i); ?>" class="page_comment <?php echo ($page == $i ? 'select' : ''); ?>"><?php echo ($i); ?></a><?php } ?>
+	<?php $__FOR_START_1518931196__=1;$__FOR_END_1518931196__=$total+1;for($i=$__FOR_START_1518931196__;$i < $__FOR_END_1518931196__;$i+=1){ ?><a href="javascript:void(0)" page="<?php echo ($i); ?>" class="page_comment <?php echo ($page == $i ? 'select' : ''); ?>"><?php echo ($i); ?></a><?php } ?>
 </div>
