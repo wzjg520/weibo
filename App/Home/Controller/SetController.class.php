@@ -30,6 +30,18 @@ class SetController extends HomeController{
 			$this->display();
 		}
 	}
+
+	//多图测试
+	public function avatarMul(){
+		if($this->login()){
+			$User=D('User');
+			$face=$User->getFace();
+			//重置session信息
+			session('auth')['face']=json_decode($face['face']);
+			$this->assign('bigFace',json_decode($face['face'])->big);
+			$this->display();
+		}
+	}
 	//显示个性域名
 	public function domain(){
 		if($this->login()){

@@ -16,14 +16,14 @@
 		</ul>
 	</div>
 	<div class="main_right">
-		<h2>头像设置</h2>
+		<h2>头像设置mul</h2>
 		<hr/>
 		<p>请上传一张大小不低于200*200px的头像图片</p>
 		<div class="avatar">
 			<empty name="bigFace">
-				<img id="face" src="__IMG__/big.jpg" id="face" alt="" />
+				<img id="face" src="__IMG__/big.jpg" alt="" />
 			<else/>
-				<img id="face" src="__ROOT__/{$bigFace}" id="face" alt="" />
+				<img id="face" src="__ROOT__/{$bigFace}"  alt="" />
 			</empty>		
 			<span id="preview_box"><img id="jcrop_preview" src="__IMG__/big.jpg" alt="头像" /></span>
 			<a href="javascript:;" class="save" style="margin:10px 0 0 0;display:none;">保存</a>
