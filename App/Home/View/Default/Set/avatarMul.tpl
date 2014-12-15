@@ -63,6 +63,8 @@
 			<else/>
 				<img id="face" src="__ROOT__/{$bigFace}" width="300px" height="300px"  id="face" alt="" />
 			</empty>
+			<span id="preview_box" style="display:block"><img id="jcrop_preview"  src="__IMG__/big.jpg" alt="头像" /></span>
+			
 			<span id="preview_box1"><img id="jcrop_preview1" src="__IMG__/big.jpg" alt="头像" /></span>
 			<span id="preview_box2"><img id="jcrop_preview2" src="__IMG__/big.jpg" alt="头像" /></span>
 			<span id="preview_box3"><img id="jcrop_preview3" src="__IMG__/big.jpg" alt="头像" /></span>		

@@ -28,7 +28,7 @@ $(function(){
 	if($('#file').length>0){
 		//头像上传
 		$('#file').uploadify({
-			uploader:THINKPHP['avatar'],
+			uploader:THINKPHP['avatar'],	
 			swf:THINKPHP['uploadify']+'/uploadify.swf',
 			buttonText:'上传头像',
 			fileSizeLimit:'1MB',
@@ -107,13 +107,16 @@ $(function(){
 					}).html('头像保存中，请稍等...').dialog('open');
 				},
 				success:function(data,reponse,state){
-					//jcrop.destroy();
-					$('#jcrop_preview').fadeOut();
+					jcrop.destroy();
 					$('.save, .cancel').button().hide();
 					// $('#face').attr('src',THINKPHP['root']+'/'+$.parseJSON(data)['big']+'?random='+Math.random()).css({
 					// 	width:'auto',
 					// 	height:'auto',
 					// });
+					$('#jcrop_preview').attr('src',THINKPHP['root']+'/'+$.parseJSON(data)['big']+'?random='+Math.random()).css({
+						width:'auto',
+						height:'auto',
+					});
 					$('#file').fadeIn();
 					$('#msg').css('background','url('+THINKPHP['img']+'/success.gif) no-repeat 15px 8px').html('头像保存成功！').dialog('open');
 					setTimeout(function(){
