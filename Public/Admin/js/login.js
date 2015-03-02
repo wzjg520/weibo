@@ -37,7 +37,26 @@ $(function(){
 			$('#password').focus();
 		}else{
 			$.ajax({
-				url:'baidu.com'
+				url : THINKPHP['module']+'/Login/checkManager',
+				type : 'post',
+				data : {
+					'manager' : $('#manager').val(),
+					'password' : $('#password').val()
+				},
+				beforeSend : function(){
+					$.messager.progress();
+				},
+				
+				complete : function(xhr, status){					
+					if('success' == status){
+						if(xhr.responseText>0){
+							location.href = THINKPHP['index'];							
+						};
+					}else{
+						$.messager.alert('网络错误', '服务器暂时未响应', 'warning')
+					}
+					$.messager.progress('close');
+				}
 			})
 		}
 	})

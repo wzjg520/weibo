@@ -27,18 +27,25 @@
 </head>
 <body>
 
-<div id="login">
-	<p><label for="manager">用户名：</label><input type="text" name="manager" id="manager" class="textbox" /></p>
-	<p><label for="password">密码：</label><input type="text" name="password" id="password" class="textbox"/></p>
+<div style="display:none;">
+	<div id="login">
+		<p><label for="manager">用户名：</label><input type="text" name="manager" id="manager" class="textbox" /></p>
+		<p><label for="password">密码：</label><input type="password" name="password" id="password" class="textbox"/></p>
+	</div>
+	<div id="btn">
+		<a href="javascript:;"  class="easyui-linkbutton">登陆</a>
+	</div>
 </div>
-
-<div id="btn">
-	<a href="javascript:;"  class="easyui-linkbutton">登陆</a>
-</div>
-
 	
 </body>
-
+<script>
+var	THINKPHP={
+		'img': '__IMG__',
+		'module':'__MODULE__',
+		'index':'{:U("Index/index")}',
+		'root':'__ROOT__',
+	}
+</script>
 <script type="text/javascript" src="__EASYUI__/jquery.min.js"></script>
 <script type="text/javascript" src="__EASYUI__/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="__EASYUI__/locale/easyui-lang-zh_CN.js" ></script>

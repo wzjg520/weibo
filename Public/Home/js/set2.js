@@ -28,16 +28,16 @@ $(function(){
 	if($('#file').length>0){
 		//头像上传
 		$('#file').uploadify({
-			uploader:THINKPHP['avatar'],	
-			swf:THINKPHP['uploadify']+'/uploadify.swf',
-			buttonText:'上传头像',
-			fileSizeLimit:'1MB',
-			fileTypeDesc:'上传图片',
-			fileTypeExts:'*.gif;*.png;*.jpeg;*.jpg;',
-			multi:false,
-			buttonCursor:'pointer',
-			overrideEvents:['onSelectError','onDialogClose','onSelect'],
-			onSelectError:function(file,errorCode,errorMsg){
+			uploader:THINKPHP['avatar'],	//后台处理地址
+			swf:THINKPHP['uploadify']+'/uploadify.swf',  //uploadify.swf文件存放地址
+			buttonText:'上传头像',	//选择描述文字
+			fileSizeLimit:'1MB',	//上传限制最大1M 
+			fileTypeDesc:'上传图片',	//按钮文字
+			fileTypeExts:'*.gif;*.png;*.jpeg;*.jpg;',	//允许上传图片
+			multi:false,	//是否支持多文件上传
+			buttonCursor:'pointer',		//按钮手形
+			overrideEvents:['onSelectError','onDialogClose','onSelect'],	//重写默认事件
+			onSelectError:function(file,errorCode,errorMsg){	//错误提示，只做了上传大小提示
 				switch(errorCode){
 					case -110:
 						$('#msg').css({
@@ -49,26 +49,29 @@ $(function(){
 						break;
 				}
 			},
-			onUploadStart:function(){
+			onUploadStart:function(){	//上传开始
 				$('#msg').css({
 						'background':'url('+THINKPHP['img']+'/loading.gif) no-repeat 15px 8px',
 				}).html('正在上传中，请稍等...').dialog('open');
 			},
-			onUploadSuccess:function(file,data,response){
+			onUploadSuccess:function(file,data,response){		//上传成功
 				$('#msg').dialog('close')
 
+				//上传成功后初始化预览图片
 				$('#face,#jcrop_preview1').attr('src',THINKPHP['root']+'/'+$.parseJSON(data));
 				$('#jcrop_preview2').attr('src',THINKPHP['root']+'/'+$.parseJSON(data));
 				$('#jcrop_preview3').attr('src',THINKPHP['root']+'/'+$.parseJSON(data));
 				
 
 
-				$('#preview_box').fadeIn();
-				$('#url').val($.parseJSON(data));				
+//				$('#preview_box').fadeIn();
+				$('#url').val($.parseJSON(data));	
+				//头像加载完成之后执行插件			
 				$('#face').one('load',function(){
 					//隐藏上传按钮
 					$('#file').hide();
 					$('.save, .cancel').button().show();
+					//明天把这个拉出来
 					jcrop=$.Jcrop('#face',{
 						onSelect:    showPreview,
 			            			bgColor:     'black',
@@ -81,12 +84,13 @@ $(function(){
 				})		
 			}	
 		})
+
 		//点击取消裁剪图片
 		$('.cancel').click(function(e){
 			$('.save, .cancel').button().hide();
-			jcrop.destroy();
-			$('#file').fadeIn();
-			$('#face,#jcrop_preview').attr('src',THINKPHP['root']+'/Public/Home/images/1.jpg');
+			jcrop.destroy();		//删除裁剪对象，不能裁剪了
+			$('#file').fadeIn();	//隐藏upload按钮
+			$('#face,#jcrop_preview').attr('src',THINKPHP['root']+'/Public/Home/images/1.jpg');	//还原默认头像
 			return nothing(e);
 		})
 		//点击保存图片
@@ -113,6 +117,7 @@ $(function(){
 					// 	width:'auto',
 					// 	height:'auto',
 					// });
+					
 					$('#jcrop_preview').attr('src',THINKPHP['root']+'/'+$.parseJSON(data)['big']+'?random='+Math.random()).css({
 						width:'auto',
 						height:'auto',
