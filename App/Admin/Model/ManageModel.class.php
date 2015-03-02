@@ -24,8 +24,7 @@ class ManageModel extends Model{
 			$map['password'] = sha1($password);
 			
 			$o = $this->field('id, manager')->where($map)->find();
-			
-			if($manager){
+			if($o){
 				session('admin',$o['manager']);
 				
 				$update = array(
@@ -36,6 +35,8 @@ class ManageModel extends Model{
 				
 				$this->save($update);
 				return $o['id'];
+			}else{
+				return 0;
 			}
 
 		}else{

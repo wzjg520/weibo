@@ -16,11 +16,9 @@ class LoginController extends Controller {
 	}
 	
 	//验证管理员
-	public function checkManager() {
-		
+	public function checkManager() {		
 		if(IS_AJAX){
 			$Manage = D('Manage');
-			sleep(3);
 			echo $Manage->checkManager(I('post.manager'), I('post.password'));			
 		}else{
 			$this->error('非法操作');
