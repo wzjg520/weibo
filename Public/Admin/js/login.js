@@ -51,6 +51,8 @@ $(function(){
 					if('success' == status){
 						if(xhr.responseText>0){
 							location.href = THINKPHP['index'];							
+						}else{
+							$.messager.alert('验证失败', '账号或密码错误', 'warning')
 						};
 					}else{
 						$.messager.alert('网络错误', '服务器暂时未响应', 'warning')
